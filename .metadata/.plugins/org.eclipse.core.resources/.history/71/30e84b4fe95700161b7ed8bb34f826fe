@@ -1,0 +1,58 @@
+package uk.co.luciditysoftware.actsintown.api.config;
+
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+
+public class UserAuthentication implements Authentication {
+
+	//private final User user;
+	private boolean authenticated = true;
+
+	//public UserAuthentication(User user) {
+	//	this.user = user;
+	//}
+
+	@Override
+	public String getName() {
+		//return user.getUsername();
+		return "p.t.d";
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		//return user.getAuthorities();
+		return new ArrayList<GrantedAuthority>();
+	}
+
+	@Override
+	public Object getCredentials() {
+		//return user.getPassword();
+		return "ABCD";
+	}
+
+	/*@Override
+	public User getDetails() {
+		//return user;
+		return null;
+	}*/
+
+	@Override
+	public Object getPrincipal() {
+		//return user.getUsername();
+		return "PTD";
+	}
+
+	@Override
+	public boolean isAuthenticated() {
+		return authenticated;
+	}
+
+	@Override
+	public void setAuthenticated(boolean authenticated) {
+		this.authenticated = authenticated;
+	}
+}

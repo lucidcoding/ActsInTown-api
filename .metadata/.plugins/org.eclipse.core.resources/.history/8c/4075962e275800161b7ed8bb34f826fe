@@ -1,0 +1,55 @@
+package uk.co.luciditysoftware.actsintown.api.config;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Base64;
+
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.filter.GenericFilterBean;
+
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwt;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureException;
+
+public class JwtAutenticationFilter extends GenericFilterBean {
+
+	@Override
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException,
+			ServletException {
+		
+		HttpServletRequest httpRequest = (HttpServletRequest)request;
+		String authHeader = httpRequest.getHeader("Authorization");
+		
+		if (authHeader != null) {
+
+			String token = authHeader.substring(7);
+			
+			try {
+				
+				byte[] keyBytes = SecurityConfiguration.JWT_SIGNING_KEY.getBytes();
+				SecretKey key = new SecretKeySpec(keyBytes, 0, keyBytes.length, "AES"); 
+				Claims claims = Jwts.parser().setSigningKey(key).parseClaimsJwt(token).getBody();
+
+				SecurityContextHolder.getContext().setAuthentication(new UserAuthentication(new UserPrincipal(){{
+					this.setUsername(claims.getSubject());
+					this.setAuthorities(new ArrayList<CustomGrantedAuthority>());
+			
+				}}));
+
+			} catch (SignatureException e) {
+				//TODO: log attempt
+			}
+		}
+		
+		chain.doFilter(request, response); 
+	}
+}

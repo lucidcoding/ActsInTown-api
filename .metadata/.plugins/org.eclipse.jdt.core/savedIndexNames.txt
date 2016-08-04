@@ -1,0 +1,16 @@
+INDEX VERSION 1.127+C:\Code\ActsInTownJJWT\.metadata\.plugins\org.eclipse.jdt.core
+4079302594.index
+3721947069.index
+3603724010.index
+1990469941.index
+1710258123.index
+2910580494.index
+1492689661.index
+2550374156.index
+584029221.index
+3319335619.index
+1494832536.index
+3278694665.index
+532856282.index
+1164740086.index
+343753873.index

@@ -1,0 +1,47 @@
+package uk.co.luciditysoftware.actsintown.api.config;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.filter.GenericFilterBean;
+
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureException;
+
+public class JwtFilter extends GenericFilterBean {
+
+	@Override
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException,
+			ServletException {
+		HttpServletRequest httpRequest = (HttpServletRequest)request;
+		HttpServletResponse httpResponse = (HttpServletResponse)response;
+
+		/*SecurityContextHolder.getContext().setAuthentication(new UserAuthentication(new UserPrincipal(){{
+			this.setAuthorities(new ArrayList<CustomGrantedAuthority>());
+	
+		}}));*/
+		
+		final String token = httpRequest.getHeader("Authorization");
+		if (token != null) {
+
+			chain.doFilter(request, response); // always continue
+		}
+		else {
+			//httpResponse.sendError(401);
+			//request.set
+			chain.doFilter(request, response); // always continue
+		}
+		
+		//chain.doFilter(req, res); // always continue
+	}
+
+}

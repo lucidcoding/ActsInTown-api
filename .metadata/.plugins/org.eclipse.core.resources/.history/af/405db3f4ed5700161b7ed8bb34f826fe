@@ -1,0 +1,29 @@
+package uk.co.luciditysoftware.actsintown.api.config;
+
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.stereotype.Service;
+
+
+//http://massimilianosciacco.com/spring-security-jwt-authentication
+//https://github.com/Robbert1/boot-stateless-auth/blob/master/src/main/java/com/jdriven/stateless/security/StatelessAuthenticationSecurityConfig.java
+	
+@Service
+public class JwtAuthenticationProvider implements AuthenticationProvider{
+
+	@Override
+	public Authentication authenticate(Authentication arg0) throws AuthenticationException {
+		// TODO Auto-generated method stub
+		//return null;
+		return new UserAuthentication(new UserPrincipal());
+	}
+
+	@Override
+	public boolean supports(Class<?> arg0) {
+		// TODO Auto-generated method stub
+		//return c == UsernamePasswordAuthenticationToken.class;
+		return true;
+	}
+
+}

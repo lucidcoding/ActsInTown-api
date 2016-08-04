@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename compilation unit &apos;uk.co.luciditysoftware.actsintown.data.repositories.UserRepository.java&apos; to &apos;UserRepositoryImpl.java&apos;&#x0D;&#x0A;- Original project: &apos;ActsInTown-data&apos;&#x0D;&#x0A;- Original element: &apos;uk.co.luciditysoftware.actsintown.data.repositories.UserRepository.java&apos;&#x0D;&#x0A;- Renamed element: &apos;uk.co.luciditysoftware.actsintown.data.repositories.UserRepositoryImpl.java&apos;" description="Rename compilation unit &apos;UserRepository.java&apos;" flags="2" id="org.eclipse.jdt.ui.rename.compilationunit" input="/src&lt;uk.co.luciditysoftware.actsintown.data.repositories{UserRepository.java" name="UserRepositoryImpl.java" references="false" stamp="1470174304910" version="1.0"/>
+</session>
