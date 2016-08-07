@@ -1,3 +1,5 @@
 #Tomcat publish data
-#Tue Aug 02 18:42:23 BST 2016
+#Sun Aug 07 19:20:24 BST 2016
+org.eclipse.jst.j2ee.server\:ActsInTown-domain=WEB-INF/lib/ActsInTown-domain.jar
+org.eclipse.jst.j2ee.server\:ActsInTown-data=WEB-INF/lib/ActsInTown-data.jar
 org.eclipse.jst.jee.server\:/binary\:C\:\\Users\\Paul.LucidityPc\\.m2\\repository\\org\\springframework\\spring-web\\4.0.0.RELEASE\\spring-web-4.0.0.RELEASE.jar=WEB-INF/lib/spring-web-4.0.0.RELEASE.jar

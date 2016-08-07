@@ -1,11 +1,13 @@
 package uk.co.luciditysoftware.actsintown.api.config;
 
+import javax.servlet.FilterRegistration;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
+import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.DispatcherServlet;
 
 public class Bootstrap  implements WebApplicationInitializer{
@@ -29,7 +31,7 @@ public class Bootstrap  implements WebApplicationInitializer{
         dispatcher.setLoadOnStartup(1);
         dispatcher.addMapping("/");
        
-        /*FilterRegistration.Dynamic filter = container.addFilter("sessionPerRequestFilter", new DelegatingFilterProxy());
-        filter.addMappingForUrlPatterns(null, true, "/*");*/
+        FilterRegistration.Dynamic filter = container.addFilter("sessionPerRequestFilter", new DelegatingFilterProxy());
+        filter.addMappingForUrlPatterns(null, true, "/*");
     }
 }

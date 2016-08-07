@@ -38,6 +38,8 @@
         <property name="enabled">
             <column name="`Enabled`" not-null="true" />
         </property>
- 
+  
+ 		<many-to-one name="role" class="uk.co.luciditysoftware.actsintown.domain.entities.Role" column="RoleId" not-null="true"/>
+ 		
     </class>
 </hibernate-mapping>

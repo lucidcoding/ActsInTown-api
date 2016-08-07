@@ -3,6 +3,8 @@
 	<name>ActsInTown-api</name>
 	<comment></comment>
 	<projects>
+		<project>ActsInTown-domain</project>
+		<project>ActsInTown-data</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

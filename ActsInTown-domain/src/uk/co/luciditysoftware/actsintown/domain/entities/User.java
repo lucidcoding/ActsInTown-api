@@ -10,6 +10,7 @@ public class User extends Entity {
 	private String lastName;
 	private String email;
 	private boolean enabled;
+	private Role role;
 	
 	public String getUsername() {
 		return username;
@@ -66,4 +67,26 @@ public class User extends Entity {
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+	
+	/*public static User register(RegisterRequest request) {
+		User user = new User();
+		user.setId(UUID.randomUUID());
+		user.setUsername(request.getUsername());
+		user.setPassword(request.getPassword());
+		user.setPasswordSalt(request.getPasswordSalt());
+		user.setFirstName(request.getFirstName());
+		user.setLastName(request.getLastName());
+		user.setEmail(request.getUsername());
+		user.setEnabled(true);
+		user.setRole(request.getRole());
+		return user;
+	}*/
 }

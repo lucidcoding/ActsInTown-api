@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+      "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+      "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd" >
+
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+    <property name="hibernate.connection.url">
+      jdbc:sqlserver://localhost:1433;databaseName=Campervibe;integratedSecurity=true;
+   	</property>
+	<property name="connection.release_mode">on_close</property>
+	<property name="hibernate.current_session_context_class">thread</property>
+	
+    <property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>
+	<mapping resource="/uk/co/luciditysoftware/campervibe/data/mappings/Depot.hbm.xml"/>
+	<mapping resource="/uk/co/luciditysoftware/campervibe/data/mappings/Vehicle.hbm.xml"/>
+	<mapping resource="/uk/co/luciditysoftware/campervibe/data/mappings/Booking.hbm.xml"/>
+	<mapping resource="/uk/co/luciditysoftware/campervibe/data/mappings/Role.hbm.xml"/>
+	<mapping resource="/uk/co/luciditysoftware/campervibe/data/mappings/Permission.hbm.xml"/>
+	<mapping resource="/uk/co/luciditysoftware/campervibe/data/mappings/RolePermission.hbm.xml"/>
+	<mapping resource="/uk/co/luciditysoftware/campervibe/data/mappings/User.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>

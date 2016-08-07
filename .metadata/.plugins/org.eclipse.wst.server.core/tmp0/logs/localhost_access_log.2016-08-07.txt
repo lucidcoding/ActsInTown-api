@@ -1,0 +1,5 @@
+127.0.0.1 - - [07/Aug/2016:19:18:38 +0100] "GET / HTTP/1.1" 404 994
+127.0.0.1 - - [07/Aug/2016:19:20:55 +0100] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [07/Aug/2016:19:20:56 +0100] "GET /ActsInTown-api/WEB-INF/classes/uk/co/luciditysoftware/actsintown/api/config/RootContextConfiguration.java HTTP/1.1" 404 992
+0:0:0:0:0:0:0:1 - - [07/Aug/2016:19:21:32 +0100] "GET /actsintown/test/data HTTP/1.1" 404 1034
+0:0:0:0:0:0:0:1 - - [07/Aug/2016:19:21:43 +0100] "GET /actsintown-api/test/data HTTP/1.1" 404 1042
