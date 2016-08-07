@@ -6,7 +6,6 @@ import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.bcrypt.BCrypt;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,28 +26,29 @@ public class TokenController {
 	
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	@ResponseBody
-	@Transactional
 	public String get(@RequestParam("username") String username, @RequestParam("password") String password)  {
 		
 		User user = userRepository.getByUsername(username);
 
 		if (user == null) {
-			
-			throw new BadCredentialsException("Bad Credentials");
+			return null;
 		}
 
 		byte[] passwordBytes = Base64.decodeBase64(user.getPassword());
 
-		if (!BCrypt.checkpw( password, new String(passwordBytes, StandardCharsets.UTF_8) )) {
+		if (BCrypt.checkpw( password, new String(passwordBytes, StandardCharsets.UTF_8) )) {
 			
+			final String currentUsername = user.getUsername();
+			
+			String compactJws = Jwts.builder()
+			  .setSubject(username)
+			  .signWith(SignatureAlgorithm.HS512, SecurityConfiguration.JWT_SIGNING_KEY)
+			  .compact();
+			
+			return compactJws;
+		}
+		else {
 			throw new BadCredentialsException("Bad Credentials");
 		}
-		
-		String compactJws = Jwts.builder()
-			.setSubject(username)
-			.signWith(SignatureAlgorithm.HS512, SecurityConfiguration.JWT_SIGNING_KEY)
-			.compact();
-			
-		return compactJws;
 	}
 }

@@ -33,22 +33,22 @@ public class TokenController {
 		User user = userRepository.getByUsername(username);
 
 		if (user == null) {
-			
-			throw new BadCredentialsException("Bad Credentials");
+			return null;
 		}
 
 		byte[] passwordBytes = Base64.decodeBase64(user.getPassword());
 
-		if (!BCrypt.checkpw( password, new String(passwordBytes, StandardCharsets.UTF_8) )) {
+		if (BCrypt.checkpw( password, new String(passwordBytes, StandardCharsets.UTF_8) )) {
 			
+			String compactJws = Jwts.builder()
+			  .setSubject(username)
+			  .signWith(SignatureAlgorithm.HS512, SecurityConfiguration.JWT_SIGNING_KEY)
+			  .compact();
+			
+			return compactJws;
+		}
+		else {
 			throw new BadCredentialsException("Bad Credentials");
 		}
-		
-		String compactJws = Jwts.builder()
-			.setSubject(username)
-			.signWith(SignatureAlgorithm.HS512, SecurityConfiguration.JWT_SIGNING_KEY)
-			.compact();
-			
-		return compactJws;
 	}
 }
