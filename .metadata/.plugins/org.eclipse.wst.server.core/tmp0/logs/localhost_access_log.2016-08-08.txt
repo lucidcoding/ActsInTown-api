@@ -1,0 +1,9 @@
+127.0.0.1 - - [08/Aug/2016:21:48:15 +0100] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [08/Aug/2016:21:48:16 +0100] "GET /ActsInTown-api/WEB-INF/classes/uk/co/luciditysoftware/actsintown/api/controllers/TokenController.java HTTP/1.1" 404 992
+0:0:0:0:0:0:0:1 - - [08/Aug/2016:22:07:04 +0100] "POST /ActsInTown-api/user/register HTTP/1.1" 403 1116
+127.0.0.1 - - [08/Aug/2016:22:08:57 +0100] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [08/Aug/2016:22:08:57 +0100] "GET /ActsInTown-api/WEB-INF/classes/uk/co/luciditysoftware/actsintown/api/config/SecurityConfiguration.java HTTP/1.1" 404 992
+0:0:0:0:0:0:0:1 - - [08/Aug/2016:22:09:02 +0100] "POST /ActsInTown-api/user/register HTTP/1.1" 403 1116
+127.0.0.1 - - [08/Aug/2016:22:11:06 +0100] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [08/Aug/2016:22:11:07 +0100] "GET /ActsInTown-api/WEB-INF/classes/uk/co/luciditysoftware/actsintown/api/config/SecurityConfiguration.java HTTP/1.1" 404 992
+0:0:0:0:0:0:0:1 - - [08/Aug/2016:22:11:51 +0100] "POST /ActsInTown-api/user/register HTTP/1.1" 200 -

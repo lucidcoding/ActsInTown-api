@@ -1,5 +1,7 @@
 package uk.co.luciditysoftware.actsintown.domain.entities;
 
+import java.util.UUID;
+
 import uk.co.luciditysoftware.actsintown.domain.common.Entity;
 
 public class User extends Entity {
@@ -43,15 +45,15 @@ public class User extends Entity {
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-	
+
 	public String getLastName() {
 		return lastName;
 	}
-	
+
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	
+
 	public String getEmail() {
 		return email;
 	}
@@ -59,11 +61,11 @@ public class User extends Entity {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
 	public boolean isEnabled() {
 		return enabled;
 	}
-	
+
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
@@ -75,18 +77,25 @@ public class User extends Entity {
 	public void setRole(Role role) {
 		this.role = role;
 	}
-	
-	/*public static User register(RegisterRequest request) {
+
+	public static User register(
+			String username,
+			String password,
+			String passwordSalt,
+			String firstName,
+			String lastName,
+			Role role) {
+		
 		User user = new User();
 		user.setId(UUID.randomUUID());
-		user.setUsername(request.getUsername());
-		user.setPassword(request.getPassword());
-		user.setPasswordSalt(request.getPasswordSalt());
-		user.setFirstName(request.getFirstName());
-		user.setLastName(request.getLastName());
-		user.setEmail(request.getUsername());
+		user.setUsername(username);
+		user.setPassword(password);
+		user.setPasswordSalt(passwordSalt);
+		user.setFirstName(firstName);
+		user.setLastName(lastName);
+		user.setEmail(username);
 		user.setEnabled(true);
-		user.setRole(request.getRole());
+		user.setRole(role);
 		return user;
-	}*/
+	}
 }

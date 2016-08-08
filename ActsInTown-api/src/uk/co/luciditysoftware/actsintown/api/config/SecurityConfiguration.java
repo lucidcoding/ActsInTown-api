@@ -2,6 +2,7 @@ package uk.co.luciditysoftware.actsintown.api.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -31,9 +32,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			//.servletApi().and()
 			.authorizeRequests()
 			.antMatchers("/token").permitAll()
-			.antMatchers("/test/data").permitAll()
+			.antMatchers(HttpMethod.POST, "/user/register").permitAll()
 			.anyRequest().authenticated().and()
 			.headers().cacheControl().disable().and()
+			.csrf().disable()
 			.addFilterBefore(jwtAutenticationFilter, UsernamePasswordAuthenticationFilter.class);
 	}
 }
