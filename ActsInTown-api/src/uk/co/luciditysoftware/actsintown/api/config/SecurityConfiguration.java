@@ -33,6 +33,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.authorizeRequests()
 			.antMatchers("/token").permitAll()
 			.antMatchers(HttpMethod.POST, "/user/register").permitAll()
+			.antMatchers(HttpMethod.OPTIONS, "/user/register").permitAll()
 			.anyRequest().authenticated().and()
 			.headers().cacheControl().disable().and()
 			.csrf().disable()

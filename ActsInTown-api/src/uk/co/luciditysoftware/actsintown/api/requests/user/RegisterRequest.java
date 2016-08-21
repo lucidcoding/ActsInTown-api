@@ -20,9 +20,6 @@ public class RegisterRequest {
 	private String password;
 
 	@NotNull(message = "This field is required")
-	private String confirmPassword;
-
-	@NotNull(message = "This field is required")
 	@Length(max = 50)
 	private String firstName;
 
@@ -44,14 +41,6 @@ public class RegisterRequest {
 	
 	public void setPassword(String password) {
 		this.password = password;
-	}
-	
-	public String getConfirmPassword() {
-		return confirmPassword;
-	}
-	
-	public void setConfirmPassword(String confirmPassword) {
-		this.confirmPassword = confirmPassword;
 	}
 	
 	public String getFirstName() {
