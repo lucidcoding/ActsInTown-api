@@ -5,6 +5,9 @@ import java.security.SecureRandom;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,7 +37,7 @@ public class UserController {
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	@ResponseBody
 	@Transactional
-	public void register(@RequestBody RegisterRequest request) throws NoSuchAlgorithmException  {
+	public ResponseEntity<Void> register(@RequestBody RegisterRequest request) throws NoSuchAlgorithmException  {
 		
 		String passwordSalt = BCrypt.gensalt(HASHING_ROUNDS, SecureRandom.getInstanceStrong());;
 		Role role = roleRepository.getById(UUID.fromString("2C6E33B8-BD7C-492C-807D-B4B1BCAE5F4F"));
@@ -48,6 +51,10 @@ public class UserController {
 				role);
 		
 		userRepository.save(user);
-		return;
+
+		//http://websystique.com/springmvc/spring-mvc-4-restful-web-services-crud-example-resttemplate/
+		HttpHeaders headers = new HttpHeaders();
+        //headers.setLocation(ucBuilder.path("/user/{id}").buildAndExpand(user.getId()).toUri());
+		return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 	}
 }

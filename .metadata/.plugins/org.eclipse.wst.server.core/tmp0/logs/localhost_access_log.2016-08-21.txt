@@ -18,3 +18,11 @@
 0:0:0:0:0:0:0:1 - - [21/Aug/2016:13:40:48 +0100] "GET /ActsInTown-api/WEB-INF/classes/uk/co/luciditysoftware/actsintown/api/config/SecurityConfiguration.java HTTP/1.1" 404 992
 0:0:0:0:0:0:0:1 - - [21/Aug/2016:13:41:06 +0100] "OPTIONS /ActsInTown-api/user/register HTTP/1.1" 200 -
 0:0:0:0:0:0:0:1 - - [21/Aug/2016:13:41:33 +0100] "POST /ActsInTown-api/user/register HTTP/1.1" 500 29757
+0:0:0:0:0:0:0:1 - - [21/Aug/2016:16:41:47 +0100] "OPTIONS /ActsInTown-api/user/register HTTP/1.1" 200 -
+0:0:0:0:0:0:0:1 - - [21/Aug/2016:16:42:02 +0100] "POST /ActsInTown-api/user/register HTTP/1.1" 200 -
+127.0.0.1 - - [21/Aug/2016:16:51:21 +0100] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [21/Aug/2016:16:51:22 +0100] "GET /ActsInTown-api/WEB-INF/classes/uk/co/luciditysoftware/actsintown/api/controllers/UserController.java HTTP/1.1" 404 992
+0:0:0:0:0:0:0:1 - - [21/Aug/2016:16:51:46 +0100] "POST /ActsInTown-api/user/register HTTP/1.1" 201 -
+0:0:0:0:0:0:0:1 - - [21/Aug/2016:16:53:13 +0100] "OPTIONS /ActsInTown-api/user/register HTTP/1.1" 200 -
+0:0:0:0:0:0:0:1 - - [21/Aug/2016:16:53:20 +0100] "POST /ActsInTown-api/user/register HTTP/1.1" 201 -
+0:0:0:0:0:0:0:1 - - [21/Aug/2016:17:01:45 +0100] "POST /ActsInTown-api/user/register HTTP/1.1" 201 -
