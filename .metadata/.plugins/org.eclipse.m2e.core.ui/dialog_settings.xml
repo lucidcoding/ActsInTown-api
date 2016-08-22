@@ -14,13 +14,16 @@
 	</section>
 	<section name="wizardPage">
 		<list key="groupId">
+			<item value="ActsInTown-dbdeploy"/>
 			<item value="ActsInTown-data"/>
 			<item value="ActsInTown-api"/>
 		</list>
 		<list key="name">
+			<item value="ActsInTown-dbdeploy"/>
 			<item value="ActsInTownApi"/>
 		</list>
 		<list key="artifactId">
+			<item value="ActsInTown-dbdeploy"/>
 			<item value="ActsInTown-data"/>
 			<item value="ActsInTown-api"/>
 		</list>
