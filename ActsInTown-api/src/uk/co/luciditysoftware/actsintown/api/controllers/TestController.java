@@ -27,10 +27,10 @@ public class TestController {
 	@ResponseBody
 	public String get() {
 
-	    @SuppressWarnings("unused")
+	    /*@SuppressWarnings("unused")
 	    Object auth = SecurityContextHolder.getContext().getAuthentication();
 		@SuppressWarnings("unused")
-		UserPrincipal user = (UserPrincipal)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserPrincipal user = (UserPrincipal)SecurityContextHolder.getContext().getAuthentication().getPrincipal();*/
 		return "TEST";
 	}
 	

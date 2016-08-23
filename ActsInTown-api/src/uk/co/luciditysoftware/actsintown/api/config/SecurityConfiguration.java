@@ -31,6 +31,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			//.anonymous().and()
 			//.servletApi().and()
 			.authorizeRequests()
+			.antMatchers("/test").permitAll()
 			.antMatchers("/token").permitAll()
 			.antMatchers(HttpMethod.POST, "/user/register").permitAll()
 			.antMatchers(HttpMethod.OPTIONS, "/user/register").permitAll()
