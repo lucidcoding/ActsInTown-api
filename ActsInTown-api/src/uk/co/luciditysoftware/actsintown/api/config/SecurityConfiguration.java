@@ -32,6 +32,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			//.servletApi().and()
 			.authorizeRequests()
 			.antMatchers("/test").permitAll()
+			.antMatchers("/town").permitAll()
 			.antMatchers("/token").permitAll()
 			.antMatchers(HttpMethod.POST, "/user/register").permitAll()
 			.antMatchers(HttpMethod.OPTIONS, "/user/register").permitAll()
