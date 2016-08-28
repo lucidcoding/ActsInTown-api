@@ -49,13 +49,15 @@ public class RootContextConfiguration {
 	    sessionBuilder.setProperty("connection.release_mode", "on_close");
 	    //sessionBuilder.setProperty("hibernate.current_session_context_class", "thread");
 	    sessionBuilder.setProperty("hibernate.dialect", "org.hibernate.dialect.SQLServerDialect");
+	    /*sessionBuilder.addResource("/uk/co/luciditysoftware/campervibe/data/mappings/Depot.hbm.xml");
+	    sessionBuilder.addResource("/uk/co/luciditysoftware/campervibe/data/mappings/Vehicle.hbm.xml");
+	    sessionBuilder.addResource("/uk/co/luciditysoftware/campervibe/data/mappings/Booking.hbm.xml");*/
 	    sessionBuilder.addResource("/uk/co/luciditysoftware/actsintown/data/mappings/Role.hbm.xml");
 	    sessionBuilder.addResource("/uk/co/luciditysoftware/actsintown/data/mappings/Permission.hbm.xml");
 	    sessionBuilder.addResource("/uk/co/luciditysoftware/actsintown/data/mappings/RolePermission.hbm.xml");
 	    sessionBuilder.addResource("/uk/co/luciditysoftware/actsintown/data/mappings/User.hbm.xml");
 	    sessionBuilder.addResource("/uk/co/luciditysoftware/actsintown/data/mappings/County.hbm.xml");
 	    sessionBuilder.addResource("/uk/co/luciditysoftware/actsintown/data/mappings/Town.hbm.xml");
-	    sessionBuilder.addResource("/uk/co/luciditysoftware/actsintown/data/mappings/Spot.hbm.xml");
 	    return sessionBuilder.buildSessionFactory();
 	}
 
