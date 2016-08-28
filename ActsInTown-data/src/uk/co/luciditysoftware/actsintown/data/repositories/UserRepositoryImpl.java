@@ -27,6 +27,7 @@ public class UserRepositoryImpl implements UserRepository {
 
 	public User getByUsername(String username) {
 		Session session = sessionFactory.getCurrentSession();
+		
 		User user = (User) session.createCriteria(User.class)
 			.add( Restrictions.eq("username", username) )
 			.uniqueResult();

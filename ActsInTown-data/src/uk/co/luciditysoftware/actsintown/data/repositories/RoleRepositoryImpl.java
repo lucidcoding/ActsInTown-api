@@ -4,14 +4,12 @@ import java.util.UUID;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 
 import uk.co.luciditysoftware.actsintown.domain.entities.Role;
 import uk.co.luciditysoftware.actsintown.domain.repositorycontracts.RoleRepository;
-import uk.co.luciditysoftware.actsintown.domain.repositorycontracts.UserRepository;
 
 @Repository
 @Scope("prototype")

@@ -33,6 +33,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.authorizeRequests()
 			.antMatchers("/test").permitAll()
 			.antMatchers("/town").permitAll()
+			.antMatchers("/spot/for-current-user").permitAll()
 			.antMatchers("/token").permitAll()
 			.antMatchers(HttpMethod.POST, "/user/register").permitAll()
 			.antMatchers(HttpMethod.OPTIONS, "/user/register").permitAll()
