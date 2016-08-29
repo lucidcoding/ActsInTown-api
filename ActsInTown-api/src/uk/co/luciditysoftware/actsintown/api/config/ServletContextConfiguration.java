@@ -35,7 +35,7 @@ public class ServletContextConfiguration extends WebMvcConfigurerAdapter
         resolver.setSuffix(".jsp");
         return resolver;
     }
-	
+	/*
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
 		registry.addMapping("/**")
@@ -45,6 +45,7 @@ public class ServletContextConfiguration extends WebMvcConfigurerAdapter
 			//.exposedHeaders("header1", "header2")
 			//.allowCredentials(false).maxAge(3600);
 	}
+	*/
 	
 	/*public ViewResolver viewResolver() {
 		TilesViewResolver tilesViewResolver = new TilesViewResolver();

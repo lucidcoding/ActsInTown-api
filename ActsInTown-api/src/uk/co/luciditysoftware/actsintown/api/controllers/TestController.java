@@ -3,14 +3,12 @@ package uk.co.luciditysoftware.actsintown.api.controllers;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import uk.co.luciditysoftware.actsintown.api.config.UserPrincipal;
 import uk.co.luciditysoftware.actsintown.domain.entities.User;
 import uk.co.luciditysoftware.actsintown.domain.repositorycontracts.UserRepository;
 

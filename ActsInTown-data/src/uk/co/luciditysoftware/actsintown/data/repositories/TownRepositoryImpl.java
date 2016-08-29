@@ -1,6 +1,7 @@
 package uk.co.luciditysoftware.actsintown.data.repositories;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -16,6 +17,12 @@ public class TownRepositoryImpl implements TownRepository {
 
 	@Autowired
 	private SessionFactory sessionFactory;
+	
+	public Town getById(UUID id){
+		Session session = sessionFactory.getCurrentSession();
+		Town town = (Town)session.get(Town.class, id);
+		return town;
+	}
 	
 	public List<Town> getAll() {
 		Session session = sessionFactory.getCurrentSession();

@@ -6,7 +6,6 @@ import java.util.UUID;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
@@ -32,7 +31,6 @@ public class SpotRepositoryImpl implements SpotRepository {
 		String hql = "from Spot as spot inner join spot.user as user where user.username = :username";
 		Query query = session.createQuery(hql);
 		query.setParameter("username", username);
-		List results = query.list();
 		@SuppressWarnings("unchecked")
 		List<Spot> spots = query.list();
 		
