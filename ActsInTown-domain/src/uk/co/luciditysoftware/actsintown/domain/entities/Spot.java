@@ -3,8 +3,10 @@ package uk.co.luciditysoftware.actsintown.domain.entities;
 import java.util.Date;
 import java.util.UUID;
 
-public class Spot {
-	private UUID id;
+import uk.co.luciditysoftware.actsintown.domain.common.Entity;
+import uk.co.luciditysoftware.actsintown.domain.parametersets.spot.AddParameterSet;
+
+public class Spot extends Entity  {
     private User user;
     private Date scheduledFor;
     private int durationMinutes;
@@ -12,14 +14,6 @@ public class Spot {
     private String venueName;
     private Date addedOn;
     private boolean cancelled;
-	
-	public UUID getId() {
-		return id;
-	}
-	
-	public void setId(UUID id) {
-		this.id = id;
-	}
     
 	public User getUser() {
 		return user;
@@ -75,5 +69,18 @@ public class Spot {
 	
 	public void setCancelled(boolean cancelled) {
 		this.cancelled = cancelled;
+	}
+	
+	public static Spot add(AddParameterSet parameterSet) {
+		Spot spot = new Spot();
+		spot.id = UUID.randomUUID();
+		spot.user = parameterSet.getUser();
+		spot.scheduledFor = parameterSet.getScheduledFor();
+		spot.durationMinutes = parameterSet.getDurationMinutes();
+		spot.town = parameterSet.getTown();
+		spot.venueName = parameterSet.getVenueName();
+		spot.addedOn = new Date();
+		spot.cancelled = false;
+		return spot;
 	}
 }

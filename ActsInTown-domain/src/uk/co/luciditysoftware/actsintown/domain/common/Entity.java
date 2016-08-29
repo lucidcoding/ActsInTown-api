@@ -3,7 +3,7 @@ package uk.co.luciditysoftware.actsintown.domain.common;
 import java.util.UUID;
 
 public class Entity {
-	private UUID id;
+	protected UUID id;
 
 	public UUID getId() {
 		return id;

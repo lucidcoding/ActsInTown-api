@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import uk.co.luciditysoftware.actsintown.api.requests.user.RegisterRequest;
 import uk.co.luciditysoftware.actsintown.domain.entities.Role;
 import uk.co.luciditysoftware.actsintown.domain.entities.User;
+import uk.co.luciditysoftware.actsintown.domain.parametersets.user.RegisterParameterSet;
 import uk.co.luciditysoftware.actsintown.domain.repositorycontracts.RoleRepository;
 import uk.co.luciditysoftware.actsintown.domain.repositorycontracts.UserRepository;
 
@@ -38,18 +39,16 @@ public class UserController {
 	@ResponseBody
 	@Transactional
 	public ResponseEntity<Void> register(@RequestBody RegisterRequest request) throws NoSuchAlgorithmException  {
+		RegisterParameterSet parameterSet = new RegisterParameterSet() {{
+			this.setUsername(request.getUsername());
+			this.setPassword(request.getPassword());
+			this.setPasswordSalt(BCrypt.gensalt(HASHING_ROUNDS, SecureRandom.getInstanceStrong()));
+			this.setFirstName(request.getFirstName());
+			this.setLastName(request.getLastName());
+			this.setRole(roleRepository.getById(UUID.fromString("2C6E33B8-BD7C-492C-807D-B4B1BCAE5F4F")));
+		}};
 		
-		String passwordSalt = BCrypt.gensalt(HASHING_ROUNDS, SecureRandom.getInstanceStrong());;
-		Role role = roleRepository.getById(UUID.fromString("2C6E33B8-BD7C-492C-807D-B4B1BCAE5F4F"));
-		
-		User user = User.register(
-				request.getUsername(),
-				request.getPassword(),
-				passwordSalt,
-				request.getFirstName(),
-				request.getFirstName(), 
-				role);
-		
+		User user = User.register(parameterSet);
 		userRepository.save(user);
 
 		//http://websystique.com/springmvc/spring-mvc-4-restful-web-services-crud-example-resttemplate/

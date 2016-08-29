@@ -1,21 +1,13 @@
 package uk.co.luciditysoftware.actsintown.domain.entities;
 
 import java.util.Collection;
-import java.util.UUID;
 
-public class Role {
-	private UUID id;
+import uk.co.luciditysoftware.actsintown.domain.common.Entity;
+
+public class Role extends Entity  {
 	private String name;
 	private String description;
 	private Collection<RolePermission> rolePermissions;
-	
-	public UUID getId() {
-		return id;
-	}
-	
-	public void setId(UUID id) {
-		this.id = id;
-	}
 	
 	public String getName() {
 		return name;

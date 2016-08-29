@@ -1,19 +1,10 @@
 package uk.co.luciditysoftware.actsintown.domain.entities;
 
-import java.util.UUID;
+import uk.co.luciditysoftware.actsintown.domain.common.Entity;
 
-public class RolePermission {
-	private UUID id;
+public class RolePermission extends Entity  {
 	private Role role;
 	private Permission permission;
-	
-	public UUID getId() {
-		return id;
-	}
-	
-	public void setId(UUID id) {
-		this.id = id;
-	}
 
 	public Role getRole() {
 		return role;

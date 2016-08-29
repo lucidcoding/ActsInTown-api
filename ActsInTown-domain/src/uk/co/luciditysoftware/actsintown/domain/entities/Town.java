@@ -1,19 +1,10 @@
 package uk.co.luciditysoftware.actsintown.domain.entities;
 
-import java.util.UUID;
+import uk.co.luciditysoftware.actsintown.domain.common.Entity;
 
-public class Town {
-	private UUID id;
+public class Town extends Entity  {
 	private String name;
 	private County county;
-	
-	public UUID getId() {
-		return id;
-	}
-	
-	public void setId(UUID id) {
-		this.id = id;
-	}
 	
 	public String getName() {
 		return name;

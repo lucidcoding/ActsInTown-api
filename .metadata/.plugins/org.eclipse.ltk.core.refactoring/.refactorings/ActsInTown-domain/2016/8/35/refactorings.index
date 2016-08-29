@@ -1,0 +1,6 @@
+1472458129870	Encapsulate field 'user'
+1472458136334	Encapsulate field 'scheduledFor'
+1472458141723	Encapsulate field 'durationMinutes'
+1472458147362	Encapsulate field 'town'
+1472458154891	Encapsulate field 'venueName'
+1472458228599	Rename type 'Add'

@@ -1,20 +1,11 @@
 package uk.co.luciditysoftware.actsintown.domain.entities;
 
-import java.util.UUID;
+import uk.co.luciditysoftware.actsintown.domain.common.Entity;
 
-public class Permission {
-	private UUID id;
+public class Permission extends Entity  {
 	private String name;
 	private String description;
-	
-	public UUID getId() {
-		return id;
-	}
-	
-	public void setId(UUID id) {
-		this.id = id;
-	}
-	
+
 	public String getName() {
 		return name;
 	}

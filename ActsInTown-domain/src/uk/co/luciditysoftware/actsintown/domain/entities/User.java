@@ -3,6 +3,7 @@ package uk.co.luciditysoftware.actsintown.domain.entities;
 import java.util.UUID;
 
 import uk.co.luciditysoftware.actsintown.domain.common.Entity;
+import uk.co.luciditysoftware.actsintown.domain.parametersets.user.RegisterParameterSet;
 
 public class User extends Entity {
 	private String username;
@@ -78,24 +79,17 @@ public class User extends Entity {
 		this.role = role;
 	}
 
-	public static User register(
-			String username,
-			String password,
-			String passwordSalt,
-			String firstName,
-			String lastName,
-			Role role) {
-		
+	public static User register(RegisterParameterSet parameterSet) {
 		User user = new User();
-		user.setId(UUID.randomUUID());
-		user.setUsername(username);
-		user.setPassword(password);
-		user.setPasswordSalt(passwordSalt);
-		user.setFirstName(firstName);
-		user.setLastName(lastName);
-		user.setEmail(username);
-		user.setEnabled(true);
-		user.setRole(role);
+		user.id = UUID.randomUUID();
+		user.username = parameterSet.getUsername();
+		user.password = parameterSet.getPassword();
+		user.passwordSalt = parameterSet.getPasswordSalt();
+		user.firstName = parameterSet.getFirstName();
+		user.lastName = parameterSet.getLastName();
+		user.email = parameterSet.getUsername();
+		user.enabled = true;
+		user.role = parameterSet.getRole();
 		return user;
 	}
 }
