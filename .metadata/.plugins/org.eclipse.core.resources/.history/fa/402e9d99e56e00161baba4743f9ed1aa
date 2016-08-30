@@ -1,0 +1,13 @@
+package uk.co.luciditysoftware.actsintown.api.datatransferobjects;
+
+import java.util.Date;
+
+public class SpotDto {
+    //private User user;
+    public Date scheduledFor;
+    public int durationMinutes;
+    //private Town town;
+    public String venueName;
+    public Date addedOn;
+    public boolean cancelled;
+}

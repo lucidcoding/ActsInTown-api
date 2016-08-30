@@ -28,7 +28,7 @@ public class SpotRepositoryImpl implements SpotRepository {
 	
 	public List<Spot> getByUsername(String username) {
 		Session session = sessionFactory.getCurrentSession();
-		String hql = "from Spot as spot inner join spot.user as user where user.username = :username";
+		String hql = "select spot from Spot as spot inner join spot.user as user where user.username = :username";
 		Query query = session.createQuery(hql);
 		query.setParameter("username", username);
 		@SuppressWarnings("unchecked")

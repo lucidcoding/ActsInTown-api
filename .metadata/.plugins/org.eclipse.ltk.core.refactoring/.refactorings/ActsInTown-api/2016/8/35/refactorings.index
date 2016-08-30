@@ -2,3 +2,4 @@
 1472466982939	Encapsulate field 'durationMinutes'
 1472466988495	Encapsulate field 'townId'
 1472466994307	Encapsulate field 'venueName'
+1472582786240	Rename type 'Spot'
