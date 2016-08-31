@@ -1,0 +1,37 @@
+package uk.co.luciditysoftware.actsintown.domain.tests.entities.spot;
+
+import static org.junit.Assert.*;
+
+import java.util.Date;
+
+import org.junit.Test;
+
+import uk.co.luciditysoftware.actsintown.domain.entities.Spot;
+import uk.co.luciditysoftware.actsintown.domain.entities.Town;
+import uk.co.luciditysoftware.actsintown.domain.entities.User;
+import uk.co.luciditysoftware.actsintown.domain.parametersets.spot.AddParameterSet;
+
+public class AddTests {
+
+	@Test
+	public void spotIsCreatedCorrectly()
+	{
+		AddParameterSet parameterSet = new AddParameterSet()
+			{{
+				this.setUser(new User()
+					{{
+						this.setUsername("gary.green@green.com);
+					}});
+			    this.setScheduledFor(new Date());;
+			    this.setDurationMinutes(10);
+			    this.setTown(new Town()
+			    	{{
+			    		this.setName("Greenville");
+			    	}});
+			    this.setVenueName("The Comedy Club");
+			}};
+			
+		Spot spot = Spot.add(parameterSet);
+		assertEquals(true, true);
+	}
+}
