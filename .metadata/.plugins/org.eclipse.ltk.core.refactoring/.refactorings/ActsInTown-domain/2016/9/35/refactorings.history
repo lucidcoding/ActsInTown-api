@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Encapsulate field &apos;uk.co.luciditysoftware.actsintown.domain.entities.User.spots&apos; in &apos;uk.co.luciditysoftware.actsintown.domain.entities.User&apos;&#x0D;&#x0A;- Original project: &apos;ActsInTown-domain&apos;&#x0D;&#x0A;- Original element: &apos;uk.co.luciditysoftware.actsintown.domain.entities.User.spots&apos;&#x0D;&#x0A;- Getter method name: &apos;getSpots&apos;&#x0D;&#x0A;- Setter method name: &apos;setSpots&apos;&#x0D;&#x0A;- Field visibility: &apos;public&apos;&#x0D;&#x0A;- Use getter and setter methods in declaring type" comments="false" declaring="true" description="Encapsulate field &apos;spots&apos;" flags="589830" getter="getSpots" id="org.eclipse.jdt.ui.self.encapsulate" input="/src&lt;uk.co.luciditysoftware.actsintown.domain.entities{User.java[User^spots" insertion="16" setter="setSpots" stamp="1472895311620" version="1.0" visibility="1"/>
+</session>

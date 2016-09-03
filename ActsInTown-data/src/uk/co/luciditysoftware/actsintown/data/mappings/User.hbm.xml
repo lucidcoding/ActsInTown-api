@@ -41,5 +41,9 @@
   
  		<many-to-one name="role" class="uk.co.luciditysoftware.actsintown.domain.entities.Role" column="RoleId" not-null="true"/>
  		
+		<bag name="spots" cascade="all">
+			<key column="UserId" />
+			<one-to-many class="uk.co.luciditysoftware.actsintown.domain.entities.Spot" />
+		</bag>
     </class>
 </hibernate-mapping>
