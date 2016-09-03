@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="Rerun uk.co.luciditysoftware.actsintown.domain.tests.entities.user.GetConflictingSpotsTests" project="ActsInTown-domain-tests" tests="10" started="10" failures="0" errors="0" ignored="0">
+  <testsuite name="uk.co.luciditysoftware.actsintown.domain.tests.entities.user.GetConflictingSpotsTests" time="0.034">
+    <testcase name="nothingReturnedIfBeforeEarliestBooking" classname="uk.co.luciditysoftware.actsintown.domain.tests.entities.user.GetConflictingSpotsTests" time="0.022"/>
+    <testcase name="returnsBookingIfStartAfterStartAndEndAfterEnd" classname="uk.co.luciditysoftware.actsintown.domain.tests.entities.user.GetConflictingSpotsTests" time="0.002"/>
+    <testcase name="returnsBookingIfStartAfterStartAndEndEqualsEnd" classname="uk.co.luciditysoftware.actsintown.domain.tests.entities.user.GetConflictingSpotsTests" time="0.001"/>
+    <testcase name="returnsBookingIfStartDateIsBeforeAndEndIsAfterStart" classname="uk.co.luciditysoftware.actsintown.domain.tests.entities.user.GetConflictingSpotsTests" time="0.002"/>
+    <testcase name="returnsBookingIfStartDateBeforeAndEndDateEqualsStart" classname="uk.co.luciditysoftware.actsintown.domain.tests.entities.user.GetConflictingSpotsTests" time="0.001"/>
+    <testcase name="returnsBookingIfStartEqualsEndAndEndAfterEnd" classname="uk.co.luciditysoftware.actsintown.domain.tests.entities.user.GetConflictingSpotsTests" time="0.002"/>
+    <testcase name="returnsBookingIfStartAfterStartAndEndBeforeEnd" classname="uk.co.luciditysoftware.actsintown.domain.tests.entities.user.GetConflictingSpotsTests" time="0.001"/>
+    <testcase name="returnsBookingIfStartEqualsStartAndEndEqualsEnd" classname="uk.co.luciditysoftware.actsintown.domain.tests.entities.user.GetConflictingSpotsTests" time="0.001"/>
+    <testcase name="returnsNothingIfStartAfterEndAndEndAfterEnd" classname="uk.co.luciditysoftware.actsintown.domain.tests.entities.user.GetConflictingSpotsTests" time="0.001"/>
+    <testcase name="returnsBookingIfStartDateIsEqualAndEndIsAfterStart" classname="uk.co.luciditysoftware.actsintown.domain.tests.entities.user.GetConflictingSpotsTests" time="0.001"/>
+  </testsuite>
+</testrun>

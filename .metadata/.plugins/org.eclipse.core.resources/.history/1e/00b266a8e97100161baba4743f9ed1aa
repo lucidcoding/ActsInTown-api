@@ -1,6 +1,8 @@
 package uk.co.luciditysoftware.actsintown.domain.tests.entities.spot;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -57,7 +59,34 @@ public class ValidateAddTests {
 	}
 	
 	@Test
-	public void conflictingSpotReturnsValidationError() throws ParseException {
+	public void spotIsCreatedCorrectly() throws ParseException {
+		dateFormat = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
+
+		user = new User() {
+			{
+				setUsername("gary.green@green.com");
+				setSpots(new ArrayList<Spot>());
+			}
+		};
+
+		Spot existingSpot = new Spot() {
+			{
+				setUser(user);
+				setScheduledFor(dateFormat.parse("16-11-2020 19:30:00"));
+				setDurationMinutes(30);
+				setTown(new Town() {
+					{
+						this.setName("Blueville");
+					}
+				});
+				setVenueName("Test Venue 01");
+				setAddedOn(new Date());
+				setCancelled(false);
+			}
+		};
+		
+		user.getSpots().add(existingSpot);
+
 		AddParameterSet parameterSet = new AddParameterSet() {
 			{
 				this.setUser(user);
@@ -68,7 +97,7 @@ public class ValidateAddTests {
 						this.setName("Greenville");
 					}
 				});
-				this.setVenueName("Test Venue 02");
+				this.setVenueName("Test Venue 01");
 			}
 		};
 

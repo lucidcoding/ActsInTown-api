@@ -68,7 +68,7 @@ public class ValidateAddTests {
 						this.setName("Greenville");
 					}
 				});
-				this.setVenueName("Test Venue 02");
+				this.setVenueName("Test Venue 01");
 			}
 		};
 
