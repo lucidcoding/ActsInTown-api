@@ -54,6 +54,7 @@ public class SpotController {
 		String username = userPrincipal.getUsername();
 		Collection<Spot> spots = spotRepository.getByUsername(username);
 
+		//Collection<Spot> spots2 = ((List<Spot>)spots).get(0).getUser().getSpots();
 		// https://manosnikolaidis.wordpress.com/2015/08/25/jackson-without-annotations/
 		// http://www.baeldung.com/jackson-custom-serialization
 		ObjectMapper mapper = new ObjectMapper();

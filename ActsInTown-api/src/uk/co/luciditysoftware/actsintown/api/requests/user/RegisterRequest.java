@@ -5,11 +5,11 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 
-//import uk.co.luciditysoftware.campervibe.site.validators.FieldMatch;
+import uk.co.luciditysoftware.actsintown.api.validators.FieldMatch;
 
-/*@FieldMatch.List({
+@FieldMatch.List({
     @FieldMatch(first = "password", second = "confirmPassword", message = "The password fields must match" )
-}) */
+})
 public class RegisterRequest {
 
 	@NotNull(message = "This field is required")

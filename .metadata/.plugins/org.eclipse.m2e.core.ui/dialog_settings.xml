@@ -14,6 +14,7 @@
 	</section>
 	<section name="wizardPage">
 		<list key="groupId">
+			<item value="ActsInTown-domain-tests"/>
 			<item value="ActsInTown-dbdeploy"/>
 			<item value="ActsInTown-data"/>
 			<item value="ActsInTown-api"/>
@@ -23,6 +24,7 @@
 			<item value="ActsInTownApi"/>
 		</list>
 		<list key="artifactId">
+			<item value="ActsInTown-domain-tests"/>
 			<item value="ActsInTown-dbdeploy"/>
 			<item value="ActsInTown-data"/>
 			<item value="ActsInTown-api"/>

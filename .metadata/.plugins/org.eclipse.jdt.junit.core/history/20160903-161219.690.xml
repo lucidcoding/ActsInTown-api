@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="ValidateAddTests" project="ActsInTown-domain-tests" tests="1" started="1" failures="0" errors="0" ignored="0">
-  <testsuite name="uk.co.luciditysoftware.actsintown.domain.tests.entities.spot.ValidateAddTests" time="17.088">
-    <testcase name="spotIsCreatedCorrectly" classname="uk.co.luciditysoftware.actsintown.domain.tests.entities.spot.ValidateAddTests" time="17.088"/>
-  </testsuite>
-</testrun>

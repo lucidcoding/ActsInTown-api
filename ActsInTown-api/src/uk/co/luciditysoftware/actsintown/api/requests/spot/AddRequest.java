@@ -3,10 +3,22 @@ package uk.co.luciditysoftware.actsintown.api.requests.spot;
 import java.util.Date;
 import java.util.UUID;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+
 public class AddRequest {
+    @NotNull(message = "This field is required")
     private Date scheduledFor;
+    
+    @NotNull(message = "This field is required")
     private int durationMinutes;
+    
+    @NotNull(message = "This field is required")
     private UUID townId;
+    
+    @NotNull(message = "This field is required")
+	@Length(max = 50)
     private String venueName;
     
 	public Date getScheduledFor() {
@@ -32,6 +44,7 @@ public class AddRequest {
 	public void setTownId(UUID townId) {
 		this.townId = townId;
 	}
+	
 	public String getVenueName() {
 		return venueName;
 	}
