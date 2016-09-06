@@ -1,0 +1,15 @@
+package uk.co.luciditysoftware.actsintown.api.utilities;
+
+import java.io.IOException;
+import java.io.InputStream;
+
+import javax.servlet.ServletInputStream;
+
+public class ResettableServletInputStream extends ServletInputStream {
+	private InputStream stream;
+
+	@Override
+	public int read() throws IOException {
+		return stream.read();
+	}
+}

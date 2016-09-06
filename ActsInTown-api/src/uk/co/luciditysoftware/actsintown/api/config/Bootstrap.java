@@ -31,7 +31,7 @@ public class Bootstrap  implements WebApplicationInitializer{
         dispatcher.setLoadOnStartup(1);
         dispatcher.addMapping("/");
        
-        FilterRegistration.Dynamic filter = container.addFilter("sessionPerRequestFilter", new DelegatingFilterProxy());
+        FilterRegistration.Dynamic filter = container.addFilter("loggingFilter", new DelegatingFilterProxy());
         filter.addMappingForUrlPatterns(null, true, "/*");
     }
 }

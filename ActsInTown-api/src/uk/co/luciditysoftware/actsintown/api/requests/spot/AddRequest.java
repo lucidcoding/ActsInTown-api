@@ -3,6 +3,7 @@ package uk.co.luciditysoftware.actsintown.api.requests.spot;
 import java.util.Date;
 import java.util.UUID;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
@@ -12,6 +13,7 @@ public class AddRequest {
     private Date scheduledFor;
     
     @NotNull(message = "This field is required")
+    @Min(0)
     private int durationMinutes;
     
     @NotNull(message = "This field is required")
