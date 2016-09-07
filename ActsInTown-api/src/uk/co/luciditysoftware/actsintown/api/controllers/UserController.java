@@ -4,6 +4,8 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.UUID;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -16,6 +18,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import uk.co.luciditysoftware.actsintown.api.filters.LoggingFilter;
 import uk.co.luciditysoftware.actsintown.api.requests.user.RegisterRequest;
 import uk.co.luciditysoftware.actsintown.domain.entities.Role;
 import uk.co.luciditysoftware.actsintown.domain.entities.User;
@@ -34,11 +40,17 @@ public class UserController {
 	private RoleRepository roleRepository; 
 
 	private static final int HASHING_ROUNDS = 10;
+	private static final Logger log = LogManager.getLogger(LoggingFilter.class);
 	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	@ResponseBody
 	@Transactional
-	public ResponseEntity<Void> register(@RequestBody RegisterRequest request) throws NoSuchAlgorithmException  {
+	public ResponseEntity<Void> register(@RequestBody RegisterRequest request) throws NoSuchAlgorithmException, JsonProcessingException  {
+		log.error("List called");
+		ObjectMapper mapper = new ObjectMapper();
+		String requestJson = mapper.writeValueAsString(request);
+		log.debug(requestJson);
+		
 		RegisterParameterSet parameterSet = new RegisterParameterSet() {{
 			this.setUsername(request.getUsername());
 			this.setPassword(request.getPassword());

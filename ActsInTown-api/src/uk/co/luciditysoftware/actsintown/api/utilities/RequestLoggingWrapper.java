@@ -1,7 +1,9 @@
 package uk.co.luciditysoftware.actsintown.api.utilities;
 
+import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 import javax.servlet.ReadListener;
 import javax.servlet.ServletInputStream;
@@ -9,11 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 
 import org.apache.commons.io.input.TeeInputStream;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+//import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.Logger;
 
 public class RequestLoggingWrapper extends HttpServletRequestWrapper {
-	private static final Logger log = LogManager.getLogger(RequestLoggingWrapper.class);
+	//private static final Logger log = LogManager.getLogger(RequestLoggingWrapper.class);
 	private final ByteArrayOutputStream bos = new ByteArrayOutputStream();
 	private long id;
 
@@ -75,7 +77,7 @@ public class RequestLoggingWrapper extends HttpServletRequestWrapper {
 	}
 
 	public void logRequest() {
-		log.info(getId() + ": http request " + new String(toByteArray()));
+		//log.info(getId() + ": http request " + new String(toByteArray()));
 	}
 
 	public byte[] toByteArray() {
@@ -89,4 +91,18 @@ public class RequestLoggingWrapper extends HttpServletRequestWrapper {
 	public void setId(long id) {
 		this.id = id;
 	}
+	
+	public String getRequestBody() throws IOException  {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(this.getInputStream()));
+        String line = null;
+        StringBuilder inputBuffer = new StringBuilder();
+        do {
+        	line = reader.readLine();
+        	if (null != line) {
+        		inputBuffer.append(line.trim());
+        	}
+        } while (line != null);
+        reader.close();
+        return inputBuffer.toString().trim();
+    }
 }
