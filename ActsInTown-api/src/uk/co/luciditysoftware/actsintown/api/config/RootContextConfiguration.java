@@ -32,8 +32,13 @@ public class RootContextConfiguration {
 	@Bean(name = "dataSource")
 	public DataSource dataSource() {
 	    BasicDataSource dataSource = new BasicDataSource();
-	    dataSource.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-	    dataSource.setUrl("jdbc:sqlserver://localhost:1433;databaseName=ActsInTown;integratedSecurity=true;");
+	    //dataSource.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+	    //dataSource.setUrl("jdbc:sqlserver://localhost:1433;databaseName=ActsInTown;integratedSecurity=true;");
+
+	    dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+	    dataSource.setUrl("jdbc:mysql://localhost:3306/campervibevehicleinventory");
+	    dataSource.setUsername("root");
+	    dataSource.setPassword("");
 	    
 	    //dataSource.setUrl("jdbc:sqlserver://localhost:1433;databaseName=ActsInTown;");
 	    //dataSource.setUsername("");
@@ -48,7 +53,7 @@ public class RootContextConfiguration {
 	    //sessionBuilder.addAnnotatedClasses(User.class);
 	    sessionBuilder.setProperty("connection.release_mode", "on_close");
 	    //sessionBuilder.setProperty("hibernate.current_session_context_class", "thread");
-	    sessionBuilder.setProperty("hibernate.dialect", "org.hibernate.dialect.SQLServerDialect");
+	    sessionBuilder.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLInnoDBDialect");
 	    sessionBuilder.addResource("/uk/co/luciditysoftware/actsintown/data/mappings/Role.hbm.xml");
 	    sessionBuilder.addResource("/uk/co/luciditysoftware/actsintown/data/mappings/Permission.hbm.xml");
 	    sessionBuilder.addResource("/uk/co/luciditysoftware/actsintown/data/mappings/RolePermission.hbm.xml");

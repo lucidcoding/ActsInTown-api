@@ -1,0 +1,15 @@
+-- Create Spot
+
+CREATE TABLE [Spot] (
+    [Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
+    [UserId] UNIQUEIDENTIFIER NOT NULL,
+    [ScheduledFor] DATETIME NOT NULL,
+    [DurationMinutes] INT NOT NULL,
+    [TownId] UNIQUEIDENTIFIER NOT NULL,
+    [VanueName] NVARCHAR(50) NOT NULL,
+    [AddedOn] UNIQUEIDENTIFIER NOT NULL
+);
+
+--//@UNDO
+
+DROP TABLE [Spot];

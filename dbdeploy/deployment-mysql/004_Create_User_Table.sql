@@ -1,0 +1,17 @@
+-- Create User
+
+CREATE TABLE [User] (
+    [Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
+    [Username] NVARCHAR(50) NOT NULL,
+    [Password] NVARCHAR(100) NOT NULL,
+    [PasswordSalt] NVARCHAR(100) NOT NULL,
+    [FirstName] NVARCHAR(50) NOT NULL,
+    [LastName] NVARCHAR(50) NOT NULL,
+    [Email] NVARCHAR(50) NOT NULL,
+    [Enabled] BIT NOT NULL,
+    [RoleId] UNIQUEIDENTIFIER NOT NULL
+);
+
+--//@UNDO
+
+DROP TABLE [User];
