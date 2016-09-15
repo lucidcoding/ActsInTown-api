@@ -32,6 +32,7 @@ public class TokenController {
 		User user = userRepository.getByUsername(username);
 
 		if (user == null) {
+			
 			throw new BadCredentialsException("Bad Credentials");
 		}
 

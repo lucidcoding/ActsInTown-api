@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import uk.co.luciditysoftware.actsintown.domain.entities.County;
 import uk.co.luciditysoftware.actsintown.domain.entities.Town;
 import uk.co.luciditysoftware.actsintown.domain.repositorycontracts.TownRepository;
 
@@ -23,7 +24,13 @@ public class TownController {
 	@ResponseBody
 	@Transactional
 	public List<Town> get() {
+
 		List<Town> towns = townRepository.getAll();
+		County aCounty = towns.get(0).getCounty();
+	    /*@SuppressWarnings("unused")
+	    Object auth = SecurityContextHolder.getContext().getAuthentication();
+		@SuppressWarnings("unused")
+		UserPrincipal user = (UserPrincipal)SecurityContextHolder.getContext().getAuthentication().getPrincipal();*/
 		return towns;
 	}
 }

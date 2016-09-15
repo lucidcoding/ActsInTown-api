@@ -23,6 +23,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import uk.co.luciditysoftware.actsintown.api.filters.LoggingFilter;
 import uk.co.luciditysoftware.actsintown.api.requests.user.RegisterRequest;
+import uk.co.luciditysoftware.actsintown.domain.entities.Role;
 import uk.co.luciditysoftware.actsintown.domain.entities.User;
 import uk.co.luciditysoftware.actsintown.domain.parametersets.user.RegisterParameterSet;
 import uk.co.luciditysoftware.actsintown.domain.repositorycontracts.RoleRepository;

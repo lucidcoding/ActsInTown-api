@@ -29,15 +29,18 @@ public class TokenController {
 	@ResponseBody
 	@Transactional
 	public String get(@RequestParam("username") String username, @RequestParam("password") String password)  {
+		
 		User user = userRepository.getByUsername(username);
 
 		if (user == null) {
+			
 			throw new BadCredentialsException("Bad Credentials");
 		}
 
 		byte[] passwordBytes = Base64.decodeBase64(user.getPassword());
 
 		if (!BCrypt.checkpw( password, new String(passwordBytes, StandardCharsets.UTF_8) )) {
+			
 			throw new BadCredentialsException("Bad Credentials");
 		}
 		

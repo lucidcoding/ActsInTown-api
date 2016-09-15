@@ -23,6 +23,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import uk.co.luciditysoftware.actsintown.api.filters.LoggingFilter;
 import uk.co.luciditysoftware.actsintown.api.requests.user.RegisterRequest;
+import uk.co.luciditysoftware.actsintown.domain.entities.Role;
 import uk.co.luciditysoftware.actsintown.domain.entities.User;
 import uk.co.luciditysoftware.actsintown.domain.parametersets.user.RegisterParameterSet;
 import uk.co.luciditysoftware.actsintown.domain.repositorycontracts.RoleRepository;
@@ -40,11 +41,12 @@ public class UserController {
 
 	private static final int HASHING_ROUNDS = 10;
 	private static final Logger log = LogManager.getLogger(LoggingFilter.class);
-
+	
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	@ResponseBody
 	@Transactional
 	public ResponseEntity<Void> register(@RequestBody RegisterRequest request) throws NoSuchAlgorithmException, JsonProcessingException  {
+		log.error("List called");
 		ObjectMapper mapper = new ObjectMapper();
 		String requestJson = mapper.writeValueAsString(request);
 		log.debug(requestJson);
@@ -60,7 +62,10 @@ public class UserController {
 		
 		User user = User.register(parameterSet);
 		userRepository.save(user);
+
+		//http://websystique.com/springmvc/spring-mvc-4-restful-web-services-crud-example-resttemplate/
 		HttpHeaders headers = new HttpHeaders();
+        //headers.setLocation(ucBuilder.path("/user/{id}").buildAndExpand(user.getId()).toUri());
 		return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 	}
 }
