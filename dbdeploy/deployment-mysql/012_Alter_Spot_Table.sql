@@ -1,11 +1,11 @@
 -- Create Spot
 
-EXEC sp_rename 'Spot.VanueName', 'VenueName', 'COLUMN'; 
+ALTER TABLE `Spot` CHANGE `VanueName` `VenueId` CHAR(36);
 
-ALTER TABLE [Spot] ADD [Cancelled] BIT NOT NULL DEFAULT(0)
+ALTER TABLE `Spot` ADD `Cancelled` BIT NOT NULL DEFAULT 1;
 
 --//@UNDO
 
-ALTER TABLE [Spot] DROP COLUMN [Cancelled];
+ALTER TABLE `Spot` DROP COLUMN `Cancelled`;
 
-EXEC sp_rename 'Spot.VenueName', 'VanueName', 'COLUMN'; 
+ALTER TABLE `Spot` CHANGE `VenueId` `VanueName` CHAR(50);

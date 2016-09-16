@@ -1,11 +1,13 @@
 -- Create Permission
 
-CREATE TABLE [dbo].[Permission](
-    [Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
-    [Name] NVARCHAR(50) NULL,
-    [Description] NVARCHAR(50) NULL,
+CREATE TABLE `Permission` (
+    `Id` CHAR(36) NOT NULL,
+    `Name` CHAR(50) NULL,
+    `Description` CHAR(50) NULL,
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `id` (`id`)
 );
 
 --//@UNDO
 
-DROP TABLE [Permission];
+DROP TABLE `Permission`;

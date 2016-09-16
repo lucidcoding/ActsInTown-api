@@ -36,7 +36,7 @@ public class RootContextConfiguration {
 	    //dataSource.setUrl("jdbc:sqlserver://localhost:1433;databaseName=ActsInTown;integratedSecurity=true;");
 
 	    dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-	    dataSource.setUrl("jdbc:mysql://localhost:3306/actsintown");
+	    dataSource.setUrl("jdbc:mysql://localhost:3306/campervibevehicleinventory");
 	    dataSource.setUsername("root");
 	    dataSource.setPassword("");
 	    

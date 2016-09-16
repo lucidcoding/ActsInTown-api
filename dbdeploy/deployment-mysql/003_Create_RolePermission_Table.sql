@@ -1,11 +1,13 @@
 -- Create RolePermission.
 
-CREATE TABLE [dbo].[RolePermission](
-    [Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
-    [RoleId] UNIQUEIDENTIFIER NOT NULL,
-    [PermissionId] UNIQUEIDENTIFIER NOT NULL
+CREATE TABLE `RolePermission` (
+    `Id` CHAR(36) NOT NULL,
+    `RoleId` CHAR(36) NOT NULL,
+    `PermissionId` CHAR(36) NOT NULL,
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `id` (`id`)
 );
 
 --//@UNDO
 
-DROP TABLE [RolePermission];
+DROP TABLE `RolePermission`;

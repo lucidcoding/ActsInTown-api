@@ -1,5 +1,5 @@
 -- Delete extrenuous Bedfordshire
 
-DELETE FROM [County] WHERE [Id] = (SELECT TOP 1 [Id] FROM [County] WHERE [Name] = 'Bedfordshire');
+DELETE FROM `County` WHERE `Name` = 'Bedfordshire' LIMIT 1;
 
 --//@UNDO

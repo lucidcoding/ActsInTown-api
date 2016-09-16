@@ -2,12 +2,12 @@
 
 <project name="dbdeploy_example" default="default">
 
-    <property name="db.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
-    <property name="db.url" value="jdbc:sqlserver://localhost:1433;databaseName=ActsInTown;" />
+    <property name="db.driver" value="com.mysql.jdbc.Driver" />
+    <property name="db.url" value="jdbc:mysql://localhost:3306/actsintown" />
 
     <path id="hsql.classpath">
         <fileset dir=".">
-            <include name="sqljdbc4.jar"/>
+            <include name="mysql-connector-java-5.1.39-bin.jar"/>
         </fileset>
     </path>
 
@@ -30,8 +30,8 @@
 
     <target name="create-changelog-table">
         <sql driver="${db.driver}" url="${db.url}"
-             userid="DbDeployUser" password="" classpathref="hsql.classpath" >
-            <fileset file="../scripts/createSchemaVersionTable.mssql.sql"/>
+             userid="root" password="" classpathref="hsql.classpath" >
+            <fileset file="../scripts/createSchemaVersionTable.mysql.sql"/>
         </sql>
     </target>
 
@@ -43,7 +43,7 @@
          work the same as in the ant sql task, see http://ant.apache.org/manual/CoreTasks/sql.html
         -->
         <dbdeploy driver="${db.driver}" url="${db.url}"
-                  userid="DbDeployUser"
+                  userid="root"
                   password=""
                   dir="."
                 />
@@ -54,7 +54,7 @@
 
         <!-- use dbdeploy to generate the change script -->
         <dbdeploy driver="${db.driver}" url="${db.url}"
-                  userid="DbDeployUser"
+                  userid="root"
                   password=""
                   dir="."
                   outputfile="output.sql"
@@ -72,7 +72,7 @@
 
     <target name="dump-tables">
         <sql driver="${db.driver}" url="${db.url}"
-             userid="DbDeployUser" password="" print="true" classpathref="hsql.classpath">
+             userid="root" password="" print="true" classpathref="hsql.classpath">
             select * from changelog;
             select * from test;
         </sql>

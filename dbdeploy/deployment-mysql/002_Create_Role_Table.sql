@@ -1,11 +1,13 @@
 -- Create Role
 
-CREATE TABLE [dbo].[Role](
-    [Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY,
-    [Name] NVARCHAR(20) NOT NULL,
-    [Description] NVARCHAR(50) NOT NULL
+CREATE TABLE `Role` (
+    `Id` CHAR(36) NOT NULL,
+    `Name` CHAR(20) NOT NULL,
+    `Description` CHAR(50) NOT NULL,
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `id` (`id`)
 );
 
 --//@UNDO
 
-DROP TABLE [Role];
+DROP TABLE `Role`;
