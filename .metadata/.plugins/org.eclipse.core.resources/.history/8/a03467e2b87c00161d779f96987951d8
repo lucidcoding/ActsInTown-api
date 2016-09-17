@@ -30,11 +30,4 @@ public class UserTypeRepositoryImpl implements UserTypeRepository {
 		
 		return userTypes;
 	}
-	
-	public List<UserType> getAll() {
-		Session session = sessionFactory.getCurrentSession();
-		@SuppressWarnings("unchecked")
-		List<UserType> userTypes = session.createCriteria(UserType.class).list();
-		return userTypes;
-	}
 }

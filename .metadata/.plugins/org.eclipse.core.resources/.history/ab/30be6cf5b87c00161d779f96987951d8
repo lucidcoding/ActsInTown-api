@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 
+import uk.co.luciditysoftware.actsintown.domain.entities.Town;
 import uk.co.luciditysoftware.actsintown.domain.entities.UserType;
 import uk.co.luciditysoftware.actsintown.domain.repositorycontracts.UserTypeRepository;
 
@@ -31,10 +32,11 @@ public class UserTypeRepositoryImpl implements UserTypeRepository {
 		return userTypes;
 	}
 	
-	public List<UserType> getAll() {
+	public List<UserType> getAll()
+	{
 		Session session = sessionFactory.getCurrentSession();
 		@SuppressWarnings("unchecked")
-		List<UserType> userTypes = session.createCriteria(UserType.class).list();
-		return userTypes;
+		List<Town> role = session.createCriteria(Town.class).list();
+		return role;
 	}
 }
