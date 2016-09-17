@@ -4,8 +4,6 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.UUID;
 
-import javax.validation.Valid;
-
 import org.apache.commons.codec.binary.Base64;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -51,19 +49,11 @@ public class UserController {
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	@ResponseBody
 	@Transactional
-	public ResponseEntity<Void> register(@Valid @RequestBody RegisterRequest request) throws NoSuchAlgorithmException, JsonProcessingException  {
+	public ResponseEntity<Void> register(@RequestBody RegisterRequest request) throws NoSuchAlgorithmException, JsonProcessingException  {
 		ObjectMapper mapper = new ObjectMapper();
 		String requestJson = mapper.writeValueAsString(request);
 		log.debug(requestJson);
-		
-		//Check for existing user.
-		User existingUser = userRepository.getByUsername(request.getUsername());
-		
-		if(existingUser != null) {
-			return new ResponseEntity<Void>(new HttpHeaders(), HttpStatus.CONFLICT);
-		}
-		
-		//Encrypt password.
+	
 		String salt = BCrypt.gensalt(HASHING_ROUNDS, SecureRandom.getInstanceStrong());
 		byte[] encryptedPasswordBytes = BCrypt.hashpw(request.getPassword(), salt).getBytes();
 		String encryptedPassword = Base64.encodeBase64String(encryptedPasswordBytes);
@@ -81,6 +71,7 @@ public class UserController {
 		
 		User user = User.register(parameterSet);
 		userRepository.save(user);
-		return new ResponseEntity<Void>(new HttpHeaders(), HttpStatus.CREATED);
+		HttpHeaders headers = new HttpHeaders();
+		return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 	}
 }
