@@ -189,3 +189,7 @@
 0:0:0:0:0:0:0:1 - - [17/Sep/2016:20:56:42 +0100] "GET /ActsInTown-api/WEB-INF/classes/uk/co/luciditysoftware/actsintown/api/controllers/UserController.java HTTP/1.1" 404 992
 0:0:0:0:0:0:0:1 - - [17/Sep/2016:20:57:55 +0100] "POST /ActsInTown-api/user/register HTTP/1.1" 500 30732
 0:0:0:0:0:0:0:1 - - [17/Sep/2016:21:01:01 +0100] "POST /ActsInTown-api/user/register HTTP/1.1" 201 -
+0:0:0:0:0:0:0:1 - - [17/Sep/2016:22:42:36 +0100] "GET /ActsInTown-api/usertype HTTP/1.1" 200 606
+127.0.0.1 - - [17/Sep/2016:23:52:48 +0100] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [17/Sep/2016:23:52:48 +0100] "GET /ActsInTown-api/WEB-INF/classes/uk/co/luciditysoftware/actsintown/api/controllers/SpotController.java HTTP/1.1" 404 1194
+127.0.0.1 - - [17/Sep/2016:23:54:26 +0100] "GET / HTTP/1.1" 404 994

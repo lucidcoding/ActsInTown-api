@@ -24,6 +24,8 @@ import uk.co.luciditysoftware.actsintown.api.requests.spot.AddRequest;
 import uk.co.luciditysoftware.actsintown.domain.entities.Spot;
 import uk.co.luciditysoftware.actsintown.domain.parametersets.spot.AddParameterSet;
 import uk.co.luciditysoftware.actsintown.domain.repositorycontracts.SpotRepository;
+import uk.co.luciditysoftware.actsintown.domain.repositorycontracts.TownRepository;
+import uk.co.luciditysoftware.actsintown.domain.repositorycontracts.UserRepository;
 
 @RestController
 @RequestMapping("/spot")
@@ -31,6 +33,12 @@ public class SpotController {
 
 	@Autowired
 	private SpotRepository spotRepository;
+
+	@Autowired
+	private UserRepository userRepository;
+
+	@Autowired
+	private TownRepository townRepository;
 
 	@Autowired
 	private AddParameterSetMapper addParameterSetMapper;
@@ -60,7 +68,25 @@ public class SpotController {
 	@ResponseBody
 	@Transactional
 	public ResponseEntity<Void> Add(@RequestBody AddRequest request) {
-		AddParameterSet parameterSet = addParameterSetMapper.map(request);
+		/*UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder
+			.getContext()
+			.getAuthentication()
+			.getPrincipal();
+
+		String username = userPrincipal.getUsername();
+
+		AddParameterSet parameterSet = new AddParameterSet() {
+			{
+				this.setUser(userRepository.getByUsername(username));
+				this.setScheduledFor(request.getScheduledFor());
+				this.setDurationMinutes(request.getDurationMinutes());
+				this.setTown(townRepository.getById(request.getTownId()));
+				this.setVenueName(request.getVenueName());
+			}
+		};*/
+		
+		AddParamaterSetMapper = addParameterSetMapper.map(request);
+
 		Spot spot = Spot.add(parameterSet);
 		spotRepository.save(spot);
 		return new ResponseEntity<Void>(new HttpHeaders(), HttpStatus.CREATED);
