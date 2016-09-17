@@ -144,7 +144,6 @@ public class User extends Entity {
 		user.email = parameterSet.getUsername();
 		user.enabled = true;
 		user.role = parameterSet.getRole();
-		user.stageName = parameterSet.getStageName();
 		
 		user.userUserTypes = parameterSet
 			.getUserTypes()

@@ -32,7 +32,6 @@ public class RegisterRequest {
 	
 	private List<UUID> userTypeIds;
 
-	@Length(max = 50)
 	private String stageName;
 	
 	public String getUsername() {
@@ -73,13 +72,5 @@ public class RegisterRequest {
 
 	public void setUserTypeIds(List<UUID> userTypeIds) {
 		this.userTypeIds = userTypeIds;
-	}
-
-	public String getStageName() {
-		return stageName;
-	}
-
-	public void setStageName(String stageName) {
-		this.stageName = stageName;
 	}
 }

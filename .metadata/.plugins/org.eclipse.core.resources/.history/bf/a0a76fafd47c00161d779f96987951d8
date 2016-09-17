@@ -50,9 +50,5 @@
 			<key column="UserId" />
 			<one-to-many class="uk.co.luciditysoftware.actsintown.domain.entities.UserUserType" />
 		</bag>
-		
-        <property name="stageName">
-            <column name="`StageName`" length="50" not-null="true" />
-        </property>
     </class>
 </hibernate-mapping>

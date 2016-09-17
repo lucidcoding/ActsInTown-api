@@ -23,7 +23,6 @@ public class User extends Entity {
 	private Role role;
 	private Collection<Spot> spots;
 	private Collection<UserUserType> userUserTypes;
-	private String stageName;
 	
 	public String getUsername() {
 		return username;
@@ -104,14 +103,6 @@ public class User extends Entity {
 	public void setUserUserTypes(Collection<UserUserType> userUserTypes) {
 		this.userUserTypes = userUserTypes;
 	}
-
-	public String getStageName() {
-		return stageName;
-	}
-
-	public void setStageName(String stageName) {
-		this.stageName = stageName;
-	}
 	
 	public List<Spot> getConflictingSpots(Date scheduledFor, int durationMinutes) {
 		List<Spot> conflictingSpots = new ArrayList<Spot>();
@@ -144,7 +135,6 @@ public class User extends Entity {
 		user.email = parameterSet.getUsername();
 		user.enabled = true;
 		user.role = parameterSet.getRole();
-		user.stageName = parameterSet.getStageName();
 		
 		user.userUserTypes = parameterSet
 			.getUserTypes()

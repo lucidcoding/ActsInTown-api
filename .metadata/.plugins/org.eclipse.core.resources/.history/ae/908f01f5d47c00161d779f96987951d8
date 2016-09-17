@@ -66,7 +66,6 @@ public class UserController {
 			this.setLastName(request.getLastName());
 			this.setRole(roleRepository.getById(UUID.fromString("2C6E33B8-BD7C-492C-807D-B4B1BCAE5F4F")));
 			this.setUserTypes(userTypeRepository.getByIds(request.getUserTypeIds()));
-			this.setStageName(request.getStageName());
 		}};
 		
 		User user = User.register(parameterSet);

@@ -13,7 +13,6 @@ public class RegisterParameterSet {
 	private String lastName;
 	private Role role;
 	private List<UserType> userTypes;
-	private String stageName;
 	
 	public String getUsername() {
 		return username;
@@ -69,13 +68,5 @@ public class RegisterParameterSet {
 
 	public void setUserTypes(List<UserType> userTypes) {
 		this.userTypes = userTypes;
-	}
-
-	public String getStageName() {
-		return stageName;
-	}
-
-	public void setStageName(String stageName) {
-		this.stageName = stageName;
 	}
 }

@@ -74,12 +74,4 @@ public class RegisterRequest {
 	public void setUserTypeIds(List<UUID> userTypeIds) {
 		this.userTypeIds = userTypeIds;
 	}
-
-	public String getStageName() {
-		return stageName;
-	}
-
-	public void setStageName(String stageName) {
-		this.stageName = stageName;
-	}
 }
