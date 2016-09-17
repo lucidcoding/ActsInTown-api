@@ -4,6 +4,8 @@ import javax.sql.DataSource;
 
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 import org.hibernate.SessionFactory;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.config.Configuration.AccessLevel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -19,6 +21,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 		"uk.co.luciditysoftware.actsintown.api.controllers",
 		"uk.co.luciditysoftware.actsintown.api.config",
 		"uk.co.luciditysoftware.actsintown.api.filters",
+		"uk.co.luciditysoftware.actsintown.api.parametersetmappers",
+		"uk.co.luciditysoftware.actsintown.api.services",
 		"uk.co.luciditysoftware.actsintown.data.repositories"
 }, 
 excludeFilters = @ComponentScan.Filter(Controller.class) )
@@ -61,5 +65,18 @@ public class RootContextConfiguration {
 		HibernateTransactionManager tm = new HibernateTransactionManager(
 	            sessionFactory);
 	    return tm;
+	}
+	
+	@Autowired
+	@Bean(name = "modelMapper")
+	public ModelMapper modelMapper() {
+		ModelMapper modelMapper = new ModelMapper();
+		
+		modelMapper
+			.getConfiguration()
+			.setFieldMatchingEnabled(true)
+			.setMethodAccessLevel(AccessLevel.PRIVATE);
+		
+		return modelMapper;
 	}
 }

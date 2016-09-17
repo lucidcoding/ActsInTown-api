@@ -39,7 +39,7 @@ public class SpotController {
 
 	@Autowired
 	private TownRepository townRepository;
-
+	
 	@RequestMapping(value = "/for-current-user", method = RequestMethod.GET)
 	@ResponseBody
 	@Transactional

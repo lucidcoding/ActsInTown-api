@@ -2,3 +2,6 @@
 1474101366772	Encapsulate field 'userTypeIds'
 1474101586456	Encapsulate field 'userTypeIds'
 1474116426926	Encapsulate field 'stageName'
+1474140350079	Rename type 'RequestParameterSetMapper'
+1474140398049	Rename type 'RegisterParameterSetMapper'
+1474141822444	Rename type 'LoggerImpl'
