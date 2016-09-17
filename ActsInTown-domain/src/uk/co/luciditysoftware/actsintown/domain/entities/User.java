@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import uk.co.luciditysoftware.actsintown.domain.common.Entity;
 import uk.co.luciditysoftware.actsintown.domain.parametersets.user.RegisterParameterSet;
@@ -21,6 +22,7 @@ public class User extends Entity {
 	private boolean enabled;
 	private Role role;
 	private Collection<Spot> spots;
+	private Collection<UserUserType> userUserTypes;
 	
 	public String getUsername() {
 		return username;
@@ -93,6 +95,14 @@ public class User extends Entity {
 	public void setSpots(Collection<Spot> spots) {
 		this.spots = spots;
 	}
+
+	public Collection<UserUserType> getUserUserTypes() {
+		return userUserTypes;
+	}
+
+	public void setUserUserTypes(Collection<UserUserType> userUserTypes) {
+		this.userUserTypes = userUserTypes;
+	}
 	
 	public List<Spot> getConflictingSpots(Date scheduledFor, int durationMinutes) {
 		List<Spot> conflictingSpots = new ArrayList<Spot>();
@@ -125,6 +135,17 @@ public class User extends Entity {
 		user.email = parameterSet.getUsername();
 		user.enabled = true;
 		user.role = parameterSet.getRole();
+		
+		user.userUserTypes = parameterSet
+			.getUserTypes()
+			.stream()
+			.map(userType -> new UserUserType() {{
+				this.setId(UUID.randomUUID());
+				this.setUser(user);
+				this.setUserType(userType);
+			}})
+			.collect(Collectors.toList());
+				
 		return user;
 	}
 }

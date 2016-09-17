@@ -14,9 +14,6 @@ import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-
-//Try this to get integrated security working: http://stackoverflow.com/questions/11707056/no-sqljdbc-auth-in-java-library-path
-
 @Configuration
 @ComponentScan(basePackages = {
 		"uk.co.luciditysoftware.actsintown.api.controllers",
@@ -27,22 +24,14 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 excludeFilters = @ComponentScan.Filter(Controller.class) )
 @EnableTransactionManagement
 @Import({ SecurityConfiguration.class })
-//@Import({ ServerSecurityConfig.class, AuthServerOAuth2Config.class })
 public class RootContextConfiguration {
 	@Bean(name = "dataSource")
 	public DataSource dataSource() {
 	    BasicDataSource dataSource = new BasicDataSource();
-	    //dataSource.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-	    //dataSource.setUrl("jdbc:sqlserver://localhost:1433;databaseName=ActsInTown;integratedSecurity=true;");
-
 	    dataSource.setDriverClassName("com.mysql.jdbc.Driver");
 	    dataSource.setUrl("jdbc:mysql://localhost:3306/actsintown");
 	    dataSource.setUsername("root");
 	    dataSource.setPassword("");
-	    
-	    //dataSource.setUrl("jdbc:sqlserver://localhost:1433;databaseName=ActsInTown;");
-	    //dataSource.setUsername("");
-	    //dataSource.setPassword("");
 	    return dataSource;
 	}
 	
@@ -50,9 +39,7 @@ public class RootContextConfiguration {
 	@Bean(name = "sessionFactory")
 	public SessionFactory sessionFactory(DataSource dataSource) {
 	    LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
-	    //sessionBuilder.addAnnotatedClasses(User.class);
 	    sessionBuilder.setProperty("connection.release_mode", "on_close");
-	    //sessionBuilder.setProperty("hibernate.current_session_context_class", "thread");
 	    sessionBuilder.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLInnoDBDialect");
 	    sessionBuilder.addResource("/uk/co/luciditysoftware/actsintown/data/mappings/Role.hbm.xml");
 	    sessionBuilder.addResource("/uk/co/luciditysoftware/actsintown/data/mappings/Permission.hbm.xml");
@@ -61,6 +48,8 @@ public class RootContextConfiguration {
 	    sessionBuilder.addResource("/uk/co/luciditysoftware/actsintown/data/mappings/County.hbm.xml");
 	    sessionBuilder.addResource("/uk/co/luciditysoftware/actsintown/data/mappings/Town.hbm.xml");
 	    sessionBuilder.addResource("/uk/co/luciditysoftware/actsintown/data/mappings/Spot.hbm.xml");
+	    sessionBuilder.addResource("/uk/co/luciditysoftware/actsintown/data/mappings/UserType.hbm.xml");
+	    sessionBuilder.addResource("/uk/co/luciditysoftware/actsintown/data/mappings/UserUserType.hbm.xml");
 	    return sessionBuilder.buildSessionFactory();
 	}
 

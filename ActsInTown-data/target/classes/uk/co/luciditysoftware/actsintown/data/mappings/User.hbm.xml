@@ -45,5 +45,10 @@
 			<key column="UserId" />
 			<one-to-many class="uk.co.luciditysoftware.actsintown.domain.entities.Spot" />
 		</bag>
+		
+		<bag name="userUserTypes" cascade="all">
+			<key column="UserId" />
+			<one-to-many class="uk.co.luciditysoftware.actsintown.domain.entities.UserUserType" />
+		</bag>
     </class>
 </hibernate-mapping>

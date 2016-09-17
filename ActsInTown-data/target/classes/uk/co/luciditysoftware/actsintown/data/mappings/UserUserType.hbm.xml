@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping>
+ 
+    <class name="uk.co.luciditysoftware.actsintown.domain.entities.UserUserType" table="`UserUserType`">
+
+        <id name="id" column="`Id`" type="uuid-char">
+            <generator class="assigned" />
+        </id>
+        
+        <many-to-one name="user" class="uk.co.luciditysoftware.actsintown.domain.entities.User" column="UserId" not-null="true"/>
+ 		
+        <many-to-one name="userType" class="uk.co.luciditysoftware.actsintown.domain.entities.UserType" column="UserTypeId" not-null="true"/>
+    </class>
+</hibernate-mapping>

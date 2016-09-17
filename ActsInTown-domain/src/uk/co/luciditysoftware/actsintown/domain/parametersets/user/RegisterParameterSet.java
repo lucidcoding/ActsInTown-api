@@ -1,6 +1,9 @@
 package uk.co.luciditysoftware.actsintown.domain.parametersets.user;
 
+import java.util.List;
+
 import uk.co.luciditysoftware.actsintown.domain.entities.Role;
+import uk.co.luciditysoftware.actsintown.domain.entities.UserType;
 
 public class RegisterParameterSet {
 	private String username;
@@ -9,6 +12,7 @@ public class RegisterParameterSet {
 	private String firstName;
 	private String lastName;
 	private Role role;
+	private List<UserType> userTypes;
 	
 	public String getUsername() {
 		return username;
@@ -56,5 +60,13 @@ public class RegisterParameterSet {
 
 	public void setRole(Role role) {
 		this.role = role;
+	}
+
+	public List<UserType> getUserTypes() {
+		return userTypes;
+	}
+
+	public void setUserTypes(List<UserType> userTypes) {
+		this.userTypes = userTypes;
 	}
 }

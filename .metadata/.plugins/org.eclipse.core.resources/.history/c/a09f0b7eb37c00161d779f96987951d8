@@ -1,0 +1,19 @@
+package uk.co.luciditysoftware.actsintown.data.repositories;
+
+import java.util.List;
+import java.util.UUID;
+
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Repository;
+
+import uk.co.luciditysoftware.actsintown.domain.entities.User;
+import uk.co.luciditysoftware.actsintown.domain.repositorycontracts.UserRepository;
+import uk.co.luciditysoftware.actsintown.domain.repositorycontracts.UserTypeRepository;
+
+@Repository
+@Scope("prototype")
+public class UserTypeRepositoryImpl implements UserTypeRepository {
+	public User getByIds(List<UUID> ids) {
+		
+	}
+}
