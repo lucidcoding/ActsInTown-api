@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 		"uk.co.luciditysoftware.actsintown.api.controllers",
 		"uk.co.luciditysoftware.actsintown.api.config",
 		"uk.co.luciditysoftware.actsintown.api.filters",
-		"uk.co.luciditysoftware.actsintown.api.parametersetmappers",
+		"uk.co.luciditysoftware.actsintown.api.mappers",
 		"uk.co.luciditysoftware.actsintown.api.services",
 		"uk.co.luciditysoftware.actsintown.data.repositories"
 }, 

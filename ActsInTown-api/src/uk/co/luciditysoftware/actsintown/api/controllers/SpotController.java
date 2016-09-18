@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import uk.co.luciditysoftware.actsintown.api.config.UserPrincipal;
 import uk.co.luciditysoftware.actsintown.api.datatransferobjects.SpotDto;
-import uk.co.luciditysoftware.actsintown.api.parametersetmappers.spot.AddParameterSetMapper;
+import uk.co.luciditysoftware.actsintown.api.mappers.parametersetmappers.spot.AddParameterSetMapper;
 import uk.co.luciditysoftware.actsintown.api.requests.spot.AddRequest;
 import uk.co.luciditysoftware.actsintown.domain.entities.Spot;
 import uk.co.luciditysoftware.actsintown.domain.parametersets.spot.AddParameterSet;

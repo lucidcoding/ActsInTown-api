@@ -5,3 +5,8 @@
 1474140350079	Rename type 'RequestParameterSetMapper'
 1474140398049	Rename type 'RegisterParameterSetMapper'
 1474141822444	Rename type 'LoggerImpl'
+1474189786091	Move compilation unit
+1474189793224	Delete element
+1474189837846	Move compilation unit
+1474189844802	Delete element
+1474191639038	Infer generic type arguments
