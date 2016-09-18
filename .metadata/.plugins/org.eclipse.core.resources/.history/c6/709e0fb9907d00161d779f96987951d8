@@ -6,8 +6,6 @@ public class ValidationMessage
 	private String field;
 	private String text;
 	
-	public ValidationMessage(){}
-	
 	public ValidationMessage(ValidationMessageType type, String field, String text) {
 		this.type = type;
 		this.field = field;

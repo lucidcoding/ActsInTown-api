@@ -55,8 +55,8 @@ public class UserController {
 			List<ValidationMessage> validationMessages = bindingResult
 					.getAllErrors()
 					.stream()
-					.map(error -> new ValidationMessage(ValidationMessageType.ERROR,
-							(error instanceof FieldError) ? ((FieldError)error).getField() : null, 
+					.map(error -> new ValidationMessage(ValidationMessageType.ERROR, null,
+							//(error instanceof FieldError) ? ((FieldError)error).getField() : null, 
 							error.getDefaultMessage()))
 					.collect(Collectors.toList());
 

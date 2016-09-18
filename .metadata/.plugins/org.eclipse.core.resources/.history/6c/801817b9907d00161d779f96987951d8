@@ -99,10 +99,13 @@ public class Spot extends Entity  {
 				}
 			});
 		} else if (parameterSet.getScheduledFor().before(now)) {
-			validationMessages.add(new ValidationMessage(
-					ValidationMessageType.ERROR,
-					"scheduledFor",
-					"Scheduled for must not be in the past."));
+			validationMessages.add(new ValidationMessage() {
+				{
+					setType(ValidationMessageType.ERROR);
+					setField("scheduledFor");
+					setText("Scheduled for must not be in the past.");
+				}
+			});
 		}
 
 		//Ensure duration is psositve and > 0

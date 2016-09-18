@@ -1,8 +1,6 @@
 package uk.co.luciditysoftware.actsintown.api.controllers;
 
 import java.security.NoSuchAlgorithmException;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -25,7 +23,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import uk.co.luciditysoftware.actsintown.api.mappers.parametersetmappers.user.RegisterParameterSetMapper;
 import uk.co.luciditysoftware.actsintown.api.requests.user.RegisterRequest;
 import uk.co.luciditysoftware.actsintown.api.services.RequestLogger;
-import uk.co.luciditysoftware.actsintown.domain.common.ValidationMessage;
 import uk.co.luciditysoftware.actsintown.domain.common.ValidationMessageType;
 import uk.co.luciditysoftware.actsintown.domain.entities.User;
 import uk.co.luciditysoftware.actsintown.domain.parametersets.user.RegisterParameterSet;
@@ -47,20 +44,31 @@ public class UserController {
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	@ResponseBody
 	@Transactional
-	public ResponseEntity<?> register(
+	public ResponseEntity<Void> register(
 			@Valid @RequestBody RegisterRequest request, 
 			BindingResult bindingResult)
 			throws NoSuchAlgorithmException, JsonProcessingException {
 		if (bindingResult.hasErrors()) {
+			
 			List<ValidationMessage> validationMessages = bindingResult
 					.getAllErrors()
 					.stream()
-					.map(error -> new ValidationMessage(ValidationMessageType.ERROR,
-							(error instanceof FieldError) ? ((FieldError)error).getField() : null, 
-							error.getDefaultMessage()))
-					.collect(Collectors.toList());
+					.map(error -> new ValidationMessage(ValidationMessageType.ERROR, "", error.getDefaultMessage()))
+					.
+			for (Object object : bindingResult.getAllErrors()) {
+			    if(object instanceof FieldError) {
+			        FieldError fieldError = (FieldError) object;
 
-			return new ResponseEntity<List<ValidationMessage>>(validationMessages, new HttpHeaders(), HttpStatus.BAD_REQUEST);
+			        System.out.println(fieldError.getCode());
+			    }
+
+			    if(object instanceof ObjectError) {
+			        ObjectError objectError = (ObjectError) object;
+
+			        System.out.println(objectError.getCode());
+			    }
+			}
+			return new ResponseEntity<Void>(new HttpHeaders(), HttpStatus.BAD_REQUEST);
         }
 		
 		requestLogger.log(request);

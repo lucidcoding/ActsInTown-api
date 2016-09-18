@@ -47,20 +47,19 @@ public class UserController {
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	@ResponseBody
 	@Transactional
-	public ResponseEntity<?> register(
+	public ResponseEntity<Void> register(
 			@Valid @RequestBody RegisterRequest request, 
 			BindingResult bindingResult)
 			throws NoSuchAlgorithmException, JsonProcessingException {
 		if (bindingResult.hasErrors()) {
+			
 			List<ValidationMessage> validationMessages = bindingResult
 					.getAllErrors()
 					.stream()
-					.map(error -> new ValidationMessage(ValidationMessageType.ERROR,
-							(error instanceof FieldError) ? ((FieldError)error).getField() : null, 
-							error.getDefaultMessage()))
+					.map(error -> new ValidationMessage(ValidationMessageType.ERROR, "", error.getDefaultMessage()))
 					.collect(Collectors.toList());
 
-			return new ResponseEntity<List<ValidationMessage>>(validationMessages, new HttpHeaders(), HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<Void>(new HttpHeaders(), HttpStatus.BAD_REQUEST);
         }
 		
 		requestLogger.log(request);
