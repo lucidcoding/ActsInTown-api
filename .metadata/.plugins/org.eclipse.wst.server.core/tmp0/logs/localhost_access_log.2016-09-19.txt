@@ -1,0 +1,2 @@
+0:0:0:0:0:0:0:1 - - [19/Sep/2016:07:45:12 +0100] "GET /ActsInTown-api/token?username=gary7@green.com&password=Muppet123 HTTP/1.1" 401 -
+0:0:0:0:0:0:0:1 - - [19/Sep/2016:07:45:18 +0100] "GET /ActsInTown-api/token?username=gary7@green.com&password=Muppet123! HTTP/1.1" 200 142

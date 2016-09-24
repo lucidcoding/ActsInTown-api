@@ -1,5 +1,0 @@
-package uk.co.luciditysoftware.actsintown.domain.repositorycontracts;
-
-public interface SpotRepository {
-
-}
