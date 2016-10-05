@@ -16,6 +16,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -43,6 +44,8 @@ public class UserController {
 	@Autowired
 	private RequestLogger requestLogger;
 
+	//http://www.baeldung.com/registration-verify-user-by-email
+		
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	@ResponseBody
 	@Transactional
@@ -75,5 +78,26 @@ public class UserController {
 		User user = User.register(parameterSet);
 		userRepository.save(user);
 		return new ResponseEntity<Void>(new HttpHeaders(), HttpStatus.CREATED);
+	}
+	
+	@RequestMapping(value = "/verify", method = RequestMethod.GET)
+	@ResponseBody
+	@Transactional
+	public ResponseEntity<?> verify(@RequestParam("verificationToken") String verificationToken) {
+		User user = userRepository.getByVerificationToken(verificationToken);
+		
+		if(user == null) {
+			return new ResponseEntity<Void>(new HttpHeaders(), HttpStatus.NOT_FOUND);
+		}
+		
+		List<ValidationMessage> validationMessages = user.validateVerify();
+		
+		if(!validationMessages.isEmpty()) {
+			return new ResponseEntity<List<ValidationMessage>>(validationMessages, new HttpHeaders(), HttpStatus.BAD_REQUEST);
+		}
+		
+		user.verify();
+		userRepository.save(user);
+		return new ResponseEntity<Void>(new HttpHeaders(), HttpStatus.OK);
 	}
 }

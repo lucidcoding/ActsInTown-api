@@ -25,6 +25,16 @@ public class UserRepositoryImpl implements UserRepository {
 		return user;
 	}
 
+	public User getByVerificationToken(String verificationToken) {
+		Session session = sessionFactory.getCurrentSession();
+
+		User user = (User) session.createCriteria(User.class)
+				.add( Restrictions.eq("verificationToken", verificationToken) )
+				.uniqueResult();
+		
+		return user;
+	}
+	
 	public User getByUsername(String username) {
 		Session session = sessionFactory.getCurrentSession();
 		

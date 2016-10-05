@@ -1,0 +1,11 @@
+-- Alter User
+
+ALTER TABLE `User` ADD COLUMN `VerificationToken` CHAR(50) NOT NULL DEFAULT '';
+ALTER TABLE `User` ADD COLUMN `VerificationTokenExpiry` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE `User` ADD COLUMN `Verified` BIT NOT NULL DEFAULT 1;
+
+--//@UNDO
+
+ALTER TABLE `User` DROP COLUMN `Verified`;
+ALTER TABLE `User` DROP COLUMN `VerificationTokenExpiry`;
+ALTER TABLE `User` DROP COLUMN `VerificationToken`;

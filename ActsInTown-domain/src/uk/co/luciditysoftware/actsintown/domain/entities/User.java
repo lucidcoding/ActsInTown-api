@@ -10,6 +10,8 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 import uk.co.luciditysoftware.actsintown.domain.common.Entity;
+import uk.co.luciditysoftware.actsintown.domain.common.ValidationMessage;
+import uk.co.luciditysoftware.actsintown.domain.common.ValidationMessageType;
 import uk.co.luciditysoftware.actsintown.domain.parametersets.user.RegisterParameterSet;
 
 public class User extends Entity {
@@ -24,6 +26,9 @@ public class User extends Entity {
 	private Collection<Spot> spots;
 	private Collection<UserUserType> userUserTypes;
 	private String stageName;
+	private String verificationToken;
+	private Date verificationTokenExpiry;
+	private boolean verified;
 	
 	public String getUsername() {
 		return username;
@@ -155,7 +160,75 @@ public class User extends Entity {
 				this.setUserType(userType);
 			}})
 			.collect(Collectors.toList());
-				
+		
+		user.generateVerificationToken();
 		return user;
+	}
+
+	//http://www.baeldung.com/registration-verify-user-by-email
+	public void generateVerificationToken() {
+		this.verified = false;
+		this.verificationToken = UUID.randomUUID().toString();
+		GregorianCalendar cal = new GregorianCalendar();
+		int expirationMinutes = 60 * 24;
+        cal.add(Calendar.MINUTE, expirationMinutes);        
+        this.verificationTokenExpiry = cal.getTime();
+	}
+	
+	public List<ValidationMessage> validateVerify() {
+		List<ValidationMessage> validationMessages = new ArrayList<ValidationMessage>();
+		Date now = new Date();
+		
+		if(this.verified) {
+			validationMessages.add(new ValidationMessage(){
+				{
+					setType(ValidationMessageType.ERROR);
+					setField(null);
+					setText("User is already verified.");
+				}
+			});
+			
+			return validationMessages;
+		}
+		
+		if(now.after(this.verificationTokenExpiry)) {
+			validationMessages.add(new ValidationMessage(){
+				{
+					setType(ValidationMessageType.ERROR);
+					setField(null);
+					setText("Vaerification token has expired.");
+				}
+			});
+		}
+		
+		return validationMessages;
+	}
+	
+	public void verify() {
+		this.verified = true;
+	}
+	
+	public String getVerificationToken() {
+		return verificationToken;
+	}
+
+	public void setVerificationToken(String verificationToken) {
+		this.verificationToken = verificationToken;
+	}
+
+	public Date getVerificationTokenExpiry() {
+		return verificationTokenExpiry;
+	}
+
+	public void setVerificationTokenExpiry(Date verificationTokenExpiry) {
+		this.verificationTokenExpiry = verificationTokenExpiry;
+	}
+
+	public boolean isVerified() {
+		return verified;
+	}
+
+	public void setVerified(boolean verified) {
+		this.verified = verified;
 	}
 }

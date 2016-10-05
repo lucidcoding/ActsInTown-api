@@ -35,6 +35,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.antMatchers("/town").permitAll()
 			.antMatchers("/token").permitAll()
 			.antMatchers(HttpMethod.POST, "/user/register").permitAll()
+			.antMatchers(HttpMethod.GET, "/user/verify").permitAll()
 			.antMatchers(HttpMethod.OPTIONS, "/user/register").permitAll()
 			.antMatchers(HttpMethod.OPTIONS, "/spot").permitAll()
 			.antMatchers(HttpMethod.OPTIONS, "/spot/for-current-user").permitAll()
