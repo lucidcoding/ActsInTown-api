@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -44,6 +46,9 @@ public class UserController {
 	@Autowired
 	private RequestLogger requestLogger;
 
+    @Autowired
+    private JavaMailSender mailSender;
+    
 	//http://www.baeldung.com/registration-verify-user-by-email
 		
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
@@ -77,6 +82,13 @@ public class UserController {
 		RegisterParameterSet parameterSet = registerParameterSetMapper.map(request);
 		User user = User.register(parameterSet);
 		userRepository.save(user);
+		
+		SimpleMailMessage email = new SimpleMailMessage();
+        email.setTo(user.getEmail());
+        email.setSubject("Acts in Town Verification Confirmation");
+        email.setText("http://localhost:5555/user/verify/" + user.getVerificationToken());
+        mailSender.send(email);
+        
 		return new ResponseEntity<Void>(new HttpHeaders(), HttpStatus.CREATED);
 	}
 	

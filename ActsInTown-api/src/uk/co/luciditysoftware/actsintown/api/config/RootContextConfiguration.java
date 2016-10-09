@@ -1,5 +1,7 @@
 package uk.co.luciditysoftware.actsintown.api.config;
 
+import java.util.Properties;
+
 import javax.sql.DataSource;
 
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
@@ -11,6 +13,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.stereotype.Controller;
@@ -79,4 +83,41 @@ public class RootContextConfiguration {
 		
 		return modelMapper;
 	}
+	
+	//http://www.programcreek.com/java-api-examples/index.php?api=org.springframework.mail.javamail.JavaMailSender
+	//http://stackoverflow.com/questions/24097131/spring-4-mail-configuration-via-java-config
+	//https://www.siteground.com/kb/google_free_smtp_server/
+	//http://stackoverflow.com/questions/2016190/how-to-configure-spring-javamailsenderimpl-for-gmail
+	//http://stackoverflow.com/questions/17786132/how-to-implements-an-async-email-service-in-spring
+	@Bean(name = "mailSender")
+    public JavaMailSender javaMailService() {
+        JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
+
+        javaMailSender.setHost("smtp.gmail.com");
+        javaMailSender.setPort(587);//587//25?
+        javaMailSender.setUsername("actsintown@gmail.com");
+        javaMailSender.setPassword("");
+        javaMailSender.setProtocol("smtp");
+        Properties properties = new Properties();
+        //properties.put("mail.transport.protocol", "smtp");
+        properties.put("mail.smtp.auth", true);
+        properties.put("mail.smtp.starttls.enable", true);
+        properties.put("mail.debug", true);
+        /*properties.put("mail.smtp.auth", true);
+        properties.put("mail.smtp.starttls.enable", true);
+        properties.put("mail.smtp.quitwait", false);
+        properties.put("mail.smtp.ssl.trust", "*");*/
+        
+
+        /*properties.put("mail.smtp.auth", true);
+        properties.put("mail.smtp.starttls.enable", false);
+        properties.put("mail.smtp.quitwait", false);
+        properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        properties.put("mail.smtp.socketFactory.fallback", false);
+        properties.put("mail.debug", true);*/
+        
+        
+        javaMailSender.setJavaMailProperties(properties);
+        return javaMailSender;
+    }
 }

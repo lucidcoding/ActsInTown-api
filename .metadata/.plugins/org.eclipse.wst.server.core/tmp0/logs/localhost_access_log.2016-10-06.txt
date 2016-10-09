@@ -1,0 +1,17 @@
+127.0.0.1 - - [06/Oct/2016:21:33:34 +0100] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [06/Oct/2016:21:33:35 +0100] "GET /ActsInTown-api/WEB-INF/classes/uk/co/luciditysoftware/actsintown/api/controllers/UserController.java HTTP/1.1" 404 1194
+127.0.0.1 - - [06/Oct/2016:21:35:01 +0100] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [06/Oct/2016:21:35:02 +0100] "GET /ActsInTown-api/WEB-INF/classes/uk/co/luciditysoftware/actsintown/api/controllers/UserController.java HTTP/1.1" 404 992
+0:0:0:0:0:0:0:1 - - [06/Oct/2016:21:38:42 +0100] "GET /ActsInTown-api/usertype HTTP/1.1" 500 45434
+0:0:0:0:0:0:0:1 - - [06/Oct/2016:21:40:12 +0100] "GET /ActsInTown-api/usertype HTTP/1.1" 200 606
+0:0:0:0:0:0:0:1 - - [06/Oct/2016:21:40:37 +0100] "OPTIONS /ActsInTown-api/user/register HTTP/1.1" 200 -
+0:0:0:0:0:0:0:1 - - [06/Oct/2016:21:41:06 +0100] "POST /ActsInTown-api/user/register HTTP/1.1" 500 13485
+127.0.0.1 - - [06/Oct/2016:21:47:04 +0100] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [06/Oct/2016:21:47:05 +0100] "GET /ActsInTown-api/WEB-INF/classes/uk/co/luciditysoftware/actsintown/api/config/RootContextConfiguration.java HTTP/1.1" 404 992
+0:0:0:0:0:0:0:1 - - [06/Oct/2016:21:47:44 +0100] "POST /ActsInTown-api/user/register HTTP/1.1" 500 13485
+127.0.0.1 - - [06/Oct/2016:21:52:20 +0100] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [06/Oct/2016:21:52:21 +0100] "GET /ActsInTown-api/WEB-INF/classes/uk/co/luciditysoftware/actsintown/api/config/RootContextConfiguration.java HTTP/1.1" 404 992
+0:0:0:0:0:0:0:1 - - [06/Oct/2016:21:52:31 +0100] "OPTIONS /ActsInTown-api/user/register HTTP/1.1" 200 -
+127.0.0.1 - - [06/Oct/2016:21:59:33 +0100] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [06/Oct/2016:21:59:33 +0100] "GET /ActsInTown-api/WEB-INF/classes/uk/co/luciditysoftware/actsintown/api/config/RootContextConfiguration.java HTTP/1.1" 404 992
+0:0:0:0:0:0:0:1 - - [06/Oct/2016:22:00:20 +0100] "POST /ActsInTown-api/user/register HTTP/1.1" 500 13485

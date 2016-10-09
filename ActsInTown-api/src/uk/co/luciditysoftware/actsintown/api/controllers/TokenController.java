@@ -33,7 +33,7 @@ public class TokenController {
 	public ResponseEntity<?> get(@RequestParam("username") String username, @RequestParam("password") String password)  {
 		User user = userRepository.getByUsername(username);
 
-		if (user == null) {
+		if (user == null || !user.isVerified()) {
 			return new ResponseEntity<Void>(new HttpHeaders(), HttpStatus.UNAUTHORIZED);
 		}
 

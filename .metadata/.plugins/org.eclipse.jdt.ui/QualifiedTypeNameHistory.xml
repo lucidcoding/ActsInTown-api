@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="java.lang.annotation.Target"/>
-<fullyQualifiedTypeName name="java.lang.annotation.Retention"/>
-<fullyQualifiedTypeName name="javax.validation.Constraint"/>
 <fullyQualifiedTypeName name="java.lang.annotation.Documented"/>
 <fullyQualifiedTypeName name="javax.validation.ConstraintValidatorContext"/>
 <fullyQualifiedTypeName name="javax.validation.Payload"/>
@@ -58,6 +55,9 @@
 <fullyQualifiedTypeName name="org.springframework.validation.FieldError"/>
 <fullyQualifiedTypeName name="org.springframework.validation.ObjectError"/>
 <fullyQualifiedTypeName name="uk.co.luciditysoftware.actsintown.domain.common.ValidationMessageType"/>
-<fullyQualifiedTypeName name="uk.co.luciditysoftware.actsintown.domain.common.ValidationMessage"/>
 <fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="org.hibernate.criterion.Order"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="java.util.Calendar"/>
+<fullyQualifiedTypeName name="uk.co.luciditysoftware.actsintown.domain.common.ValidationMessage"/>
 </qualifiedTypeNameHistroy>

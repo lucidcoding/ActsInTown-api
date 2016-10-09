@@ -1,8 +1,0 @@
-package uk.co.luciditysoftware.actsintown.api.mappers.dtomappers;
-
-import java.util.List;
-
-public interface GenericDtoMapper {
-	public <T> T map(Object source, Class<T> destinationType);
-	public <TSource extends Object, TTarget> List<TTarget> map(List<TSource> source, Class<TTarget> destinationType);
-}
