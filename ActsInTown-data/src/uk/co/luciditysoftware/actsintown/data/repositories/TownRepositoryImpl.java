@@ -6,6 +6,7 @@ import java.util.UUID;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
@@ -28,7 +29,12 @@ public class TownRepositoryImpl implements TownRepository {
 	public List<Town> getAll() {
 		Session session = sessionFactory.getCurrentSession();
 		@SuppressWarnings("unchecked")
-		List<Town> role = session.createCriteria(Town.class).addOrder(Order.asc("name")).list();
+		
+		List<Town> role = session
+			.createCriteria(Town.class)
+			.add(Restrictions.eq("deleted", false))
+			.addOrder(Order.asc("name")).list();
+		
 		return role;
 	}
 }

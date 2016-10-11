@@ -1,7 +1,11 @@
 package uk.co.luciditysoftware.actsintown.api.controllers;
 
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
@@ -14,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,6 +28,7 @@ import uk.co.luciditysoftware.actsintown.api.mappers.parametersetmappers.spot.Ad
 import uk.co.luciditysoftware.actsintown.api.requests.spot.AddRequest;
 import uk.co.luciditysoftware.actsintown.api.services.RequestLogger;
 import uk.co.luciditysoftware.actsintown.domain.entities.Spot;
+import uk.co.luciditysoftware.actsintown.domain.enums.BookedState;
 import uk.co.luciditysoftware.actsintown.domain.parametersets.spot.AddParameterSet;
 import uk.co.luciditysoftware.actsintown.domain.repositorycontracts.SpotRepository;
 
@@ -69,5 +75,27 @@ public class SpotController {
 		Spot spot = Spot.add(parameterSet);
 		spotRepository.save(spot);
 		return new ResponseEntity<Void>(new HttpHeaders(), HttpStatus.CREATED);
+	}
+
+	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	@ResponseBody
+	@Transactional
+	public List<SpotDto> search(
+			@RequestParam("startDate") Date startDate, 
+			@RequestParam("endDate") Date endDate,
+			@RequestParam("townId") UUID townId,
+			@RequestParam("bookedState") BookedState bookedState) {
+		GregorianCalendar cal = new GregorianCalendar();
+        cal.setTime(endDate);
+        cal.add(Calendar.DAY_OF_MONTH, 1);        
+        //Date scheduledEnd = cal.getTime();
+        //return scheduledEnd;
+        
+        Collection<Spot> spots = spotRepository.search(startDate, endDate, townId, bookedState);
+
+		List<SpotDto> spotDtos = spots.stream().map(spot -> modelMapper.map(spot, SpotDto.class))
+				.collect(Collectors.toList());
+
+		return spotDtos;
 	}
 }

@@ -1,5 +1,6 @@
 -- Insert Town
 
+INSERT INTO `Town` (Id, Name, CountyId) VALUES ('54533C40-D822-4FAE-B066-F2E0CDF04C52', 'Manchester', (SELECT `Id` FROM `County` WHERE `Name` = 'Greater Manchester'));
 INSERT INTO `Town` (Id, Name, CountyId) VALUES (UUID(), 'Ampthill', (SELECT `Id` FROM `County` WHERE `Name` = 'Bedfordshire'));
 INSERT INTO `Town` (Id, Name, CountyId) VALUES (UUID(), 'Arlesey', (SELECT `Id` FROM `County` WHERE `Name` = 'Bedfordshire'));
 INSERT INTO `Town` (Id, Name, CountyId) VALUES (UUID(), 'Bedford', (SELECT `Id` FROM `County` WHERE `Name` = 'Bedfordshire'));
@@ -488,7 +489,6 @@ INSERT INTO `Town` (Id, Name, CountyId) VALUES (UUID(), 'Irlam', (SELECT `Id` FR
 INSERT INTO `Town` (Id, Name, CountyId) VALUES (UUID(), 'Kearsley', (SELECT `Id` FROM `County` WHERE `Name` = 'Greater Manchester'));
 INSERT INTO `Town` (Id, Name, CountyId) VALUES (UUID(), 'Leigh', (SELECT `Id` FROM `County` WHERE `Name` = 'Greater Manchester'));
 INSERT INTO `Town` (Id, Name, CountyId) VALUES (UUID(), 'Littleborough', (SELECT `Id` FROM `County` WHERE `Name` = 'Greater Manchester'));
-INSERT INTO `Town` (Id, Name, CountyId) VALUES (UUID(), 'Manchester', (SELECT `Id` FROM `County` WHERE `Name` = 'Greater Manchester'));
 INSERT INTO `Town` (Id, Name, CountyId) VALUES (UUID(), 'Middleton', (SELECT `Id` FROM `County` WHERE `Name` = 'Greater Manchester'));
 INSERT INTO `Town` (Id, Name, CountyId) VALUES (UUID(), 'Milnrow', (SELECT `Id` FROM `County` WHERE `Name` = 'Greater Manchester'));
 INSERT INTO `Town` (Id, Name, CountyId) VALUES (UUID(), 'Mossley', (SELECT `Id` FROM `County` WHERE `Name` = 'Greater Manchester'));

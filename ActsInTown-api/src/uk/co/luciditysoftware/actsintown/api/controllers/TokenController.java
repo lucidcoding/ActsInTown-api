@@ -30,7 +30,7 @@ public class TokenController {
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	@ResponseBody
 	@Transactional
-	public ResponseEntity<?> get(@RequestParam("username") String username, @RequestParam("password") String password)  {
+	public ResponseEntity<?> get(@RequestParam("username") String username, @RequestParam("password") String password) {
 		User user = userRepository.getByUsername(username);
 
 		if (user == null || !user.isVerified()) {

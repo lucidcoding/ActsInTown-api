@@ -1,0 +1,3 @@
+1476214880360	Rename type 'BookedAvailable'
+1476214916970	Encapsulate field 'bookedState'
+1476216442915	Encapsulate field 'deleted'

@@ -1,0 +1,7 @@
+-- Alter Town
+
+ALTER TABLE `Town` ADD COLUMN `Deleted` INT NOT NULL DEFAULT 0;
+
+--//@UNDO
+
+ALTER TABLE `Town` DROP COLUMN `Deleted`;

@@ -1,0 +1,6 @@
+package uk.co.luciditysoftware.actsintown.domain.enums;
+
+public enum BookedAvailable {
+	AVAILABLE,
+	BOOKED
+}

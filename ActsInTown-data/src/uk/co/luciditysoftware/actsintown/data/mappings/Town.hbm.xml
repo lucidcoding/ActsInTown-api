@@ -17,5 +17,8 @@
    
  		<many-to-one name="county" class="uk.co.luciditysoftware.actsintown.domain.entities.County" column="CountyId" not-null="true"/>
  		    
+		<property name="deleted">
+			<column name="deleted" not-null="true" />
+		</property>
     </class>
 </hibernate-mapping>

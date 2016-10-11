@@ -10,6 +10,7 @@ import java.util.UUID;
 import uk.co.luciditysoftware.actsintown.domain.common.Entity;
 import uk.co.luciditysoftware.actsintown.domain.common.ValidationMessage;
 import uk.co.luciditysoftware.actsintown.domain.common.ValidationMessageType;
+import uk.co.luciditysoftware.actsintown.domain.enums.BookedState;
 import uk.co.luciditysoftware.actsintown.domain.parametersets.spot.AddParameterSet;
 
 public class Spot extends Entity  {
@@ -20,6 +21,7 @@ public class Spot extends Entity  {
     private String venueName;
     private Date addedOn;
     private boolean cancelled;
+    private BookedState bookedState;
     
 	public User getUser() {
 		return user;
@@ -131,6 +133,15 @@ public class Spot extends Entity  {
 		spot.venueName = parameterSet.getVenueName();
 		spot.addedOn = new Date();
 		spot.cancelled = false;
+		spot.bookedState = BookedState.BOOKED;
 		return spot;
+	}
+
+	public BookedState getBookedState() {
+		return bookedState;
+	}
+
+	public void setBookedState(BookedState bookedState) {
+		this.bookedState = bookedState;
 	}
 }

@@ -5,6 +5,7 @@ import uk.co.luciditysoftware.actsintown.domain.common.Entity;
 public class Town extends Entity  {
 	private String name;
 	private County county;
+	private boolean deleted;
 	
 	public String getName() {
 		return name;
@@ -20,5 +21,13 @@ public class Town extends Entity  {
 
 	public void setCounty(County county) {
 		this.county = county;
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
 	}
 }
