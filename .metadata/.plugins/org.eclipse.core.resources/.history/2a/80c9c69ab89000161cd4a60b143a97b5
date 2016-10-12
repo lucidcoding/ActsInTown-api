@@ -82,12 +82,12 @@ public class SpotController {
 	@ResponseBody
 	@Transactional
 	public List<SpotDto> search(
-			@RequestParam("startDate") @DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") Date startDate, 
-			@RequestParam("endDate") @DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") Date endDate,
+			@RequestParam("startDate") @DateTimeFormat(iso=DateTimeFormat.ISO.DATE_TIME) Date startDate, 
+			@RequestParam("endDate") @DateTimeFormat(iso=DateTimeFormat.ISO.DATE_TIME) Date endDate,
 			@RequestParam("townId") UUID townId,
 			@RequestParam("bookedState") BookedState bookedState) {
-		
-		GregorianCalendar cal = new GregorianCalendar();
+		return null;
+		/*GregorianCalendar cal = new GregorianCalendar();
         cal.setTime(endDate);
         cal.add(Calendar.DAY_OF_MONTH, 1);        
         //Date scheduledEnd = cal.getTime();
@@ -98,6 +98,6 @@ public class SpotController {
 		List<SpotDto> spotDtos = spots.stream().map(spot -> modelMapper.map(spot, SpotDto.class))
 				.collect(Collectors.toList());
 
-		return spotDtos;
+		return spotDtos;*/
 	}
 }

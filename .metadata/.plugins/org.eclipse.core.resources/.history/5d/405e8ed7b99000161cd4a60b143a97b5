@@ -53,9 +53,8 @@ public class SpotRepositoryImpl implements SpotRepository {
 		@SuppressWarnings("unchecked")
 		List<Spot> role = session
 			.createCriteria(Spot.class)
-			.add(Restrictions.gt("scheduledFor", startDate))
-			.add(Restrictions.lt("scheduledFor", endDate))
-			.addOrder(Order.desc("scheduledFor")).list();
+			.add(Restrictions.gt("scheduledFor", false))
+			.addOrder(Order.asc("name")).list();
 		
 		return role;
 	}
