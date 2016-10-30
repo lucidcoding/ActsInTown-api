@@ -24,7 +24,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
-import uk.co.luciditysoftware.actsintown.api.mappers.parametersetmappers.user.EditParameterSetMapper;
 import uk.co.luciditysoftware.actsintown.api.mappers.parametersetmappers.user.RegisterParameterSetMapper;
 import uk.co.luciditysoftware.actsintown.api.requests.user.EditRequest;
 import uk.co.luciditysoftware.actsintown.api.requests.user.RegisterRequest;
@@ -32,7 +31,6 @@ import uk.co.luciditysoftware.actsintown.api.services.RequestLogger;
 import uk.co.luciditysoftware.actsintown.domain.common.ValidationMessage;
 import uk.co.luciditysoftware.actsintown.domain.common.ValidationMessageType;
 import uk.co.luciditysoftware.actsintown.domain.entities.User;
-import uk.co.luciditysoftware.actsintown.domain.parametersets.user.EditParameterSet;
 import uk.co.luciditysoftware.actsintown.domain.parametersets.user.RegisterParameterSet;
 import uk.co.luciditysoftware.actsintown.domain.repositorycontracts.UserRepository;
 
@@ -46,9 +44,6 @@ public class UserController {
 	@Autowired
 	private RegisterParameterSetMapper registerParameterSetMapper;
 
-	@Autowired
-	private EditParameterSetMapper editParameterSetMapper;
-	
 	@Autowired
 	private RequestLogger requestLogger;
 
@@ -118,7 +113,7 @@ public class UserController {
 		return new ResponseEntity<Void>(new HttpHeaders(), HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/edit", method = RequestMethod.PUT)
+	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	@ResponseBody
 	@Transactional
 	public ResponseEntity<?> edit(@Valid @RequestBody EditRequest request, 
@@ -141,12 +136,12 @@ public class UserController {
 		// Check for existing user.
 		User user = userRepository.getById(request.getId());
 
-		if (user == null) {
+		if (user != null) {
 			return new ResponseEntity<Void>(new HttpHeaders(), HttpStatus.BAD_REQUEST);
 		}
 
-		EditParameterSet parameterSet = editParameterSetMapper.map(request);
-		user.edit(parameterSet);
+		RegisterParameterSet parameterSet = registerParameterSetMapper.map(request);
+		user.register(parameterSet);
 		userRepository.save(user);
 		return new ResponseEntity<Void>(new HttpHeaders(), HttpStatus.OK);
 	}
