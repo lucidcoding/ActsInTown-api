@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 import uk.co.luciditysoftware.actsintown.domain.common.Entity;
 import uk.co.luciditysoftware.actsintown.domain.common.ValidationMessage;
 import uk.co.luciditysoftware.actsintown.domain.common.ValidationMessageType;
+import uk.co.luciditysoftware.actsintown.domain.parametersets.user.EditParameterSet;
 import uk.co.luciditysoftware.actsintown.domain.parametersets.user.RegisterParameterSet;
 
 public class User extends Entity {
@@ -29,6 +30,121 @@ public class User extends Entity {
 	private String verificationToken;
 	private Date verificationTokenExpiry;
 	private boolean verified;
+
+	public List<Spot> getConflictingSpots(Date scheduledFor, int durationMinutes) {
+		List<Spot> conflictingSpots = new ArrayList<Spot>();
+		GregorianCalendar cal = new GregorianCalendar();
+        cal.setTime(scheduledFor);
+        cal.add(Calendar.MINUTE, durationMinutes);        
+        Date scheduledEnd = cal.getTime();
+        
+		for (Spot spot : spots) {
+			if ((scheduledEnd.after(spot.getScheduledFor()) || scheduledEnd.equals(spot.getScheduledFor()))
+					&& (scheduledEnd.before(spot.getScheduledEnd()) || scheduledEnd.equals(spot.getScheduledEnd()))) {
+				conflictingSpots.add(spot);
+			} else if ((scheduledFor.after(spot.getScheduledFor()) || scheduledFor.equals(spot.getScheduledFor()))
+					&& (scheduledFor.before(spot.getScheduledEnd()) || scheduledFor.equals(spot.getScheduledEnd()))) {
+				conflictingSpots.add(spot);
+			}
+		}
+
+		return conflictingSpots;
+	}
+	
+	public static User register(RegisterParameterSet parameterSet) {
+		User user = new User();
+		user.id = UUID.randomUUID();
+		user.username = parameterSet.getUsername();
+		user.password = parameterSet.getPassword();
+		user.passwordSalt = parameterSet.getPasswordSalt();
+		user.firstName = parameterSet.getFirstName();
+		user.lastName = parameterSet.getLastName();
+		user.email = parameterSet.getUsername();
+		user.enabled = true;
+		user.role = parameterSet.getRole();
+		user.stageName = parameterSet.getStageName();
+		
+		user.userUserTypes = parameterSet
+			.getUserTypes()
+			.stream()
+			.map(userType -> new UserUserType() {{
+				this.setId(UUID.randomUUID());
+				this.setUser(user);
+				this.setUserType(userType);
+			}})
+			.collect(Collectors.toList());
+		
+		user.generateVerificationToken();
+		return user;
+	}
+
+	//http://www.baeldung.com/registration-verify-user-by-email
+	public void generateVerificationToken() {
+		this.verified = false;
+		this.verificationToken = UUID.randomUUID().toString();
+		GregorianCalendar cal = new GregorianCalendar();
+		int expirationMinutes = 60 * 24;
+        cal.add(Calendar.MINUTE, expirationMinutes);        
+        this.verificationTokenExpiry = cal.getTime();
+	}
+	
+	public List<ValidationMessage> validateVerify() {
+		List<ValidationMessage> validationMessages = new ArrayList<ValidationMessage>();
+		Date now = new Date();
+		
+		if(this.verified) {
+			validationMessages.add(new ValidationMessage(){
+				{
+					setType(ValidationMessageType.ERROR);
+					setField(null);
+					setText("User is already verified.");
+				}
+			});
+			
+			return validationMessages;
+		}
+		
+		if(now.after(this.verificationTokenExpiry)) {
+			validationMessages.add(new ValidationMessage(){
+				{
+					setType(ValidationMessageType.ERROR);
+					setField(null);
+					setText("Vaerification token has expired.");
+				}
+			});
+		}
+		
+		return validationMessages;
+	}
+	
+	public void edit(EditParameterSet parameterSet) {
+		this.firstName = parameterSet.getFirstName();
+		this.lastName = parameterSet.getLastName();
+		this.firstName = parameterSet.getFirstName();
+		this.stageName = parameterSet.getStageName();
+		
+		List<UserType> existingUserTypes = this
+			.userUserTypes
+			.stream()
+			.map(userUserType -> userUserType.getUserType())
+			.collect(Collectors.toList());
+		
+		for(UserType userType : parameterSet.getUserTypes()) {
+			if(!existingUserTypes.contains(userType)) {
+				UserUserType userUserType = new UserUserType();
+				userUserType.setId(UUID.randomUUID());
+				userUserType.setUser(this);
+				userUserType.setUserType(userType);
+				this.userUserTypes.add(userUserType);
+			}
+		}
+		
+		for(UserUserType userUserType : this.userUserTypes) {
+			if(!parameterSet.getUserTypes().contains(userUserType.getUserType())) {
+				this.userUserTypes.remove(userUserType);
+			}
+		}
+	}
 	
 	public String getUsername() {
 		return username;
@@ -116,92 +232,6 @@ public class User extends Entity {
 
 	public void setStageName(String stageName) {
 		this.stageName = stageName;
-	}
-	
-	public List<Spot> getConflictingSpots(Date scheduledFor, int durationMinutes) {
-		List<Spot> conflictingSpots = new ArrayList<Spot>();
-		GregorianCalendar cal = new GregorianCalendar();
-        cal.setTime(scheduledFor);
-        cal.add(Calendar.MINUTE, durationMinutes);        
-        Date scheduledEnd = cal.getTime();
-        
-		for (Spot spot : spots) {
-			if ((scheduledEnd.after(spot.getScheduledFor()) || scheduledEnd.equals(spot.getScheduledFor()))
-					&& (scheduledEnd.before(spot.getScheduledEnd()) || scheduledEnd.equals(spot.getScheduledEnd()))) {
-				conflictingSpots.add(spot);
-			} else if ((scheduledFor.after(spot.getScheduledFor()) || scheduledFor.equals(spot.getScheduledFor()))
-					&& (scheduledFor.before(spot.getScheduledEnd()) || scheduledFor.equals(spot.getScheduledEnd()))) {
-				conflictingSpots.add(spot);
-			}
-		}
-
-		return conflictingSpots;
-	}
-	
-	public static User register(RegisterParameterSet parameterSet) {
-		User user = new User();
-		user.id = UUID.randomUUID();
-		user.username = parameterSet.getUsername();
-		user.password = parameterSet.getPassword();
-		user.passwordSalt = parameterSet.getPasswordSalt();
-		user.firstName = parameterSet.getFirstName();
-		user.lastName = parameterSet.getLastName();
-		user.email = parameterSet.getUsername();
-		user.enabled = true;
-		user.role = parameterSet.getRole();
-		user.stageName = parameterSet.getStageName();
-		
-		user.userUserTypes = parameterSet
-			.getUserTypes()
-			.stream()
-			.map(userType -> new UserUserType() {{
-				this.setId(UUID.randomUUID());
-				this.setUser(user);
-				this.setUserType(userType);
-			}})
-			.collect(Collectors.toList());
-		
-		user.generateVerificationToken();
-		return user;
-	}
-
-	//http://www.baeldung.com/registration-verify-user-by-email
-	public void generateVerificationToken() {
-		this.verified = false;
-		this.verificationToken = UUID.randomUUID().toString();
-		GregorianCalendar cal = new GregorianCalendar();
-		int expirationMinutes = 60 * 24;
-        cal.add(Calendar.MINUTE, expirationMinutes);        
-        this.verificationTokenExpiry = cal.getTime();
-	}
-	
-	public List<ValidationMessage> validateVerify() {
-		List<ValidationMessage> validationMessages = new ArrayList<ValidationMessage>();
-		Date now = new Date();
-		
-		if(this.verified) {
-			validationMessages.add(new ValidationMessage(){
-				{
-					setType(ValidationMessageType.ERROR);
-					setField(null);
-					setText("User is already verified.");
-				}
-			});
-			
-			return validationMessages;
-		}
-		
-		if(now.after(this.verificationTokenExpiry)) {
-			validationMessages.add(new ValidationMessage(){
-				{
-					setType(ValidationMessageType.ERROR);
-					setField(null);
-					setText("Vaerification token has expired.");
-				}
-			});
-		}
-		
-		return validationMessages;
 	}
 	
 	public void verify() {

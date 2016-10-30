@@ -34,6 +34,7 @@ public class AddParameterSetMapperImpl implements AddParameterSetMapper {
 				this.setDurationMinutes(request.getDurationMinutes());
 				this.setTown(townRepository.getById(request.getTownId()));
 				this.setVenueName(request.getVenueName());
+				this.setDescription(request.getDescription());
 			}
 		};
 

@@ -96,7 +96,7 @@ public class RootContextConfiguration {
         javaMailSender.setHost("smtp.gmail.com");
         javaMailSender.setPort(587);//587//25?
         javaMailSender.setUsername("actsintown@gmail.com");
-        javaMailSender.setPassword("");
+        javaMailSender.setPassword("NotMuchUse");
         javaMailSender.setProtocol("smtp");
         Properties properties = new Properties();
         //properties.put("mail.transport.protocol", "smtp");

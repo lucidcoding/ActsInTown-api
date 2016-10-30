@@ -12,4 +12,5 @@ public class SpotDto {
 	public String venueName;
 	public Date addedOn;
 	public boolean cancelled;
+	public String description;
 }

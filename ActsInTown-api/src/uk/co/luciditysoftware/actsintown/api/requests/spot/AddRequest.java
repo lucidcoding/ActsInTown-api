@@ -22,6 +22,9 @@ public class AddRequest {
     @NotNull(message = "This field is required")
 	@Length(max = 50)
     private String venueName;
+
+	@Length(max = 250)
+    private String description;
     
 	public Date getScheduledFor() {
 		return scheduledFor;
@@ -53,5 +56,13 @@ public class AddRequest {
 	
 	public void setVenueName(String venueName) {
 		this.venueName = venueName;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}    
 }

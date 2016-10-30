@@ -1,0 +1,5 @@
+package uk.co.luciditysoftware.actsintown.api.mappers.parametersetmappers.user;
+
+public interface EditParameterSetMapper {
+
+}

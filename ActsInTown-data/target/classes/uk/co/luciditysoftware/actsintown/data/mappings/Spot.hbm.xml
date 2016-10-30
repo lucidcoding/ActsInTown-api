@@ -45,5 +45,9 @@
 				<param name="enumClass">uk.co.luciditysoftware.actsintown.domain.enums.BookedState</param>
 			</type>
 		</property>
+		
+		<property name="description">
+			<column name="description" not-null="false" />
+		</property>
 	</class>
 </hibernate-mapping>

@@ -22,6 +22,7 @@ public class Spot extends Entity  {
     private Date addedOn;
     private boolean cancelled;
     private BookedState bookedState;
+    private String description;
     
 	public User getUser() {
 		return user;
@@ -134,6 +135,7 @@ public class Spot extends Entity  {
 		spot.addedOn = new Date();
 		spot.cancelled = false;
 		spot.bookedState = BookedState.BOOKED;
+		spot.description = parameterSet.getDescription();
 		return spot;
 	}
 
@@ -143,5 +145,13 @@ public class Spot extends Entity  {
 
 	public void setBookedState(BookedState bookedState) {
 		this.bookedState = bookedState;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 }

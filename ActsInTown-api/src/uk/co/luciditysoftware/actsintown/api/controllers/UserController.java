@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import uk.co.luciditysoftware.actsintown.api.mappers.parametersetmappers.user.RegisterParameterSetMapper;
+import uk.co.luciditysoftware.actsintown.api.requests.user.EditRequest;
 import uk.co.luciditysoftware.actsintown.api.requests.user.RegisterRequest;
 import uk.co.luciditysoftware.actsintown.api.services.RequestLogger;
 import uk.co.luciditysoftware.actsintown.domain.common.ValidationMessage;
@@ -54,10 +55,11 @@ public class UserController {
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	@ResponseBody
 	@Transactional
-	public ResponseEntity<?> register(
-			@Valid @RequestBody RegisterRequest request, 
-			BindingResult bindingResult)
-			throws NoSuchAlgorithmException, JsonProcessingException {
+	public ResponseEntity<?> register(@Valid @RequestBody RegisterRequest request, 
+                                      BindingResult bindingResult)
+                                      throws NoSuchAlgorithmException, JsonProcessingException {
+		requestLogger.log(request);
+		
 		if (bindingResult.hasErrors()) {
 			List<ValidationMessage> validationMessages = bindingResult
 					.getAllErrors()
@@ -69,8 +71,6 @@ public class UserController {
 
 			return new ResponseEntity<List<ValidationMessage>>(validationMessages, new HttpHeaders(), HttpStatus.BAD_REQUEST);
         }
-		
-		requestLogger.log(request);
 
 		// Check for existing user.
 		User existingUser = userRepository.getByUsername(request.getUsername());
@@ -109,6 +109,39 @@ public class UserController {
 		}
 		
 		user.verify();
+		userRepository.save(user);
+		return new ResponseEntity<Void>(new HttpHeaders(), HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/edit", method = RequestMethod.POST)
+	@ResponseBody
+	@Transactional
+	public ResponseEntity<?> edit(@Valid @RequestBody EditRequest request, 
+			                      BindingResult bindingResult)
+			                      throws NoSuchAlgorithmException, JsonProcessingException {
+		requestLogger.log(request);
+		
+		if (bindingResult.hasErrors()) {
+			List<ValidationMessage> validationMessages = bindingResult
+					.getAllErrors()
+					.stream()
+					.map(error -> new ValidationMessage(ValidationMessageType.ERROR,
+							(error instanceof FieldError) ? ((FieldError)error).getField() : null, 
+							error.getDefaultMessage()))
+					.collect(Collectors.toList());
+
+			return new ResponseEntity<List<ValidationMessage>>(validationMessages, new HttpHeaders(), HttpStatus.BAD_REQUEST);
+        }
+
+		// Check for existing user.
+		User user = userRepository.getById(request.getId());
+
+		if (user != null) {
+			return new ResponseEntity<Void>(new HttpHeaders(), HttpStatus.BAD_REQUEST);
+		}
+
+		RegisterParameterSet parameterSet = registerParameterSetMapper.map(request);
+		user.register(parameterSet);
 		userRepository.save(user);
 		return new ResponseEntity<Void>(new HttpHeaders(), HttpStatus.OK);
 	}

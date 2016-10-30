@@ -11,6 +11,7 @@ public class AddParameterSet {
     private int durationMinutes;
     private Town town;
     private String venueName;
+    private String description;
     
 	public User getUser() {
 		return user;
@@ -50,5 +51,13 @@ public class AddParameterSet {
 	
 	public void setVenueName(String venueName) {
 		this.venueName = venueName;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 }

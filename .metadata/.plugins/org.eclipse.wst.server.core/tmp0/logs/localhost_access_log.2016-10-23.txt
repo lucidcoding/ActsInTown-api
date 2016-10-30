@@ -1,0 +1,12 @@
+127.0.0.1 - - [23/Oct/2016:12:58:37 +0100] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [23/Oct/2016:12:58:40 +0100] "GET /ActsInTown-api/usertype HTTP/1.1" 500 45434
+0:0:0:0:0:0:0:1 - - [23/Oct/2016:12:59:52 +0100] "GET /ActsInTown-api/usertype HTTP/1.1" 200 606
+0:0:0:0:0:0:0:1 - - [23/Oct/2016:13:10:29 +0100] "GET /ActsInTown-api/usertype HTTP/1.1" 200 606
+0:0:0:0:0:0:0:1 - - [23/Oct/2016:13:11:34 +0100] "GET /ActsInTown-api/usertype HTTP/1.1" 200 606
+0:0:0:0:0:0:0:1 - - [23/Oct/2016:13:12:20 +0100] "GET /ActsInTown-api/usertype HTTP/1.1" 200 606
+0:0:0:0:0:0:0:1 - - [23/Oct/2016:13:13:00 +0100] "GET /ActsInTown-api/usertype HTTP/1.1" 200 606
+0:0:0:0:0:0:0:1 - - [23/Oct/2016:14:56:48 +0100] "GET /ActsInTown-api/usertype HTTP/1.1" 200 606
+0:0:0:0:0:0:0:1 - - [23/Oct/2016:21:55:02 +0100] "GET /ActsInTown-api/token?username=barry%40blue.com&password=Blue123 HTTP/1.1" 401 -
+0:0:0:0:0:0:0:1 - - [23/Oct/2016:21:55:02 +0100] "GET /favicon.ico HTTP/1.1" 404 1016
+0:0:0:0:0:0:0:1 - - [23/Oct/2016:21:55:12 +0100] "GET /ActsInTown-api/token?username=barry%40blue.com&password=Blue123 HTTP/1.1" 401 -
+0:0:0:0:0:0:0:1 - - [23/Oct/2016:22:42:20 +0100] "GET /ActsInTown-api/town HTTP/1.1" 200 2785
