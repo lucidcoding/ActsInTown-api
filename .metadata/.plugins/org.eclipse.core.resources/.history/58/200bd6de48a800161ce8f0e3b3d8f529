@@ -1,0 +1,5 @@
+package uk.co.luciditysoftware.actsintown.api.config;
+
+public class AuthenticationServiceImpl {
+
+}
