@@ -3,7 +3,7 @@ package uk.co.luciditysoftware.actsintown.api.config;
 import java.util.List;
 
 import org.springframework.security.core.userdetails.UserDetails;
-//NO LONGER NEEDED?
+ 
 public class UserPrincipal implements UserDetails {
 
 	private static final long serialVersionUID = 1L;

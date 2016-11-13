@@ -14,8 +14,6 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureException;
 
-
-//NO LONGER NEEDED?
 @Service
 public class JwtAutenticationFilter extends GenericFilterBean {
 
