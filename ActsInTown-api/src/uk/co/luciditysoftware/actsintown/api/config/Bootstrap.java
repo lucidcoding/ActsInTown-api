@@ -36,7 +36,6 @@ public class Bootstrap  implements WebApplicationInitializer{
         FilterRegistration.Dynamic loggingFilter = container.addFilter("loggingFilter", new DelegatingFilterProxy());
         loggingFilter.addMappingForUrlPatterns(null, true, "/*");
 
-        //http.addFilterBefore(new CorsFilter(), ChannelProcessingFilter.class);
         FilterRegistration.Dynamic corsFilter = container.addFilter("corsFilter", new DelegatingFilterProxy());
         corsFilter.addMappingForUrlPatterns(null, true, "/*");
     }

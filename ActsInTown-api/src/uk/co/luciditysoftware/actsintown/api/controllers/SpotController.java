@@ -53,12 +53,12 @@ public class SpotController {
 	@ResponseBody
 	@Transactional
 	public List<SpotDto> getForCurrentUser() {
-		UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder
+		requestLogger.log("OK");
+		String username = (String) SecurityContextHolder
 			.getContext()
 			.getAuthentication()
 			.getPrincipal();
 
-		String username = userPrincipal.getUsername();
 		Collection<Spot> spots = spotRepository.getByUsername(username);
 
 		List<SpotDto> spotDtos = spots.stream().map(spot -> modelMapper.map(spot, SpotDto.class))

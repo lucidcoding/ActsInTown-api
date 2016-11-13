@@ -12,6 +12,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 public class AllowOptionsSecurityConfiguration extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		
 	   http
 		   //.requestMatchers().antMatchers(HttpMethod.OPTIONS, "/oauth/token", "/spot/for-current-user")
 		   .requestMatchers().antMatchers(HttpMethod.OPTIONS, "/**")
