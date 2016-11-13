@@ -20,10 +20,12 @@ public class AddParameterSetMapperImpl implements AddParameterSetMapper {
 	private TownRepository townRepository;
 
 	public AddParameterSet map(AddRequest request) {
-		String username = (String) SecurityContextHolder
+		UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder
 				.getContext()
 				.getAuthentication()
 				.getPrincipal();
+
+		String username = userPrincipal.getUsername();
 
 		AddParameterSet parameterSet = new AddParameterSet() {
 			{
