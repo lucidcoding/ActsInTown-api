@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import uk.co.luciditysoftware.actsintown.api.config.UserPrincipal;
 import uk.co.luciditysoftware.actsintown.api.datatransferobjects.SpotDto;
 import uk.co.luciditysoftware.actsintown.api.mappers.parametersetmappers.spot.AddParameterSetMapper;
 import uk.co.luciditysoftware.actsintown.api.requests.spot.AddRequest;

@@ -40,42 +40,5 @@ public class ServletContextConfiguration extends WebMvcConfigurerAdapter
 	public void addCorsMappings(CorsRegistry registry) {
 		registry.addMapping("/**")
 			.allowedOrigins("http://localhost:5555");
-			//.allowedOrigins("*");
-			//.allowedMethods("PUT", "DELETE", "GET", "POST", "OPTIONS");
-			//.allowedHeaders("header1", "header2", "header3")
-			//.exposedHeaders("header1", "header2")
-			//.allowCredentials(false).maxAge(3600);
 	}
-	
-	
-	/*public ViewResolver viewResolver() {
-		TilesViewResolver tilesViewResolver = new TilesViewResolver();
-        tilesViewResolver.setViewClass(TilesView.class);
-		return tilesViewResolver;
-	}
-
-	@Bean
-	public TilesConfigurer tilesConfigurer() {
-		TilesConfigurer tilesConfigurer = new TilesConfigurer();
-        tilesConfigurer.setCheckRefresh(true);
-        tilesConfigurer.setDefinitions(new String[] { "/WEB-INF/tiles.xml" });
-		return tilesConfigurer;
-	}*/
-	
-	/*@Bean
-    public UrlBasedViewResolver viewResolver() {
-        UrlBasedViewResolver viewResolver = new UrlBasedViewResolver();
-        viewResolver.setViewClass(TilesView.class);
-        return viewResolver;
-    }*/
-
-    /*@Bean
-    public TilesConfigurer tilesConfigurer() {
-        TilesConfigurer tilesConfigurer = new TilesConfigurer();
-        tilesConfigurer.setDefinitions(new String[]{
-                "/WEB-INF/tiles.xml"
-        });
-        tilesConfigurer.setCheckRefresh(true);
-        return tilesConfigurer;
-    }*/
 }
