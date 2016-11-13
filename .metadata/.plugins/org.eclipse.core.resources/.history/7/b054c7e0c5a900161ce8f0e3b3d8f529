@@ -52,6 +52,7 @@ public class SpotController {
 	@ResponseBody
 	@Transactional
 	public List<SpotDto> getForCurrentUser() {
+		requestLogger.log("OK");
 		String username = (String) SecurityContextHolder
 			.getContext()
 			.getAuthentication()

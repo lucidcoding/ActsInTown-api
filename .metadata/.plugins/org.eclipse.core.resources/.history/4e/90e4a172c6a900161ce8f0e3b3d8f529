@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import uk.co.luciditysoftware.actsintown.api.config.UserPrincipal;
 import uk.co.luciditysoftware.actsintown.api.requests.spot.AddRequest;
 import uk.co.luciditysoftware.actsintown.domain.parametersets.spot.AddParameterSet;
 import uk.co.luciditysoftware.actsintown.domain.repositorycontracts.TownRepository;
