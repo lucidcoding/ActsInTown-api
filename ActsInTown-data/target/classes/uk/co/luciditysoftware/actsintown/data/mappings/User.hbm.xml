@@ -66,5 +66,9 @@
         <property name="verified">
             <column name="`Verified`" not-null="true" />
         </property>
+        
+        <property name="profilePictureUploaded">
+            <column name="`ProfilePictureUploaded`" not-null="true" />
+        </property>
     </class>
 </hibernate-mapping>

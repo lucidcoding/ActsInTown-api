@@ -5,7 +5,7 @@ import java.util.UUID;
 
 public class SpotDto {
 	public UUID id;
-    //private User user;
+    public UserDto user;
 	public Date scheduledFor;
 	public int durationMinutes;
 	public TownDto town;

@@ -30,6 +30,7 @@ public class User extends Entity {
 	private String verificationToken;
 	private Date verificationTokenExpiry;
 	private boolean verified;
+	private boolean profilePictureUploaded;
 
 	public List<Spot> getConflictingSpots(Date scheduledFor, int durationMinutes) {
 		List<Spot> conflictingSpots = new ArrayList<Spot>();
@@ -143,6 +144,14 @@ public class User extends Entity {
 			if(!parameterSet.getUserTypes().contains(userUserType.getUserType())) {
 				this.userUserTypes.remove(userUserType);
 			}
+		}
+	}
+	
+	public String getImageUrl() {
+		if(this.profilePictureUploaded) {
+			return "https://localhost:8443/ActsInTown-uploads/ProfileImages/" + this.id.toString() + ".jpg";
+		} else {
+			return "/assets/svg/anonymous.svg";
 		}
 	}
 	
@@ -260,5 +269,13 @@ public class User extends Entity {
 
 	public void setVerified(boolean verified) {
 		this.verified = verified;
+	}
+
+	public boolean isProfilePictureUploaded() {
+		return profilePictureUploaded;
+	}
+
+	public void setProfilePictureUploaded(boolean profilePictureUploaded) {
+		this.profilePictureUploaded = profilePictureUploaded;
 	}
 }
