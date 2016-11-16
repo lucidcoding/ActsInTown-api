@@ -1,6 +1,8 @@
 package uk.co.luciditysoftware.actsintown.api.controllers;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -10,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import uk.co.luciditysoftware.actsintown.api.datatransferobjects.SpotDto;
 import uk.co.luciditysoftware.actsintown.api.datatransferobjects.UserTypeDto;
 import uk.co.luciditysoftware.actsintown.api.mappers.dtomappers.GenericDtoMapper;
+import uk.co.luciditysoftware.actsintown.domain.entities.Spot;
 import uk.co.luciditysoftware.actsintown.domain.entities.UserType;
 import uk.co.luciditysoftware.actsintown.domain.repositorycontracts.UserTypeRepository;
 

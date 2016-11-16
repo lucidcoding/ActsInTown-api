@@ -43,7 +43,6 @@ public class ResourceServerConfiguration  extends ResourceServerConfigurerAdapte
         	.anonymous().and()
         	.authorizeRequests()
         		.antMatchers(HttpMethod.GET, "/test").permitAll()
-        		.antMatchers(HttpMethod.GET, "/usertype").permitAll()
         		.anyRequest().authenticated()
         		.and()
         	.exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());

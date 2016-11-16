@@ -12,7 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -25,8 +24,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
-import uk.co.luciditysoftware.actsintown.api.datatransferobjects.UserDto;
-import uk.co.luciditysoftware.actsintown.api.mappers.dtomappers.GenericDtoMapper;
 import uk.co.luciditysoftware.actsintown.api.mappers.parametersetmappers.user.EditParameterSetMapper;
 import uk.co.luciditysoftware.actsintown.api.mappers.parametersetmappers.user.RegisterParameterSetMapper;
 import uk.co.luciditysoftware.actsintown.api.requests.user.EditRequest;
@@ -55,9 +52,6 @@ public class UserController {
 	@Autowired
 	private RequestLogger requestLogger;
 
-	@Autowired
-	private GenericDtoMapper genericDtoMapper;
-	
     @Autowired
     private JavaMailSender mailSender;
     
@@ -155,19 +149,5 @@ public class UserController {
 		user.edit(parameterSet);
 		userRepository.save(user);
 		return new ResponseEntity<Void>(new HttpHeaders(), HttpStatus.OK);
-	}
-	
-	@RequestMapping(value = "/current", method = RequestMethod.GET)
-	@ResponseBody
-	@Transactional
-	public UserDto getCurrent() {
-		String username = (String) SecurityContextHolder
-			.getContext()
-			.getAuthentication()
-			.getPrincipal();
-
-		User user = userRepository.getByUsername(username);
-		UserDto userDto = genericDtoMapper.map(user, UserDto.class);
-		return userDto;
 	}
 }

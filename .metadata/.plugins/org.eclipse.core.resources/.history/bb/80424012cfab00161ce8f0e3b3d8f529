@@ -37,8 +37,4 @@ public class UserTypeRepositoryImpl implements UserTypeRepository {
 		List<UserType> userTypes = session.createCriteria(UserType.class).list();
 		return userTypes;
 	}
-	
-	public List<UserType> getByUsername(String username) {
-		return null;
-	}
 }
