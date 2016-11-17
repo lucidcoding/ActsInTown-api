@@ -7,7 +7,7 @@ public class UserType extends Entity {
 	private String description;
 	private int order;
 	private boolean active;
-
+	
 	public String getName() {
 		return name;
 	}
