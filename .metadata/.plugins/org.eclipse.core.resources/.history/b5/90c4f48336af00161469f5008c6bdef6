@@ -149,7 +149,7 @@ public class UserController {
 			.getAuthentication()
 			.getPrincipal();
 		
-		User user = userRepository.getByUsername(username);
+		User user = userRepository.getById(username);
 
 		if (user == null) {
 			return new ResponseEntity<Void>(new HttpHeaders(), HttpStatus.BAD_REQUEST);

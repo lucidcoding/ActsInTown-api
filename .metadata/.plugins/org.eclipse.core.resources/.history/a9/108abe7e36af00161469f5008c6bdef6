@@ -127,7 +127,7 @@ public class UserController {
 	@RequestMapping(value = "/edit-current", method = RequestMethod.PUT)
 	@ResponseBody
 	@Transactional
-	public ResponseEntity<?> editCurrent(@Valid @RequestBody EditCurrentRequest request, 
+	public ResponseEntity<?> edit(@Valid @RequestBody EditCurrentRequest request, 
 			                      BindingResult bindingResult)
 			                      throws NoSuchAlgorithmException, JsonProcessingException {
 		requestLogger.log(request);
@@ -144,12 +144,8 @@ public class UserController {
 			return new ResponseEntity<List<ValidationMessage>>(validationMessages, new HttpHeaders(), HttpStatus.BAD_REQUEST);
         }
 
-		String username = (String) SecurityContextHolder
-			.getContext()
-			.getAuthentication()
-			.getPrincipal();
-		
-		User user = userRepository.getByUsername(username);
+		// Check for existing user.
+		User user = userRepository.getById(request.getId());
 
 		if (user == null) {
 			return new ResponseEntity<Void>(new HttpHeaders(), HttpStatus.BAD_REQUEST);

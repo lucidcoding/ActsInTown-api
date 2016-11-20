@@ -5,7 +5,7 @@ import java.security.NoSuchAlgorithmException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import uk.co.luciditysoftware.actsintown.api.requests.user.EditCurrentRequest;
+import uk.co.luciditysoftware.actsintown.api.requests.user.EditRequest;
 import uk.co.luciditysoftware.actsintown.domain.parametersets.user.EditParameterSet;
 import uk.co.luciditysoftware.actsintown.domain.repositorycontracts.UserTypeRepository;
 
@@ -15,7 +15,7 @@ public class EditParameterSetMapperImpl implements EditParameterSetMapper{
 	@Autowired
 	private UserTypeRepository userTypeRepository;
 	
-	public EditParameterSet map(EditCurrentRequest request) throws NoSuchAlgorithmException {
+	public EditParameterSet map(EditRequest request) throws NoSuchAlgorithmException {
 		EditParameterSet parameterSet = new EditParameterSet() {
 			{
 				this.setFirstName(request.getFirstName());
