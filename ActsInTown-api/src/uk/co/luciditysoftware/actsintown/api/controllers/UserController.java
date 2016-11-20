@@ -1,11 +1,14 @@
 package uk.co.luciditysoftware.actsintown.api.controllers;
 
+import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
+import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -13,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -27,14 +31,17 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 import uk.co.luciditysoftware.actsintown.api.datatransferobjects.UserDto;
 import uk.co.luciditysoftware.actsintown.api.mappers.dtomappers.GenericDtoMapper;
+import uk.co.luciditysoftware.actsintown.api.mappers.parametersetmappers.user.ChangePasswordParameterSetMapper;
 import uk.co.luciditysoftware.actsintown.api.mappers.parametersetmappers.user.EditParameterSetMapper;
 import uk.co.luciditysoftware.actsintown.api.mappers.parametersetmappers.user.RegisterParameterSetMapper;
+import uk.co.luciditysoftware.actsintown.api.requests.user.ChangePasswordRequest;
 import uk.co.luciditysoftware.actsintown.api.requests.user.EditCurrentRequest;
 import uk.co.luciditysoftware.actsintown.api.requests.user.RegisterRequest;
 import uk.co.luciditysoftware.actsintown.api.services.RequestLogger;
 import uk.co.luciditysoftware.actsintown.domain.common.ValidationMessage;
 import uk.co.luciditysoftware.actsintown.domain.common.ValidationMessageType;
 import uk.co.luciditysoftware.actsintown.domain.entities.User;
+import uk.co.luciditysoftware.actsintown.domain.parametersets.user.ChangePasswordParameterSet;
 import uk.co.luciditysoftware.actsintown.domain.parametersets.user.EditParameterSet;
 import uk.co.luciditysoftware.actsintown.domain.parametersets.user.RegisterParameterSet;
 import uk.co.luciditysoftware.actsintown.domain.repositorycontracts.UserRepository;
@@ -51,6 +58,9 @@ public class UserController {
 
 	@Autowired
 	private EditParameterSetMapper editParameterSetMapper;
+	
+	@Autowired
+	private ChangePasswordParameterSetMapper changePasswordParameterSetMapper;
 	
 	@Autowired
 	private RequestLogger requestLogger;
@@ -173,5 +183,49 @@ public class UserController {
 		User user = userRepository.getByUsername(username);
 		UserDto userDto = genericDtoMapper.map(user, UserDto.class);
 		return userDto;
+	}
+	
+	@RequestMapping(value = "/change-password", method = RequestMethod.PUT)
+	@ResponseBody
+	@Transactional
+	public ResponseEntity<?> changePassword(@Valid @RequestBody ChangePasswordRequest request, 
+            BindingResult bindingResult)
+            throws NoSuchAlgorithmException, JsonProcessingException {
+		requestLogger.log(request);
+		
+		if (bindingResult.hasErrors()) {
+			List<ValidationMessage> validationMessages = bindingResult
+					.getAllErrors()
+					.stream()
+					.map(error -> new ValidationMessage(ValidationMessageType.ERROR,
+							(error instanceof FieldError) ? ((FieldError)error).getField() : null, 
+							error.getDefaultMessage()))
+					.collect(Collectors.toList());
+
+			return new ResponseEntity<List<ValidationMessage>>(validationMessages, new HttpHeaders(), HttpStatus.BAD_REQUEST);
+        }
+
+		String username = (String) SecurityContextHolder
+			.getContext()
+			.getAuthentication()
+			.getPrincipal();
+		
+		User user = userRepository.getByUsername(username);
+		byte[] passwordBytes = Base64.decodeBase64(user.getPassword());
+		
+		if (!BCrypt.checkpw(request.getOldPassword(), new String(passwordBytes, StandardCharsets.UTF_8) )) {
+			List<ValidationMessage> validationMessages = new ArrayList<ValidationMessage>();
+			ValidationMessage validationMessage = new ValidationMessage();
+			validationMessage.setType(ValidationMessageType.ERROR);
+			validationMessage.setField("oldPassword");
+			validationMessage.setText("Old password is incorrect.");
+			validationMessages.add(validationMessage);
+			return new ResponseEntity<List<ValidationMessage>>(validationMessages, new HttpHeaders(), HttpStatus.BAD_REQUEST);
+		}
+			
+		ChangePasswordParameterSet parameterSet = changePasswordParameterSetMapper.map(request);
+		user.changePassword(parameterSet);
+		userRepository.save(user);
+		return new ResponseEntity<Void>(new HttpHeaders(), HttpStatus.OK);
 	}
 }

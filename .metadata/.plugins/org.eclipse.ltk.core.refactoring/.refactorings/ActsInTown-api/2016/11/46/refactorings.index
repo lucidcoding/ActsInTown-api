@@ -1,1 +1,4 @@
 1479655800761	Rename type 'EditRequest'
+1479659779525	Encapsulate field 'confirmNewPassword'
+1479659807218	Encapsulate field 'oldPassword'
+1479659814551	Encapsulate field 'newPassword'

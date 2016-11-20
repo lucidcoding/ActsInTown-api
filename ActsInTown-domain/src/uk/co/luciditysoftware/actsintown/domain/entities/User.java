@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 import uk.co.luciditysoftware.actsintown.domain.common.Entity;
 import uk.co.luciditysoftware.actsintown.domain.common.ValidationMessage;
 import uk.co.luciditysoftware.actsintown.domain.common.ValidationMessageType;
+import uk.co.luciditysoftware.actsintown.domain.parametersets.user.ChangePasswordParameterSet;
 import uk.co.luciditysoftware.actsintown.domain.parametersets.user.EditParameterSet;
 import uk.co.luciditysoftware.actsintown.domain.parametersets.user.RegisterParameterSet;
 
@@ -145,6 +146,11 @@ public class User extends Entity {
 				this.userUserTypes.remove(userUserType);
 			}
 		}
+	}
+	
+	public void changePassword(ChangePasswordParameterSet parameterSet) {
+		this.password = parameterSet.getNewPassword();
+		this.passwordSalt = parameterSet.getNewPasswordSalt();
 	}
 	
 	public String getImageUrl() {
