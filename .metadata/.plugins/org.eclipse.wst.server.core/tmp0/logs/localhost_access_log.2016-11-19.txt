@@ -1,0 +1,6 @@
+0:0:0:0:0:0:0:1 - - [19/Nov/2016:10:57:43 +0000] "OPTIONS /ActsInTown-api/usertype/for-current-user HTTP/1.1" 200 -
+0:0:0:0:0:0:0:1 - - [19/Nov/2016:10:57:43 +0000] "OPTIONS /ActsInTown-api/user/current HTTP/1.1" 200 -
+0:0:0:0:0:0:0:1 - - [19/Nov/2016:10:57:43 +0000] "OPTIONS /ActsInTown-api/usertype HTTP/1.1" 200 -
+0:0:0:0:0:0:0:1 - - [19/Nov/2016:10:57:43 +0000] "GET /ActsInTown-api/usertype HTTP/1.1" 401 423
+0:0:0:0:0:0:0:1 - - [19/Nov/2016:10:57:43 +0000] "GET /ActsInTown-api/usertype/for-current-user HTTP/1.1" 401 423
+0:0:0:0:0:0:0:1 - - [19/Nov/2016:10:57:43 +0000] "GET /ActsInTown-api/user/current HTTP/1.1" 401 418
