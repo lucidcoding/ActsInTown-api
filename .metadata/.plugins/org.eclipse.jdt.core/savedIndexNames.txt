@@ -8,7 +8,6 @@ INDEX VERSION 1.127+C:\Code\ActsInTown\.metadata\.plugins\org.eclipse.jdt.core
 3623672748.index
 1482361719.index
 169100874.index
-1494832536.index
 2542913541.index
 1687993233.index
 1015721371.index

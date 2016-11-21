@@ -70,5 +70,13 @@
         <property name="profilePictureUploaded">
             <column name="`ProfilePictureUploaded`" not-null="true" />
         </property>
+        
+        <property name="passwordResetToken">
+            <column name="`PasswordResetToken`" length="50" not-null="true" />
+        </property>
+        
+        <property name="passwordResetTokenExpiry">
+            <column name="`PasswordResetTokenExpiry`" not-null="true" />
+        </property>
     </class>
 </hibernate-mapping>

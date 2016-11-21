@@ -32,7 +32,9 @@ public class User extends Entity {
 	private Date verificationTokenExpiry;
 	private boolean verified;
 	private boolean profilePictureUploaded;
-
+	private String passwordResetToken;
+	private Date passwordResetTokenExpiry;
+	
 	public List<Spot> getConflictingSpots(Date scheduledFor, int durationMinutes) {
 		List<Spot> conflictingSpots = new ArrayList<Spot>();
 		GregorianCalendar cal = new GregorianCalendar();
@@ -83,11 +85,8 @@ public class User extends Entity {
 	//http://www.baeldung.com/registration-verify-user-by-email
 	public void generateVerificationToken() {
 		this.verified = false;
-		this.verificationToken = UUID.randomUUID().toString();
-		GregorianCalendar cal = new GregorianCalendar();
-		int expirationMinutes = 60 * 24;
-        cal.add(Calendar.MINUTE, expirationMinutes);        
-        this.verificationTokenExpiry = cal.getTime();
+		this.verificationToken = UUID.randomUUID().toString();     
+        this.verificationTokenExpiry = getTimeIn24Hours();
 	}
 	
 	public List<ValidationMessage> validateVerify() {
@@ -159,6 +158,18 @@ public class User extends Entity {
 		} else {
 			return "/assets/svg/anonymous.svg";
 		}
+	}
+	
+	public void initializePasswordReset() {
+		this.passwordResetToken = UUID.randomUUID().toString();       
+        this.passwordResetTokenExpiry = getTimeIn24Hours();
+	}
+	
+	private Date getTimeIn24Hours() {
+		GregorianCalendar cal = new GregorianCalendar();
+		int expirationMinutes = 60 * 24;
+        cal.add(Calendar.MINUTE, expirationMinutes); 
+        return cal.getTime();
 	}
 	
 	public String getUsername() {
@@ -283,5 +294,21 @@ public class User extends Entity {
 
 	public void setProfilePictureUploaded(boolean profilePictureUploaded) {
 		this.profilePictureUploaded = profilePictureUploaded;
+	}
+
+	public String getPasswordResetToken() {
+		return passwordResetToken;
+	}
+
+	public void setPasswordResetToken(String passwordResetToken) {
+		this.passwordResetToken = passwordResetToken;
+	}
+
+	public Date getPasswordResetTokenExpiry() {
+		return passwordResetTokenExpiry;
+	}
+
+	public void setPasswordResetTokenExpiry(Date passwordResetTokenExpiry) {
+		this.passwordResetTokenExpiry = passwordResetTokenExpiry;
 	}
 }
