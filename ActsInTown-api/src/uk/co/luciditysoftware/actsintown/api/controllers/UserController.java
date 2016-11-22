@@ -34,10 +34,12 @@ import uk.co.luciditysoftware.actsintown.api.mappers.dtomappers.GenericDtoMapper
 import uk.co.luciditysoftware.actsintown.api.mappers.parametersetmappers.user.ChangePasswordParameterSetMapper;
 import uk.co.luciditysoftware.actsintown.api.mappers.parametersetmappers.user.EditParameterSetMapper;
 import uk.co.luciditysoftware.actsintown.api.mappers.parametersetmappers.user.RegisterParameterSetMapper;
+import uk.co.luciditysoftware.actsintown.api.mappers.parametersetmappers.user.ResetPasswordParameterSetMapper;
 import uk.co.luciditysoftware.actsintown.api.requests.user.ChangePasswordRequest;
 import uk.co.luciditysoftware.actsintown.api.requests.user.EditCurrentRequest;
 import uk.co.luciditysoftware.actsintown.api.requests.user.InitializePasswordResetRequest;
 import uk.co.luciditysoftware.actsintown.api.requests.user.RegisterRequest;
+import uk.co.luciditysoftware.actsintown.api.requests.user.ResetPasswordRequest;
 import uk.co.luciditysoftware.actsintown.api.services.RequestLogger;
 import uk.co.luciditysoftware.actsintown.domain.common.ValidationMessage;
 import uk.co.luciditysoftware.actsintown.domain.common.ValidationMessageType;
@@ -45,6 +47,7 @@ import uk.co.luciditysoftware.actsintown.domain.entities.User;
 import uk.co.luciditysoftware.actsintown.domain.parametersets.user.ChangePasswordParameterSet;
 import uk.co.luciditysoftware.actsintown.domain.parametersets.user.EditParameterSet;
 import uk.co.luciditysoftware.actsintown.domain.parametersets.user.RegisterParameterSet;
+import uk.co.luciditysoftware.actsintown.domain.parametersets.user.ResetPasswordParameterSet;
 import uk.co.luciditysoftware.actsintown.domain.repositorycontracts.UserRepository;
 
 @RestController
@@ -62,7 +65,10 @@ public class UserController {
 	
 	@Autowired
 	private ChangePasswordParameterSetMapper changePasswordParameterSetMapper;
-	
+
+    @Autowired
+    private ResetPasswordParameterSetMapper resetPasswordParameterSetMapper;
+    
 	@Autowired
 	private RequestLogger requestLogger;
 
@@ -264,10 +270,33 @@ public class UserController {
 	@RequestMapping(value = "/reset-password", method = RequestMethod.PUT)
 	@ResponseBody
 	@Transactional
-	public ResponseEntity<?> resetPassword(@Valid @RequestBody ChangePasswordRequest request, 
+	public ResponseEntity<?> resetPassword(@Valid @RequestBody ResetPasswordRequest request, 
             BindingResult bindingResult)
             throws NoSuchAlgorithmException, JsonProcessingException {
 		requestLogger.log(request);
-		return null;
+		
+		if (bindingResult.hasErrors()) {
+			List<ValidationMessage> validationMessages = bindingResult
+					.getAllErrors()
+					.stream()
+					.map(error -> new ValidationMessage(ValidationMessageType.ERROR,
+							(error instanceof FieldError) ? ((FieldError)error).getField() : null, 
+							error.getDefaultMessage()))
+					.collect(Collectors.toList());
+
+			return new ResponseEntity<String>("Invalid password reset request.", new HttpHeaders(), HttpStatus.BAD_REQUEST);
+        }
+
+		User user = userRepository.getByUsername(request.getUsername());
+		ResetPasswordParameterSet parameterSet = resetPasswordParameterSetMapper.map(request);
+		List<ValidationMessage> validationMessages = user.validateResetPassword(parameterSet);
+		
+		if(!validationMessages.isEmpty()) {
+			return new ResponseEntity<String>("Invalid password reset request.", new HttpHeaders(), HttpStatus.BAD_REQUEST);
+		}
+		
+		user.resetPassword(parameterSet);
+		userRepository.save(user);
+		return new ResponseEntity<Void>(new HttpHeaders(), HttpStatus.OK);
 	}
 }

@@ -5,6 +5,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Email;
 
 public class InitializePasswordResetRequest {
+	
 	@NotNull(message = "This field is required")
 	@Email
 	private String username;

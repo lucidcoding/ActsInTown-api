@@ -15,6 +15,7 @@ import uk.co.luciditysoftware.actsintown.domain.common.ValidationMessageType;
 import uk.co.luciditysoftware.actsintown.domain.parametersets.user.ChangePasswordParameterSet;
 import uk.co.luciditysoftware.actsintown.domain.parametersets.user.EditParameterSet;
 import uk.co.luciditysoftware.actsintown.domain.parametersets.user.RegisterParameterSet;
+import uk.co.luciditysoftware.actsintown.domain.parametersets.user.ResetPasswordParameterSet;
 
 public class User extends Entity {
 	private String username;
@@ -163,6 +164,33 @@ public class User extends Entity {
 	public void initializePasswordReset() {
 		this.passwordResetToken = UUID.randomUUID().toString();       
         this.passwordResetTokenExpiry = getTimeIn24Hours();
+	}
+	
+	public List<ValidationMessage> validateResetPassword(ResetPasswordParameterSet parameterSet) {
+		List<ValidationMessage> validationMessages = new ArrayList<ValidationMessage>();
+		Date now = new Date();
+		
+		if(this.passwordResetToken == null
+				|| !this.passwordResetToken.equals(parameterSet.getPasswordResetToken())
+				|| this.passwordResetTokenExpiry == null
+				|| now.after(this.passwordResetTokenExpiry)) {
+			validationMessages.add(new ValidationMessage(){
+				{
+					setType(ValidationMessageType.ERROR);
+					setField(null);
+					setText("Invalid verification token.");
+				}
+			});
+		}
+		
+		return validationMessages;
+	}
+	
+	public void resetPassword(ResetPasswordParameterSet parameterSet) {
+		this.password = parameterSet.getPassword();
+		this.passwordSalt = parameterSet.getPasswordSalt();
+		this.passwordResetToken = null;
+		this.passwordResetTokenExpiry = null;
 	}
 	
 	private Date getTimeIn24Hours() {

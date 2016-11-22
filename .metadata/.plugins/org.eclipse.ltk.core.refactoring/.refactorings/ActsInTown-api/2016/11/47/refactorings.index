@@ -1,1 +1,6 @@
 1479758949398	Rename type 'InitializePasswordReset'
+1479849945291	Encapsulate field 'username'
+1479849950565	Encapsulate field 'passwordResetToken'
+1479849955943	Encapsulate field 'password'
+1479849962476	Encapsulate field 'confirmPassword'
+1479851355744	Rename type 'ResetPasswordMapperImpl'
