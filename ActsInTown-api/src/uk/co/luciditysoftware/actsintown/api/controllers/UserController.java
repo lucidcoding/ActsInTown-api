@@ -4,7 +4,6 @@ import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -15,11 +14,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -35,12 +32,14 @@ import uk.co.luciditysoftware.actsintown.api.mappers.parametersetmappers.user.Ch
 import uk.co.luciditysoftware.actsintown.api.mappers.parametersetmappers.user.EditParameterSetMapper;
 import uk.co.luciditysoftware.actsintown.api.mappers.parametersetmappers.user.RegisterParameterSetMapper;
 import uk.co.luciditysoftware.actsintown.api.mappers.parametersetmappers.user.ResetPasswordParameterSetMapper;
+import uk.co.luciditysoftware.actsintown.api.mappers.responsemappers.ValidationMessageMapper;
 import uk.co.luciditysoftware.actsintown.api.requests.user.ChangePasswordRequest;
 import uk.co.luciditysoftware.actsintown.api.requests.user.EditCurrentRequest;
 import uk.co.luciditysoftware.actsintown.api.requests.user.InitializePasswordResetRequest;
 import uk.co.luciditysoftware.actsintown.api.requests.user.RegisterRequest;
 import uk.co.luciditysoftware.actsintown.api.requests.user.ResetPasswordRequest;
-import uk.co.luciditysoftware.actsintown.api.services.RequestLogger;
+import uk.co.luciditysoftware.actsintown.api.utilities.CurrentUserResolver;
+import uk.co.luciditysoftware.actsintown.api.utilities.RequestLogger;
 import uk.co.luciditysoftware.actsintown.domain.common.ValidationMessage;
 import uk.co.luciditysoftware.actsintown.domain.common.ValidationMessageType;
 import uk.co.luciditysoftware.actsintown.domain.entities.User;
@@ -75,11 +74,15 @@ public class UserController {
 	@Autowired
 	private GenericDtoMapper genericDtoMapper;
 	
+	@Autowired
+	private ValidationMessageMapper validationMessageMapper;
+	
     @Autowired
     private JavaMailSender mailSender;
-    
-	//http://www.baeldung.com/registration-verify-user-by-email
 		
+    @Autowired
+    private CurrentUserResolver currentUserResolver;
+    
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	@ResponseBody
 	@Transactional
@@ -87,18 +90,11 @@ public class UserController {
                                       BindingResult bindingResult)
                                       throws NoSuchAlgorithmException, JsonProcessingException {
 		requestLogger.log(request);
+		List<ValidationMessage> modelValidationMessages = validationMessageMapper.map(bindingResult);
 		
-		if (bindingResult.hasErrors()) {
-			List<ValidationMessage> validationMessages = bindingResult
-					.getAllErrors()
-					.stream()
-					.map(error -> new ValidationMessage(ValidationMessageType.ERROR,
-							(error instanceof FieldError) ? ((FieldError)error).getField() : null, 
-							error.getDefaultMessage()))
-					.collect(Collectors.toList());
-
-			return new ResponseEntity<List<ValidationMessage>>(validationMessages, new HttpHeaders(), HttpStatus.BAD_REQUEST);
-        }
+		if(!modelValidationMessages.isEmpty()) {
+			return new ResponseEntity<List<ValidationMessage>>(modelValidationMessages, new HttpHeaders(), HttpStatus.BAD_REQUEST);
+		}
 
 		// Check for existing user.
 		User existingUser = userRepository.getByUsername(request.getUsername());
@@ -148,25 +144,13 @@ public class UserController {
 			                      BindingResult bindingResult)
 			                      throws NoSuchAlgorithmException, JsonProcessingException {
 		requestLogger.log(request);
+		List<ValidationMessage> modelValidationMessages = validationMessageMapper.map(bindingResult);
 		
-		if (bindingResult.hasErrors()) {
-			List<ValidationMessage> validationMessages = bindingResult
-					.getAllErrors()
-					.stream()
-					.map(error -> new ValidationMessage(ValidationMessageType.ERROR,
-							(error instanceof FieldError) ? ((FieldError)error).getField() : null, 
-							error.getDefaultMessage()))
-					.collect(Collectors.toList());
-
-			return new ResponseEntity<List<ValidationMessage>>(validationMessages, new HttpHeaders(), HttpStatus.BAD_REQUEST);
-        }
-
-		String username = (String) SecurityContextHolder
-			.getContext()
-			.getAuthentication()
-			.getPrincipal();
+		if(!modelValidationMessages.isEmpty()) {
+			return new ResponseEntity<List<ValidationMessage>>(modelValidationMessages, new HttpHeaders(), HttpStatus.BAD_REQUEST);
+		}
 		
-		User user = userRepository.getByUsername(username);
+		User user = currentUserResolver.getUser();
 
 		if (user == null) {
 			return new ResponseEntity<Void>(new HttpHeaders(), HttpStatus.BAD_REQUEST);
@@ -182,12 +166,7 @@ public class UserController {
 	@ResponseBody
 	@Transactional
 	public UserDto getCurrent() {
-		String username = (String) SecurityContextHolder
-			.getContext()
-			.getAuthentication()
-			.getPrincipal();
-
-		User user = userRepository.getByUsername(username);
+		User user = currentUserResolver.getUser();
 		UserDto userDto = genericDtoMapper.map(user, UserDto.class);
 		return userDto;
 	}
@@ -199,25 +178,13 @@ public class UserController {
             BindingResult bindingResult)
             throws NoSuchAlgorithmException, JsonProcessingException {
 		requestLogger.log(request);
+		List<ValidationMessage> modelValidationMessages = validationMessageMapper.map(bindingResult);
 		
-		if (bindingResult.hasErrors()) {
-			List<ValidationMessage> validationMessages = bindingResult
-					.getAllErrors()
-					.stream()
-					.map(error -> new ValidationMessage(ValidationMessageType.ERROR,
-							(error instanceof FieldError) ? ((FieldError)error).getField() : null, 
-							error.getDefaultMessage()))
-					.collect(Collectors.toList());
-
-			return new ResponseEntity<List<ValidationMessage>>(validationMessages, new HttpHeaders(), HttpStatus.BAD_REQUEST);
-        }
-
-		String username = (String) SecurityContextHolder
-			.getContext()
-			.getAuthentication()
-			.getPrincipal();
+		if(!modelValidationMessages.isEmpty()) {
+			return new ResponseEntity<List<ValidationMessage>>(modelValidationMessages, new HttpHeaders(), HttpStatus.BAD_REQUEST);
+		}
 		
-		User user = userRepository.getByUsername(username);
+		User user = currentUserResolver.getUser();
 		byte[] passwordBytes = Base64.decodeBase64(user.getPassword());
 		
 		if (!BCrypt.checkpw(request.getOldPassword(), new String(passwordBytes, StandardCharsets.UTF_8) )) {
@@ -243,18 +210,11 @@ public class UserController {
             BindingResult bindingResult)
             throws NoSuchAlgorithmException, JsonProcessingException {
 		requestLogger.log(request);
+		List<ValidationMessage> validationMessages = validationMessageMapper.map(bindingResult);
 		
-		if (bindingResult.hasErrors()) {
-			List<ValidationMessage> validationMessages = bindingResult
-					.getAllErrors()
-					.stream()
-					.map(error -> new ValidationMessage(ValidationMessageType.ERROR,
-							(error instanceof FieldError) ? ((FieldError)error).getField() : null, 
-							error.getDefaultMessage()))
-					.collect(Collectors.toList());
-
+		if(!validationMessages.isEmpty()) {
 			return new ResponseEntity<List<ValidationMessage>>(validationMessages, new HttpHeaders(), HttpStatus.BAD_REQUEST);
-        }
+		}
 		
 		User user = userRepository.getByUsername(request.getUsername());
 		user.initializePasswordReset();
@@ -274,24 +234,17 @@ public class UserController {
             BindingResult bindingResult)
             throws NoSuchAlgorithmException, JsonProcessingException {
 		requestLogger.log(request);
+		List<ValidationMessage> modelValidationMessages = validationMessageMapper.map(bindingResult);
 		
-		if (bindingResult.hasErrors()) {
-			List<ValidationMessage> validationMessages = bindingResult
-					.getAllErrors()
-					.stream()
-					.map(error -> new ValidationMessage(ValidationMessageType.ERROR,
-							(error instanceof FieldError) ? ((FieldError)error).getField() : null, 
-							error.getDefaultMessage()))
-					.collect(Collectors.toList());
-
-			return new ResponseEntity<String>("Invalid password reset request.", new HttpHeaders(), HttpStatus.BAD_REQUEST);
-        }
+		if(!modelValidationMessages.isEmpty()) {
+			return new ResponseEntity<List<ValidationMessage>>(modelValidationMessages, new HttpHeaders(), HttpStatus.BAD_REQUEST);
+		}
 
 		User user = userRepository.getByUsername(request.getUsername());
 		ResetPasswordParameterSet parameterSet = resetPasswordParameterSetMapper.map(request);
-		List<ValidationMessage> validationMessages = user.validateResetPassword(parameterSet);
+		List<ValidationMessage> domainValidationMessages = user.validateResetPassword(parameterSet);
 		
-		if(!validationMessages.isEmpty()) {
+		if(!domainValidationMessages.isEmpty()) {
 			return new ResponseEntity<String>("Invalid password reset request.", new HttpHeaders(), HttpStatus.BAD_REQUEST);
 		}
 		

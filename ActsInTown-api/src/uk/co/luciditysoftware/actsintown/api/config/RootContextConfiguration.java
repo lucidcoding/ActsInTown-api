@@ -13,6 +13,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
@@ -26,20 +28,27 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 		"uk.co.luciditysoftware.actsintown.api.config",
 		"uk.co.luciditysoftware.actsintown.api.filters",
 		"uk.co.luciditysoftware.actsintown.api.mappers",
-		"uk.co.luciditysoftware.actsintown.api.services",
+		"uk.co.luciditysoftware.actsintown.api.security",
+		"uk.co.luciditysoftware.actsintown.api.utilities",
 		"uk.co.luciditysoftware.actsintown.data.repositories"
 }, 
 excludeFilters = @ComponentScan.Filter(Controller.class) )
 @EnableTransactionManagement
 @Import({ SecurityConfiguration.class })
+@PropertySource("file:C:/ServerSettings/ActsInTown/config.properties")
 public class RootContextConfiguration {
+	
+	@Autowired
+	private Environment environment;
+	
 	@Bean(name = "dataSource")
 	public DataSource dataSource() {
 	    BasicDataSource dataSource = new BasicDataSource();
 	    dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-	    dataSource.setUrl("jdbc:mysql://localhost:3306/actsintown");
-	    dataSource.setUsername("root");
-	    dataSource.setPassword("");
+	    //dataSource.setUrl("dbUrl");
+	    dataSource.setUrl(environment.getProperty("dbUrl"));
+	    dataSource.setUsername(environment.getProperty("dbUsername"));
+	    dataSource.setPassword(environment.getProperty("dbPassword"));
 	    return dataSource;
 	}
 	

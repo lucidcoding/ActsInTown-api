@@ -1,0 +1,13 @@
+package uk.co.luciditysoftware.actsintown.api.mappers.common;
+
+import java.util.List;
+
+import org.springframework.validation.BindingResult;
+
+import uk.co.luciditysoftware.actsintown.domain.common.ValidationMessage;
+
+public class ValidationMessageMapper {
+	public List<ValidationMessage> map(BindingResult bindingResult) {
+		
+	}
+}

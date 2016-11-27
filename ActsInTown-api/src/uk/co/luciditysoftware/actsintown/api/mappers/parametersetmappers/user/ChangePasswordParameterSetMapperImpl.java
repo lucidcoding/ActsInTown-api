@@ -2,16 +2,13 @@ package uk.co.luciditysoftware.actsintown.api.mappers.parametersetmappers.user;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.util.UUID;
 
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 import uk.co.luciditysoftware.actsintown.api.requests.user.ChangePasswordRequest;
-import uk.co.luciditysoftware.actsintown.api.requests.user.RegisterRequest;
 import uk.co.luciditysoftware.actsintown.domain.parametersets.user.ChangePasswordParameterSet;
-import uk.co.luciditysoftware.actsintown.domain.parametersets.user.RegisterParameterSet;
 
 @Service
 public class ChangePasswordParameterSetMapperImpl implements ChangePasswordParameterSetMapper{

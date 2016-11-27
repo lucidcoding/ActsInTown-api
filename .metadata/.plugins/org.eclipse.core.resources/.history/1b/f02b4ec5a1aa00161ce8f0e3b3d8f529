@@ -1,5 +1,0 @@
-package uk.co.luciditysoftware.actsintown.api.datatransferobjects;
-
-public class UserDto {
-
-}

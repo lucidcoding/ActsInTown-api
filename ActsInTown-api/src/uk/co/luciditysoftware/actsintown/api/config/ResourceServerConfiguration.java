@@ -44,6 +44,8 @@ public class ResourceServerConfiguration  extends ResourceServerConfigurerAdapte
         	.authorizeRequests()
         		.antMatchers(HttpMethod.GET, "/test").permitAll()
         		.antMatchers(HttpMethod.GET, "/usertype").permitAll()
+        		.antMatchers(HttpMethod.GET, "/user/verify").permitAll()
+        		.antMatchers(HttpMethod.POST, "/user/register").permitAll()
         		.antMatchers(HttpMethod.PUT, "/user/initialize-password-reset").permitAll()
         		.antMatchers(HttpMethod.PUT, "/user/reset-password").permitAll()
         		.anyRequest().authenticated()
