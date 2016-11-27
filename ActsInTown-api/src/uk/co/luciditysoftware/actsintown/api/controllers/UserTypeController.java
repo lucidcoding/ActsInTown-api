@@ -15,6 +15,10 @@ import uk.co.luciditysoftware.actsintown.api.mappers.dtomappers.GenericDtoMapper
 import uk.co.luciditysoftware.actsintown.domain.entities.UserType;
 import uk.co.luciditysoftware.actsintown.domain.repositorycontracts.UserTypeRepository;
 
+/**
+ * Controller class that handles all use cases performing actions on the user type entity.
+ * @author Paul Davies
+ */
 @RestController
 @RequestMapping("/usertype")
 public class UserTypeController {
@@ -25,6 +29,10 @@ public class UserTypeController {
 	@Autowired
 	private GenericDtoMapper genericDtoMapper;
 	
+	/**
+	 * Returns a list of all user types.
+	 * @return List of user types
+	 */
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	@ResponseBody
 	@Transactional
@@ -34,6 +42,10 @@ public class UserTypeController {
 		return userTypeDtos;
 	}
 	
+	/**
+	 * Returns a list of user types that the current logged in user has registered as.
+	 * @return List of user types
+	 */
 	@RequestMapping(value = "/for-current-user", method = RequestMethod.GET)
 	@ResponseBody
 	@Transactional

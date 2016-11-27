@@ -14,7 +14,11 @@ import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
- 
+
+/**
+ * Configuration for the authorization server
+ * @author Paul Davies
+ */
 @Configuration
 @EnableAuthorizationServer
 public class AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter {
@@ -30,7 +34,6 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
             .authorizedGrantTypes("password", "authorization_code", "refresh_token", "implicit")
             .authorities("ROLE_USER", "ROLE_CLIENT", "ROLE_TRUSTED_CLIENT")
             .scopes("read", "write", "trust")
-            //.secret("secret")
             .accessTokenValiditySeconds(120).//Access token is only valid for 2 minutes.
             refreshTokenValiditySeconds(600);//Refresh token is only valid for 10 minutes.
     }

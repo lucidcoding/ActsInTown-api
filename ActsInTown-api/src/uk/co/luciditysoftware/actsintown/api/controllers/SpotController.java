@@ -30,6 +30,10 @@ import uk.co.luciditysoftware.actsintown.domain.enums.BookedState;
 import uk.co.luciditysoftware.actsintown.domain.parametersets.spot.AddParameterSet;
 import uk.co.luciditysoftware.actsintown.domain.repositorycontracts.SpotRepository;
 
+/**
+ * Controller class that handles all use cases performing actions on the spot entity.
+ * @author Paul Davies
+ */
 @RestController
 @RequestMapping("/spot")
 public class SpotController {
@@ -49,6 +53,10 @@ public class SpotController {
 	@Autowired
 	private GenericDtoMapper genericDtoMapper;
 	
+	/**
+	 * Returns a list of all spots that have been added by the currently logged in user.
+	 * @return List of spots for current user
+	 */
 	@RequestMapping(value = "/for-current-user", method = RequestMethod.GET)
 	@ResponseBody
 	@Transactional
@@ -59,6 +67,11 @@ public class SpotController {
 		return spotDtos;
 	}
 
+	/**
+	 * Adds a spot for the current user with the supplied parameters.
+	 * @param request Request object containing values for the spot to be added.
+	 * @return Http response reporting the results of the request
+	 */
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	@ResponseBody
 	@Transactional
@@ -70,6 +83,14 @@ public class SpotController {
 		return new ResponseEntity<Void>(new HttpHeaders(), HttpStatus.CREATED);
 	}
 
+	/**
+	 * Returns a list of spots matching the supplied criteria.
+	 * @param startDate The start date for the period in which spots should be included
+	 * @param endDate The end date for the period in which spots should be included
+	 * @param townId The ID of the town in which spots should be included
+	 * @param bookedState The state of spots which should be included
+	 * @return List of matching spots
+	 */
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	@ResponseBody
 	@Transactional

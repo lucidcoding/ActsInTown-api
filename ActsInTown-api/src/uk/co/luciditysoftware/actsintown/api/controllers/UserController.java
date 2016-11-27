@@ -49,6 +49,10 @@ import uk.co.luciditysoftware.actsintown.domain.parametersets.user.RegisterParam
 import uk.co.luciditysoftware.actsintown.domain.parametersets.user.ResetPasswordParameterSet;
 import uk.co.luciditysoftware.actsintown.domain.repositorycontracts.UserRepository;
 
+/**
+ * Controller class that handles all use cases performing actions on the user entity.
+ * @author Paul Davies
+ */
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -83,6 +87,14 @@ public class UserController {
     @Autowired
     private CurrentUserResolver currentUserResolver;
     
+    /**
+     * Registers a user based on the supplied request object.
+     * @param request Request containing parameters for the user to be registered
+     * @param bindingResult The binding result
+     * @return Http response reporting the results of the request, containing validation errors if invalid
+     * @throws NoSuchAlgorithmException
+     * @throws JsonProcessingException
+     */
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	@ResponseBody
 	@Transactional
@@ -116,6 +128,11 @@ public class UserController {
 		return new ResponseEntity<Void>(new HttpHeaders(), HttpStatus.CREATED);
 	}
 	
+	/**
+	 * Verifies a user as having a valid email address.
+	 * @param verificationToken The verification token that was sent to the registered email address for the user
+	 * @return Http response reporting the results of the request, containing validation errors if invalid
+	 */
 	@RequestMapping(value = "/verify", method = RequestMethod.GET)
 	@ResponseBody
 	@Transactional
@@ -137,6 +154,14 @@ public class UserController {
 		return new ResponseEntity<Void>(new HttpHeaders(), HttpStatus.OK);
 	}
 
+	/**
+	 * Edits a the current logged in user with the values supplied in the request object.
+	 * @param request Request object containing values to edit the user
+	 * @param bindingResult The binding result
+	 * @return Http response reporting the results of the request, containing validation errors if invalid
+	 * @throws NoSuchAlgorithmException
+	 * @throws JsonProcessingException
+	 */
 	@RequestMapping(value = "/edit-current", method = RequestMethod.PUT)
 	@ResponseBody
 	@Transactional
@@ -162,6 +187,10 @@ public class UserController {
 		return new ResponseEntity<Void>(new HttpHeaders(), HttpStatus.OK);
 	}
 	
+	/**
+	 * Returns the current logged in user.
+	 * @return The current logged in user
+	 */
 	@RequestMapping(value = "/current", method = RequestMethod.GET)
 	@ResponseBody
 	@Transactional
@@ -171,6 +200,14 @@ public class UserController {
 		return userDto;
 	}
 	
+	/**
+	 * Changes the password for the current logged in user.
+	 * @param request Request object containing details for the password change
+	 * @param bindingResult The binding result
+	 * @return Http response reporting the results of the request, containing validation errors if invalid
+	 * @throws NoSuchAlgorithmException
+	 * @throws JsonProcessingException
+	 */
 	@RequestMapping(value = "/change-password", method = RequestMethod.PUT)
 	@ResponseBody
 	@Transactional
@@ -203,6 +240,14 @@ public class UserController {
 		return new ResponseEntity<Void>(new HttpHeaders(), HttpStatus.OK);
 	}
 	
+	/**
+	 * Creates a password rest token and mails if out to the user specified in the request.
+	 * @param request Request object containing details of the user whose password is to be reset
+	 * @param bindingResult The binding result
+	 * @return Http response reporting the results of the request, containing validation errors if invalid
+	 * @throws NoSuchAlgorithmException
+	 * @throws JsonProcessingException
+	 */
 	@RequestMapping(value = "/initialize-password-reset", method = RequestMethod.PUT)
 	@ResponseBody
 	@Transactional
@@ -226,7 +271,15 @@ public class UserController {
         mailSender.send(email);
 		return new ResponseEntity<Void>(new HttpHeaders(), HttpStatus.OK);
 	}
-	
+
+	/**
+	 * Resets the password of the requested user with the supplied password.
+	 * @param request Request object containing the username, new password and token of the password reset.
+	 * @param bindingResult The binding result
+	 * @return Http response reporting the results of the request, containing validation errors if invalid
+	 * @throws NoSuchAlgorithmException
+	 * @throws JsonProcessingException
+	 */
 	@RequestMapping(value = "/reset-password", method = RequestMethod.PUT)
 	@ResponseBody
 	@Transactional

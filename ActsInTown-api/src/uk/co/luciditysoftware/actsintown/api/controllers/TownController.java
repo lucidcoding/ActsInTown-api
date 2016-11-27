@@ -15,6 +15,10 @@ import uk.co.luciditysoftware.actsintown.api.mappers.dtomappers.GenericDtoMapper
 import uk.co.luciditysoftware.actsintown.domain.entities.Town;
 import uk.co.luciditysoftware.actsintown.domain.repositorycontracts.TownRepository;
 
+/**
+ * Controller class that handles all use cases performing actions on the town entity.
+ * @author Paul Davies
+ */
 @RestController
 @RequestMapping("/town")
 public class TownController {
@@ -25,6 +29,10 @@ public class TownController {
 	@Autowired
 	private GenericDtoMapper genericDtoMapper;
 	
+	/**
+	 * Returns all towns currently marked as active.
+	 * @return List of towns
+	 */
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	@ResponseBody
 	@Transactional

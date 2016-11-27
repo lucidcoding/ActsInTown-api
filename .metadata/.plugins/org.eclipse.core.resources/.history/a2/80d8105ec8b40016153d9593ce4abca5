@@ -1,0 +1,32 @@
+package uk.co.luciditysoftware.actsintown.domain.entities;
+
+import uk.co.luciditysoftware.actsintown.domain.common.Entity;
+
+/**
+ * Entity class representing a permission in the Acts In Town system.
+ * @author	Paul Davies
+ */
+public class Permission extends Entity  {
+	
+	/**
+	 * The name of the permission.
+	 */
+	private String name;
+	private String description;
+
+	public String getName() {
+		return name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public String getDescription() {
+		return description;
+	}
+	
+	public void setDescription(String description) {
+		this.description = description;
+	}
+}
