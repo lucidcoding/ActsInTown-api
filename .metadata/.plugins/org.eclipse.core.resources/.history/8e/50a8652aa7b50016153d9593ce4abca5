@@ -1,0 +1,5 @@
+package uk.co.luciditysoftware.actsintown.api.security;
+
+public class CustomUserDetailsService {
+
+}

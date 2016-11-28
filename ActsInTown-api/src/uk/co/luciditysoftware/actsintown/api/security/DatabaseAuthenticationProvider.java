@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,11 +18,13 @@ import org.springframework.transaction.annotation.Transactional;
 import uk.co.luciditysoftware.actsintown.domain.entities.User;
 import uk.co.luciditysoftware.actsintown.domain.repositorycontracts.UserRepository;
 
+//This is needed to handle access tokens
 @Service
 public class DatabaseAuthenticationProvider implements AuthenticationProvider {
+	
 	@Autowired
 	private UserRepository userRepository;
-
+	
 	// http://javainsimpleway.com/spring/spring-security-using-custom-authentication-provider/
 
 	@Override
@@ -63,6 +66,8 @@ public class DatabaseAuthenticationProvider implements AuthenticationProvider {
 			byte[] passwordBytes = Base64.decodeBase64(user.getPassword());
 	
 			if (BCrypt.checkpw(password, new String(passwordBytes, StandardCharsets.UTF_8) )) {
+				
+		    	//TODO: Refactor this into shared module along with equivalent in CustomUserDetailsServer
 				final String currentUsername = user.getUsername();
 				
 				List<CustomGrantedAuthority> authorities =  user.getRole().getRolePermissions().stream()
