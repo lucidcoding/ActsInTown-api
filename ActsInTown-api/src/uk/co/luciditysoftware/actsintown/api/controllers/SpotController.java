@@ -38,72 +38,72 @@ import uk.co.luciditysoftware.actsintown.domain.repositorycontracts.SpotReposito
 @RequestMapping("/spot")
 public class SpotController {
 
-	@Autowired
-	private SpotRepository spotRepository;
+    @Autowired
+    private SpotRepository spotRepository;
 
-	@Autowired
-	private AddParameterSetMapper addParameterSetMapper;
+    @Autowired
+    private AddParameterSetMapper addParameterSetMapper;
 
-	@Autowired
-	private RequestLogger requestLogger;
-		
+    @Autowired
+    private RequestLogger requestLogger;
+        
     @Autowired
     private CurrentUserResolver currentUserResolver;
 
-	@Autowired
-	private GenericDtoMapper genericDtoMapper;
-	
-	/**
-	 * Returns a list of all spots that have been added by the currently logged in user.
-	 * @return List of spots for current user
-	 */
-	@RequestMapping(value = "/for-current-user", method = RequestMethod.GET)
-	@ResponseBody
-	@Transactional
-	public List<SpotDto> getForCurrentUser() {
-		String username = currentUserResolver.getUsername();
-		List<Spot> spots = spotRepository.getByUsername(username);
-		List<SpotDto> spotDtos = genericDtoMapper.map(spots, SpotDto.class);
-		return spotDtos;
-	}
+    @Autowired
+    private GenericDtoMapper genericDtoMapper;
+    
+    /**
+     * Returns a list of all spots that have been added by the currently logged in user.
+     * @return List of spots for current user
+     */
+    @RequestMapping(value = "/for-current-user", method = RequestMethod.GET)
+    @ResponseBody
+    @Transactional
+    public List<SpotDto> getForCurrentUser() {
+        String username = currentUserResolver.getUsername();
+        List<Spot> spots = spotRepository.getByUsername(username);
+        List<SpotDto> spotDtos = genericDtoMapper.map(spots, SpotDto.class);
+        return spotDtos;
+    }
 
-	/**
-	 * Adds a spot for the current user with the supplied parameters.
-	 * @param request Request object containing values for the spot to be added.
-	 * @return Http response reporting the results of the request
-	 */
-	@RequestMapping(value = "", method = RequestMethod.POST)
-	@ResponseBody
-	@Transactional
-	public ResponseEntity<Void> Add(@RequestBody AddRequest request) {
-		requestLogger.log(request);
-		AddParameterSet parameterSet = addParameterSetMapper.map(request);
-		Spot spot = Spot.add(parameterSet);
-		spotRepository.save(spot);
-		return new ResponseEntity<Void>(new HttpHeaders(), HttpStatus.CREATED);
-	}
+    /**
+     * Adds a spot for the current user with the supplied parameters.
+     * @param request Request object containing values for the spot to be added.
+     * @return Http response reporting the results of the request
+     */
+    @RequestMapping(value = "", method = RequestMethod.POST)
+    @ResponseBody
+    @Transactional
+    public ResponseEntity<Void> Add(@RequestBody AddRequest request) {
+        requestLogger.log(request);
+        AddParameterSet parameterSet = addParameterSetMapper.map(request);
+        Spot spot = Spot.add(parameterSet);
+        spotRepository.save(spot);
+        return new ResponseEntity<Void>(new HttpHeaders(), HttpStatus.CREATED);
+    }
 
-	/**
-	 * Returns a list of spots matching the supplied criteria.
-	 * @param startDate The start date for the period in which spots should be included
-	 * @param endDate The end date for the period in which spots should be included
-	 * @param townId The ID of the town in which spots should be included
-	 * @param bookedState The state of spots which should be included
-	 * @return List of matching spots
-	 */
-	@RequestMapping(value = "/search", method = RequestMethod.GET)
-	@ResponseBody
-	@Transactional
-	public List<SpotDto> search(
-			@RequestParam("startDate") @DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") Date startDate, 
-			@RequestParam("endDate") @DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") Date endDate,
-			@RequestParam("townId") UUID townId,
-			@RequestParam("bookedState") BookedState bookedState) {
-		GregorianCalendar cal = new GregorianCalendar();
+    /**
+     * Returns a list of spots matching the supplied criteria.
+     * @param startDate The start date for the period in which spots should be included
+     * @param endDate The end date for the period in which spots should be included
+     * @param townId The ID of the town in which spots should be included
+     * @param bookedState The state of spots which should be included
+     * @return List of matching spots
+     */
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    @ResponseBody
+    @Transactional
+    public List<SpotDto> search(
+            @RequestParam("startDate") @DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") Date startDate, 
+            @RequestParam("endDate") @DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") Date endDate,
+            @RequestParam("townId") UUID townId,
+            @RequestParam("bookedState") BookedState bookedState) {
+        GregorianCalendar cal = new GregorianCalendar();
         cal.setTime(endDate);
         cal.add(Calendar.DAY_OF_MONTH, 1);  
         List<Spot> spots = spotRepository.search(startDate, endDate, townId, bookedState);
-		List<SpotDto> spotDtos = genericDtoMapper.map(spots, SpotDto.class);
-		return spotDtos;
-	}
+        List<SpotDto> spotDtos = genericDtoMapper.map(spots, SpotDto.class);
+        return spotDtos;
+    }
 }

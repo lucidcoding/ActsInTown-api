@@ -4,8 +4,8 @@ import org.springframework.security.core.GrantedAuthority;
 //NO LONGER NEEDED?
 public class CustomGrantedAuthority implements GrantedAuthority{
 
-	private static final long serialVersionUID = 1L;
-	private String name;
+    private static final long serialVersionUID = 1L;
+    private String name;
      
  
     public String getName() {

@@ -17,24 +17,24 @@ import uk.co.luciditysoftware.actsintown.domain.repositorycontracts.TownReposito
 @Scope("prototype")
 public class TownRepositoryImpl implements TownRepository {
 
-	@Autowired
-	private SessionFactory sessionFactory;
-	
-	public Town getById(UUID id){
-		Session session = sessionFactory.getCurrentSession();
-		Town town = (Town)session.get(Town.class, id);
-		return town;
-	}
-	
-	public List<Town> getAll() {
-		Session session = sessionFactory.getCurrentSession();
-		@SuppressWarnings("unchecked")
-		
-		List<Town> role = session
-			.createCriteria(Town.class)
-			.add(Restrictions.eq("deleted", false))
-			.addOrder(Order.asc("name")).list();
-		
-		return role;
-	}
+    @Autowired
+    private SessionFactory sessionFactory;
+    
+    public Town getById(UUID id){
+        Session session = sessionFactory.getCurrentSession();
+        Town town = (Town)session.get(Town.class, id);
+        return town;
+    }
+    
+    public List<Town> getAll() {
+        Session session = sessionFactory.getCurrentSession();
+        @SuppressWarnings("unchecked")
+        
+        List<Town> role = session
+            .createCriteria(Town.class)
+            .add(Restrictions.eq("deleted", false))
+            .addOrder(Order.asc("name")).list();
+        
+        return role;
+    }
 }

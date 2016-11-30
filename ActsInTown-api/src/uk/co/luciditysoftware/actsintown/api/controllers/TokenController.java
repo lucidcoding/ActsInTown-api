@@ -23,31 +23,31 @@ import uk.co.luciditysoftware.actsintown.domain.repositorycontracts.UserReposito
 @RestController
 @RequestMapping("/token")
 public class TokenController {
-	
-	@Autowired
-	private UserRepository userRepository; 
-	
-	@RequestMapping(value = "", method = RequestMethod.GET)
-	@ResponseBody
-	@Transactional
-	public ResponseEntity<?> get(@RequestParam("username") String username, @RequestParam("password") String password) {
-		User user = userRepository.getByUsername(username);
+    
+    @Autowired
+    private UserRepository userRepository; 
+    
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    @ResponseBody
+    @Transactional
+    public ResponseEntity<?> get(@RequestParam("username") String username, @RequestParam("password") String password) {
+        User user = userRepository.getByUsername(username);
 
-		if (user == null || !user.isVerified()) {
-			return new ResponseEntity<Void>(new HttpHeaders(), HttpStatus.UNAUTHORIZED);
-		}
+        if (user == null || !user.isVerified()) {
+            return new ResponseEntity<Void>(new HttpHeaders(), HttpStatus.UNAUTHORIZED);
+        }
 
-		byte[] passwordBytes = Base64.decodeBase64(user.getPassword());
+        byte[] passwordBytes = Base64.decodeBase64(user.getPassword());
 
-		if (!BCrypt.checkpw( password, new String(passwordBytes, StandardCharsets.UTF_8) )) {
-			return new ResponseEntity<Void>(new HttpHeaders(), HttpStatus.UNAUTHORIZED);
-		}
-		
-		String compactJws = Jwts.builder()
-			.setSubject(username)
-			.signWith(SignatureAlgorithm.HS512, SecurityConfiguration.JWT_SIGNING_KEY)
-			.compact();
+        if (!BCrypt.checkpw( password, new String(passwordBytes, StandardCharsets.UTF_8) )) {
+            return new ResponseEntity<Void>(new HttpHeaders(), HttpStatus.UNAUTHORIZED);
+        }
+        
+        String compactJws = Jwts.builder()
+            .setSubject(username)
+            .signWith(SignatureAlgorithm.HS512, SecurityConfiguration.JWT_SIGNING_KEY)
+            .compact();
 
-		return new ResponseEntity<String>(compactJws, new HttpHeaders(), HttpStatus.OK);
-	}
+        return new ResponseEntity<String>(compactJws, new HttpHeaders(), HttpStatus.OK);
+    }
 }

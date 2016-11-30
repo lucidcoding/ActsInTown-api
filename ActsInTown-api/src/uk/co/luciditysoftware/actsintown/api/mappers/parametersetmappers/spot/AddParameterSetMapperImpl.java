@@ -12,29 +12,29 @@ import uk.co.luciditysoftware.actsintown.domain.repositorycontracts.UserReposito
 @Service
 public class AddParameterSetMapperImpl implements AddParameterSetMapper {
 
-	@Autowired
-	private UserRepository userRepository;
+    @Autowired
+    private UserRepository userRepository;
 
-	@Autowired
-	private TownRepository townRepository;
+    @Autowired
+    private TownRepository townRepository;
 
-	public AddParameterSet map(AddRequest request) {
-		String username = (String) SecurityContextHolder
-				.getContext()
-				.getAuthentication()
-				.getPrincipal();
+    public AddParameterSet map(AddRequest request) {
+        String username = (String) SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getPrincipal();
 
-		AddParameterSet parameterSet = new AddParameterSet() {
-			{
-				this.setUser(userRepository.getByUsername(username));
-				this.setScheduledFor(request.getScheduledFor());
-				this.setDurationMinutes(request.getDurationMinutes());
-				this.setTown(townRepository.getById(request.getTownId()));
-				this.setVenueName(request.getVenueName());
-				this.setDescription(request.getDescription());
-			}
-		};
+        AddParameterSet parameterSet = new AddParameterSet() {
+            {
+                this.setUser(userRepository.getByUsername(username));
+                this.setScheduledFor(request.getScheduledFor());
+                this.setDurationMinutes(request.getDurationMinutes());
+                this.setTown(townRepository.getById(request.getTownId()));
+                this.setVenueName(request.getVenueName());
+                this.setDescription(request.getDescription());
+            }
+        };
 
-		return parameterSet;
-	}
+        return parameterSet;
+    }
 }

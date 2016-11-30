@@ -20,49 +20,49 @@ public class AddRequest {
     private UUID townId;
     
     @NotNull(message = "This field is required")
-	@Length(max = 50)
+    @Length(max = 50)
     private String venueName;
 
-	@Length(max = 250)
+    @Length(max = 250)
     private String description;
     
-	public Date getScheduledFor() {
-		return scheduledFor;
-	}
-	
-	public void setScheduledFor(Date scheduledFor) {
-		this.scheduledFor = scheduledFor;
-	}
-	
-	public int getDurationMinutes() {
-		return durationMinutes;
-	}
-	
-	public void setDurationMinutes(int durationMinutes) {
-		this.durationMinutes = durationMinutes;
-	}
-	
-	public UUID getTownId() {
-		return townId;
-	}
-	
-	public void setTownId(UUID townId) {
-		this.townId = townId;
-	}
-	
-	public String getVenueName() {
-		return venueName;
-	}
-	
-	public void setVenueName(String venueName) {
-		this.venueName = venueName;
-	}
+    public Date getScheduledFor() {
+        return scheduledFor;
+    }
+    
+    public void setScheduledFor(Date scheduledFor) {
+        this.scheduledFor = scheduledFor;
+    }
+    
+    public int getDurationMinutes() {
+        return durationMinutes;
+    }
+    
+    public void setDurationMinutes(int durationMinutes) {
+        this.durationMinutes = durationMinutes;
+    }
+    
+    public UUID getTownId() {
+        return townId;
+    }
+    
+    public void setTownId(UUID townId) {
+        this.townId = townId;
+    }
+    
+    public String getVenueName() {
+        return venueName;
+    }
+    
+    public void setVenueName(String venueName) {
+        this.venueName = venueName;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public String getDescription() {
+        return description;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}    
+    public void setDescription(String description) {
+        this.description = description;
+    }    
 }

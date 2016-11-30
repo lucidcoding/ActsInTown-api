@@ -15,17 +15,17 @@ import uk.co.luciditysoftware.actsintown.domain.repositorycontracts.RoleReposito
 @Scope("prototype")
 public class RoleRepositoryImpl implements RoleRepository {
 
-	@Autowired
-	private SessionFactory sessionFactory;
-	
-	public Role getById(UUID id) {
-		Session session = sessionFactory.getCurrentSession();
-		Role role = (Role)session.get(Role.class, id);
-		return role;
-	}
-	
-	public void save(Role role) {
-		Session session = sessionFactory.getCurrentSession();
-		session.save(role);
-	}
+    @Autowired
+    private SessionFactory sessionFactory;
+    
+    public Role getById(UUID id) {
+        Session session = sessionFactory.getCurrentSession();
+        Role role = (Role)session.get(Role.class, id);
+        return role;
+    }
+    
+    public void save(Role role) {
+        Session session = sessionFactory.getCurrentSession();
+        session.save(role);
+    }
 }

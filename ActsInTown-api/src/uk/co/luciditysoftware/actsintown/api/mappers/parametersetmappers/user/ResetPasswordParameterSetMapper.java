@@ -6,5 +6,5 @@ import uk.co.luciditysoftware.actsintown.api.requests.user.ResetPasswordRequest;
 import uk.co.luciditysoftware.actsintown.domain.parametersets.user.ResetPasswordParameterSet;
 
 public interface ResetPasswordParameterSetMapper {
-	public ResetPasswordParameterSet map(ResetPasswordRequest request) throws NoSuchAlgorithmException ;
+    public ResetPasswordParameterSet map(ResetPasswordRequest request) throws NoSuchAlgorithmException ;
 }

@@ -22,23 +22,23 @@ import uk.co.luciditysoftware.actsintown.domain.repositorycontracts.TownReposito
 @RestController
 @RequestMapping("/town")
 public class TownController {
-	
-	@Autowired
-	private TownRepository townRepository; 
+    
+    @Autowired
+    private TownRepository townRepository; 
 
-	@Autowired
-	private GenericDtoMapper genericDtoMapper;
-	
-	/**
-	 * Returns all towns currently marked as active.
-	 * @return List of towns
-	 */
-	@RequestMapping(value = "", method = RequestMethod.GET)
-	@ResponseBody
-	@Transactional
-	public List<TownDto> get() {
-		List<Town> towns = townRepository.getAll();
-		List<TownDto> townDtos = genericDtoMapper.map(towns, TownDto.class);	
-		return townDtos;
-	}
+    @Autowired
+    private GenericDtoMapper genericDtoMapper;
+    
+    /**
+     * Returns all towns currently marked as active.
+     * @return List of towns
+     */
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    @ResponseBody
+    @Transactional
+    public List<TownDto> get() {
+        List<Town> towns = townRepository.getAll();
+        List<TownDto> townDtos = genericDtoMapper.map(towns, TownDto.class);    
+        return townDtos;
+    }
 }

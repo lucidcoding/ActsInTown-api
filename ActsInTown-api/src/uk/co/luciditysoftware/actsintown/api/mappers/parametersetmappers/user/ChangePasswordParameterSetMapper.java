@@ -6,5 +6,5 @@ import uk.co.luciditysoftware.actsintown.api.requests.user.ChangePasswordRequest
 import uk.co.luciditysoftware.actsintown.domain.parametersets.user.ChangePasswordParameterSet;
 
 public interface ChangePasswordParameterSetMapper {
-	public ChangePasswordParameterSet map(ChangePasswordRequest request)throws NoSuchAlgorithmException ;
+    public ChangePasswordParameterSet map(ChangePasswordRequest request)throws NoSuchAlgorithmException ;
 }

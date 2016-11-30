@@ -21,42 +21,42 @@ import uk.co.luciditysoftware.actsintown.domain.repositorycontracts.SpotReposito
 @Scope("prototype")
 public class SpotRepositoryImpl implements SpotRepository {
 
-	@Autowired
-	private SessionFactory sessionFactory;
-	
-	public Spot getById(UUID id) {
-		Session session = sessionFactory.getCurrentSession();
-		Spot spot = (Spot)session.get(Spot.class, id);
-		return spot;	
-	}
-	
-	public List<Spot> getByUsername(String username) {
-		Session session = sessionFactory.getCurrentSession();
-		String hql = "select spot from Spot as spot inner join spot.user as user where user.username = :username";
-		Query query = session.createQuery(hql);
-		query.setParameter("username", username);
-		@SuppressWarnings("unchecked")
-		List<Spot> spots = query.list();
-		
-		return spots;
-	}
-	
-	public void save(Spot spot) {
-		Session session = sessionFactory.getCurrentSession();
-		session.save(spot);
-		return;
-	}
-	
-	public List<Spot> search(Date startDate, Date endDate, UUID townId, BookedState bookedState) {
-		Session session = sessionFactory.getCurrentSession();
-		
-		@SuppressWarnings("unchecked")
-		List<Spot> role = session
-			.createCriteria(Spot.class)
-			.add(Restrictions.gt("scheduledFor", startDate))
-			.add(Restrictions.lt("scheduledFor", endDate))
-			.addOrder(Order.desc("scheduledFor")).list();
-		
-		return role;
-	}
+    @Autowired
+    private SessionFactory sessionFactory;
+    
+    public Spot getById(UUID id) {
+        Session session = sessionFactory.getCurrentSession();
+        Spot spot = (Spot)session.get(Spot.class, id);
+        return spot;    
+    }
+    
+    public List<Spot> getByUsername(String username) {
+        Session session = sessionFactory.getCurrentSession();
+        String hql = "select spot from Spot as spot inner join spot.user as user where user.username = :username";
+        Query query = session.createQuery(hql);
+        query.setParameter("username", username);
+        @SuppressWarnings("unchecked")
+        List<Spot> spots = query.list();
+        
+        return spots;
+    }
+    
+    public void save(Spot spot) {
+        Session session = sessionFactory.getCurrentSession();
+        session.save(spot);
+        return;
+    }
+    
+    public List<Spot> search(Date startDate, Date endDate, UUID townId, BookedState bookedState) {
+        Session session = sessionFactory.getCurrentSession();
+        
+        @SuppressWarnings("unchecked")
+        List<Spot> role = session
+            .createCriteria(Spot.class)
+            .add(Restrictions.gt("scheduledFor", startDate))
+            .add(Restrictions.lt("scheduledFor", endDate))
+            .addOrder(Order.desc("scheduledFor")).list();
+        
+        return role;
+    }
 }

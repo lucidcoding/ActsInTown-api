@@ -6,5 +6,5 @@ import uk.co.luciditysoftware.actsintown.api.requests.user.EditCurrentRequest;
 import uk.co.luciditysoftware.actsintown.domain.parametersets.user.EditParameterSet;
 
 public interface EditParameterSetMapper {
-	public EditParameterSet map(EditCurrentRequest request) throws NoSuchAlgorithmException;
+    public EditParameterSet map(EditCurrentRequest request) throws NoSuchAlgorithmException;
 }

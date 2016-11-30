@@ -12,20 +12,20 @@ import uk.co.luciditysoftware.actsintown.domain.parametersets.user.ResetPassword
 
 @Service
 public class ResetPasswordParameterSetMapperImpl implements ResetPasswordParameterSetMapper {
-	private static final int HASHING_ROUNDS = 10;
-	
-	public ResetPasswordParameterSet map(ResetPasswordRequest request) throws NoSuchAlgorithmException  {
-		ResetPasswordParameterSet parameterSet = new ResetPasswordParameterSet();
-		parameterSet.setPasswordResetToken(request.getPasswordResetToken());
-		setEncryptPassword(request, parameterSet);
-		return parameterSet;
-	}
+    private static final int HASHING_ROUNDS = 10;
+    
+    public ResetPasswordParameterSet map(ResetPasswordRequest request) throws NoSuchAlgorithmException  {
+        ResetPasswordParameterSet parameterSet = new ResetPasswordParameterSet();
+        parameterSet.setPasswordResetToken(request.getPasswordResetToken());
+        setEncryptPassword(request, parameterSet);
+        return parameterSet;
+    }
 
-	private void setEncryptPassword(ResetPasswordRequest request, ResetPasswordParameterSet parameterSet) throws NoSuchAlgorithmException {
-		String salt = BCrypt.gensalt(HASHING_ROUNDS, SecureRandom.getInstanceStrong());
-		byte[] encryptedPasswordBytes = BCrypt.hashpw(request.getPassword(), salt).getBytes();
-		String encryptedPassword = Base64.encodeBase64String(encryptedPasswordBytes);	
-		parameterSet.setPasswordSalt(salt);
-		parameterSet.setPassword(encryptedPassword);
-	}
+    private void setEncryptPassword(ResetPasswordRequest request, ResetPasswordParameterSet parameterSet) throws NoSuchAlgorithmException {
+        String salt = BCrypt.gensalt(HASHING_ROUNDS, SecureRandom.getInstanceStrong());
+        byte[] encryptedPasswordBytes = BCrypt.hashpw(request.getPassword(), salt).getBytes();
+        String encryptedPassword = Base64.encodeBase64String(encryptedPasswordBytes);    
+        parameterSet.setPasswordSalt(salt);
+        parameterSet.setPassword(encryptedPassword);
+    }
 }

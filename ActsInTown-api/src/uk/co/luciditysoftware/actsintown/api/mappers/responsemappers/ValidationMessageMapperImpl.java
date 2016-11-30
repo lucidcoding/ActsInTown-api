@@ -13,19 +13,19 @@ import uk.co.luciditysoftware.actsintown.domain.common.ValidationMessageType;
 
 @Service
 public class ValidationMessageMapperImpl implements ValidationMessageMapper {
-	public List<ValidationMessage> map(BindingResult bindingResult) {
-		if (bindingResult.hasErrors()) {
-			List<ValidationMessage> validationMessages = bindingResult
-					.getAllErrors()
-					.stream()
-					.map(error -> new ValidationMessage(ValidationMessageType.ERROR,
-							(error instanceof FieldError) ? ((FieldError)error).getField() : null, 
-							error.getDefaultMessage()))
-					.collect(Collectors.toList());
+    public List<ValidationMessage> map(BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            List<ValidationMessage> validationMessages = bindingResult
+                    .getAllErrors()
+                    .stream()
+                    .map(error -> new ValidationMessage(ValidationMessageType.ERROR,
+                            (error instanceof FieldError) ? ((FieldError)error).getField() : null, 
+                            error.getDefaultMessage()))
+                    .collect(Collectors.toList());
 
-			return validationMessages;
+            return validationMessages;
         } else {
-        	return new ArrayList<ValidationMessage>();
+            return new ArrayList<ValidationMessage>();
         }
-	}
+    }
 }

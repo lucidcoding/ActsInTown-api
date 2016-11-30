@@ -20,33 +20,33 @@ import uk.co.luciditysoftware.actsintown.domain.repositorycontracts.UserReposito
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
-	@Autowired
-	private UserRepository userRepository;
+    @Autowired
+    private UserRepository userRepository;
 
-	@Transactional
+    @Transactional
     public UserPrincipal loadUserByUsername(String username) throws UsernameNotFoundException {
-    	
-    	//TODO: Refactor this into shared module along with equivalent in DatabaseAuthenticationProvider
-		User user = userRepository.getByUsername(username);
-		
-		List<CustomGrantedAuthority> authorities =  user.getRole().getRolePermissions().stream()
-				.map(rolePermission -> new CustomGrantedAuthority() {
-					private static final long serialVersionUID = 1L;
+        
+        //TODO: Refactor this into shared module along with equivalent in DatabaseAuthenticationProvider
+        User user = userRepository.getByUsername(username);
+        
+        List<CustomGrantedAuthority> authorities =  user.getRole().getRolePermissions().stream()
+                .map(rolePermission -> new CustomGrantedAuthority() {
+                    private static final long serialVersionUID = 1L;
 
-					{
-						setName(rolePermission.getPermission().getName());
-					}
-				}).collect(Collectors.toList());
-		
-		UserPrincipal userPrincipal = new UserPrincipal() {
-			private static final long serialVersionUID = 1L;
+                    {
+                        setName(rolePermission.getPermission().getName());
+                    }
+                }).collect(Collectors.toList());
+        
+        UserPrincipal userPrincipal = new UserPrincipal() {
+            private static final long serialVersionUID = 1L;
 
-			{
-				setUsername(username);
-				setAuthorities(authorities);
-			}
-		};
-		
+            {
+                setUsername(username);
+                setAuthorities(authorities);
+            }
+        };
+        
         return userPrincipal;
     }
 }

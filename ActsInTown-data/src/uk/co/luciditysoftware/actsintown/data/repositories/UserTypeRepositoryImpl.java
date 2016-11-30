@@ -21,37 +21,37 @@ import uk.co.luciditysoftware.actsintown.domain.repositorycontracts.UserTypeRepo
 @Scope("prototype")
 public class UserTypeRepositoryImpl implements UserTypeRepository {
 
-	@Autowired
-	private SessionFactory sessionFactory;
-	
-	public List<UserType> getByIds(List<UUID> ids) {
-		Session session = sessionFactory.getCurrentSession();
-		
-		@SuppressWarnings("unchecked")
-		List<UserType> userTypes = session.createCriteria(UserType.class)
-			.add( Restrictions.in("id", ids) )
-			.list();
-		
-		return userTypes;
-	}
-	
-	public List<UserType> getAll() {
-		Session session = sessionFactory.getCurrentSession();
-		@SuppressWarnings("unchecked")
-		List<UserType> userTypes = session.createCriteria(UserType.class).addOrder(Order.asc("order")).list();
-		return userTypes;
-	}
-	
-	public List<UserType> getByUsername(String username) {
-		Session session = sessionFactory.getCurrentSession();
-		
-		@SuppressWarnings("unchecked")
-		List<UserType> userTypes = session.createCriteria(UserUserType.class)
-			.createAlias("user", "user")
-			.add( Restrictions.eq("user.username", username) )
-			.setProjection(Projections.property("userType"))
-			.list();
-		
-		return userTypes;
-	}
+    @Autowired
+    private SessionFactory sessionFactory;
+    
+    public List<UserType> getByIds(List<UUID> ids) {
+        Session session = sessionFactory.getCurrentSession();
+        
+        @SuppressWarnings("unchecked")
+        List<UserType> userTypes = session.createCriteria(UserType.class)
+            .add( Restrictions.in("id", ids) )
+            .list();
+        
+        return userTypes;
+    }
+    
+    public List<UserType> getAll() {
+        Session session = sessionFactory.getCurrentSession();
+        @SuppressWarnings("unchecked")
+        List<UserType> userTypes = session.createCriteria(UserType.class).addOrder(Order.asc("order")).list();
+        return userTypes;
+    }
+    
+    public List<UserType> getByUsername(String username) {
+        Session session = sessionFactory.getCurrentSession();
+        
+        @SuppressWarnings("unchecked")
+        List<UserType> userTypes = session.createCriteria(UserUserType.class)
+            .createAlias("user", "user")
+            .add( Restrictions.eq("user.username", username) )
+            .setProjection(Projections.property("userType"))
+            .list();
+        
+        return userTypes;
+    }
 }

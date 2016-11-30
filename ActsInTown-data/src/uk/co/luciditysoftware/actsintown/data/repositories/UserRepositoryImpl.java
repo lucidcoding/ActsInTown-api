@@ -16,37 +16,37 @@ import uk.co.luciditysoftware.actsintown.domain.repositorycontracts.UserReposito
 @Scope("prototype")
 public class UserRepositoryImpl implements UserRepository {
 
-	@Autowired
-	private SessionFactory sessionFactory;
-	
-	public User getById(UUID id) {
-		Session session = sessionFactory.getCurrentSession();
-		User user = (User)session.get(User.class, id);
-		return user;
-	}
+    @Autowired
+    private SessionFactory sessionFactory;
+    
+    public User getById(UUID id) {
+        Session session = sessionFactory.getCurrentSession();
+        User user = (User)session.get(User.class, id);
+        return user;
+    }
 
-	public User getByVerificationToken(String verificationToken) {
-		Session session = sessionFactory.getCurrentSession();
+    public User getByVerificationToken(String verificationToken) {
+        Session session = sessionFactory.getCurrentSession();
 
-		User user = (User) session.createCriteria(User.class)
-				.add( Restrictions.eq("verificationToken", verificationToken) )
-				.uniqueResult();
-		
-		return user;
-	}
-	
-	public User getByUsername(String username) {
-		Session session = sessionFactory.getCurrentSession();
-		
-		User user = (User) session.createCriteria(User.class)
-			.add( Restrictions.eq("username", username) )
-			.uniqueResult();
-		
-		return user;
-	}
-	
-	public void save(User user) {
-		Session session = sessionFactory.getCurrentSession();
-		session.save(user);
-	}
+        User user = (User) session.createCriteria(User.class)
+                .add( Restrictions.eq("verificationToken", verificationToken) )
+                .uniqueResult();
+        
+        return user;
+    }
+    
+    public User getByUsername(String username) {
+        Session session = sessionFactory.getCurrentSession();
+        
+        User user = (User) session.createCriteria(User.class)
+            .add( Restrictions.eq("username", username) )
+            .uniqueResult();
+        
+        return user;
+    }
+    
+    public void save(User user) {
+        Session session = sessionFactory.getCurrentSession();
+        session.save(user);
+    }
 }

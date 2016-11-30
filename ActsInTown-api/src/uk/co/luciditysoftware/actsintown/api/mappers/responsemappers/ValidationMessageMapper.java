@@ -7,5 +7,5 @@ import org.springframework.validation.BindingResult;
 import uk.co.luciditysoftware.actsintown.domain.common.ValidationMessage;
 
 public interface ValidationMessageMapper {
-	public List<ValidationMessage> map(BindingResult bindingResult);
+    public List<ValidationMessage> map(BindingResult bindingResult);
 }

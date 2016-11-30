@@ -1,6 +1,5 @@
 package uk.co.luciditysoftware.actsintown.api.config;
 
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -25,11 +24,11 @@ import org.springframework.web.servlet.view.JstlView;
 @EnableTransactionManagement
 public class ServletContextConfiguration extends WebMvcConfigurerAdapter
 {
-	@Bean
+    @Bean
     public ViewResolver viewResolver()
     {
         InternalResourceViewResolver resolver =
-                new InternalResourceViewResolver();
+            new InternalResourceViewResolver();
         resolver.setViewClass(JstlView.class);
         resolver.setPrefix("/WEB-INF/jsp/view/");
         resolver.setSuffix(".jsp");
@@ -38,7 +37,7 @@ public class ServletContextConfiguration extends WebMvcConfigurerAdapter
 	
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
-		registry.addMapping("/**")
-			.allowedOrigins("http://localhost:5555");
+        registry.addMapping("/**")
+            .allowedOrigins("http://localhost:5555");
 	}
 }

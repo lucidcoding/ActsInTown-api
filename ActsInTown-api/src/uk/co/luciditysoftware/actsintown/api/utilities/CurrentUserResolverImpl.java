@@ -9,21 +9,21 @@ import uk.co.luciditysoftware.actsintown.domain.repositorycontracts.UserReposito
 
 @Service 
 public class CurrentUserResolverImpl implements CurrentUserResolver {
-	@Autowired
-	private UserRepository userRepository;
-	
-	public String getUsername() {
-		String username = (String) SecurityContextHolder
-			.getContext()
-			.getAuthentication()
-			.getPrincipal();
-		
-		return username;
-	}
-	
-	public User getUser() {
-		String username = getUsername();
-		User user = userRepository.getByUsername(username);
-		return user;
-	}
+    @Autowired
+    private UserRepository userRepository;
+    
+    public String getUsername() {
+        String username = (String) SecurityContextHolder
+            .getContext()
+            .getAuthentication()
+            .getPrincipal();
+        
+        return username;
+    }
+    
+    public User getUser() {
+        String username = getUsername();
+        User user = userRepository.getByUsername(username);
+        return user;
+    }
 }

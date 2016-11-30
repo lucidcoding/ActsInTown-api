@@ -45,7 +45,6 @@ public class RootContextConfiguration {
 	public DataSource dataSource() {
 	    BasicDataSource dataSource = new BasicDataSource();
 	    dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-	    //dataSource.setUrl("dbUrl");
 	    dataSource.setUrl(environment.getProperty("dbUrl"));
 	    dataSource.setUsername(environment.getProperty("dbUsername"));
 	    dataSource.setPassword(environment.getProperty("dbPassword"));
@@ -74,58 +73,37 @@ public class RootContextConfiguration {
 	@Bean(name = "transactionManager")
 	public HibernateTransactionManager transactionManager(
 	        SessionFactory sessionFactory) {
-
-		HibernateTransactionManager tm = new HibernateTransactionManager(
-	            sessionFactory);
+        HibernateTransactionManager tm = new HibernateTransactionManager(
+            sessionFactory);
+		
 	    return tm;
 	}
 	
 	@Autowired
 	@Bean(name = "modelMapper")
 	public ModelMapper modelMapper() {
-		ModelMapper modelMapper = new ModelMapper();
+        ModelMapper modelMapper = new ModelMapper();
 		
-		modelMapper
-			.getConfiguration()
-			.setFieldMatchingEnabled(true)
-			.setMethodAccessLevel(AccessLevel.PRIVATE);
+        modelMapper
+            .getConfiguration()
+            .setFieldMatchingEnabled(true)
+            .setMethodAccessLevel(AccessLevel.PRIVATE);
 		
-		return modelMapper;
+        return modelMapper;
 	}
 	
-	//http://www.programcreek.com/java-api-examples/index.php?api=org.springframework.mail.javamail.JavaMailSender
-	//http://stackoverflow.com/questions/24097131/spring-4-mail-configuration-via-java-config
-	//https://www.siteground.com/kb/google_free_smtp_server/
-	//http://stackoverflow.com/questions/2016190/how-to-configure-spring-javamailsenderimpl-for-gmail
-	//http://stackoverflow.com/questions/17786132/how-to-implements-an-async-email-service-in-spring
-	@Bean(name = "mailSender")
+    @Bean(name = "mailSender")
     public JavaMailSender javaMailService() {
-        JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
-
-        javaMailSender.setHost("smtp.gmail.com");
-        javaMailSender.setPort(587);//587//25?
-        javaMailSender.setUsername("actsintown@gmail.com");
-        javaMailSender.setPassword("NotMuchUse");
-        javaMailSender.setProtocol("smtp");
+            JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
+        javaMailSender.setHost(environment.getProperty("emailHost"));
+        javaMailSender.setPort(Integer.parseInt(environment.getProperty("emailPort")));
+        javaMailSender.setUsername(environment.getProperty("emailUsername"));
+        javaMailSender.setPassword(environment.getProperty("emailPassword"));
+        javaMailSender.setProtocol(environment.getProperty("emailProtocol"));
         Properties properties = new Properties();
-        //properties.put("mail.transport.protocol", "smtp");
         properties.put("mail.smtp.auth", true);
         properties.put("mail.smtp.starttls.enable", true);
         properties.put("mail.debug", true);
-        /*properties.put("mail.smtp.auth", true);
-        properties.put("mail.smtp.starttls.enable", true);
-        properties.put("mail.smtp.quitwait", false);
-        properties.put("mail.smtp.ssl.trust", "*");*/
-        
-
-        /*properties.put("mail.smtp.auth", true);
-        properties.put("mail.smtp.starttls.enable", false);
-        properties.put("mail.smtp.quitwait", false);
-        properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-        properties.put("mail.smtp.socketFactory.fallback", false);
-        properties.put("mail.debug", true);*/
-        
-        
         javaMailSender.setJavaMailProperties(properties);
         return javaMailSender;
     }

@@ -39,17 +39,17 @@ public class ResourceServerConfiguration  extends ResourceServerConfigurerAdapte
     @Override
     public void configure(HttpSecurity http) throws Exception {
     	http
-        	.csrf().disable()
-        	.anonymous().and()
-        	.authorizeRequests()
-        		.antMatchers(HttpMethod.GET, "/test").permitAll()
-        		.antMatchers(HttpMethod.GET, "/usertype").permitAll()
-        		.antMatchers(HttpMethod.GET, "/user/verify").permitAll()
-        		.antMatchers(HttpMethod.POST, "/user/register").permitAll()
-        		.antMatchers(HttpMethod.PUT, "/user/initialize-password-reset").permitAll()
-        		.antMatchers(HttpMethod.PUT, "/user/reset-password").permitAll()
-        		.anyRequest().authenticated()
-        		.and()
-        	.exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
+            .csrf().disable()
+            .anonymous().and()
+            .authorizeRequests()
+                .antMatchers(HttpMethod.GET, "/test").permitAll()
+                .antMatchers(HttpMethod.GET, "/usertype").permitAll()
+                .antMatchers(HttpMethod.GET, "/user/verify").permitAll()
+                .antMatchers(HttpMethod.POST, "/user/register").permitAll()
+                .antMatchers(HttpMethod.PUT, "/user/initialize-password-reset").permitAll()
+                .antMatchers(HttpMethod.PUT, "/user/reset-password").permitAll()
+                .anyRequest().authenticated()
+                .and()
+            .exceptionHandling().accessDeniedHandler(new OAuth2AccessDeniedHandler());
     }
 }

@@ -15,81 +15,81 @@ import uk.co.luciditysoftware.actsintown.api.validators.FieldMatch;
 })
 public class RegisterRequest {
 
-	@NotNull(message = "This field is required")
-	@Email
-	private String username;
+    @NotNull(message = "This field is required")
+    @Email
+    private String username;
 
-	@NotNull(message = "This field is required")
-	private String password;
+    @NotNull(message = "This field is required")
+    private String password;
 
-	private String confirmPassword;
-	
-	@NotNull(message = "This field is required")
-	@Length(max = 50)
-	private String firstName;
+    private String confirmPassword;
+    
+    @NotNull(message = "This field is required")
+    @Length(max = 50)
+    private String firstName;
 
-	@NotNull(message = "This field is required")
-	@Length(max = 50)
-	private String lastName;
-	
-	private List<UUID> userTypeIds;
+    @NotNull(message = "This field is required")
+    @Length(max = 50)
+    private String lastName;
+    
+    private List<UUID> userTypeIds;
 
-	@Length(max = 50)
-	private String stageName;
-	
-	public String getUsername() {
-		return username;
-	}
-	
-	public void setUsername(String username) {
-		this.username = username;
-	}
-	
-	public String getPassword() {
-		return password;
-	}
-	
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    @Length(max = 50)
+    private String stageName;
+    
+    public String getUsername() {
+        return username;
+    }
+    
+    public void setUsername(String username) {
+        this.username = username;
+    }
+    
+    public String getPassword() {
+        return password;
+    }
+    
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-	public String getConfirmPassword() {
-		return confirmPassword;
-	}
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
 
-	public void setConfirmPassword(String confirmPassword) {
-		this.confirmPassword = confirmPassword;
-	}
-	
-	public String getFirstName() {
-		return firstName;
-	}
-	
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-	
-	public String getLastName() {
-		return lastName;
-	}
-	
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
+    
+    public String getFirstName() {
+        return firstName;
+    }
+    
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+    
+    public String getLastName() {
+        return lastName;
+    }
+    
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-	public List<UUID> getUserTypeIds() {
-		return userTypeIds;
-	}
+    public List<UUID> getUserTypeIds() {
+        return userTypeIds;
+    }
 
-	public void setUserTypeIds(List<UUID> userTypeIds) {
-		this.userTypeIds = userTypeIds;
-	}
+    public void setUserTypeIds(List<UUID> userTypeIds) {
+        this.userTypeIds = userTypeIds;
+    }
 
-	public String getStageName() {
-		return stageName;
-	}
+    public String getStageName() {
+        return stageName;
+    }
 
-	public void setStageName(String stageName) {
-		this.stageName = stageName;
-	}
+    public void setStageName(String stageName) {
+        this.stageName = stageName;
+    }
 }

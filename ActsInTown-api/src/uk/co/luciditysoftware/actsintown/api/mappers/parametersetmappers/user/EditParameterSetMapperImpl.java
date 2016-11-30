@@ -12,19 +12,19 @@ import uk.co.luciditysoftware.actsintown.domain.repositorycontracts.UserTypeRepo
 @Service
 public class EditParameterSetMapperImpl implements EditParameterSetMapper{
 
-	@Autowired
-	private UserTypeRepository userTypeRepository;
-	
-	public EditParameterSet map(EditCurrentRequest request) throws NoSuchAlgorithmException {
-		EditParameterSet parameterSet = new EditParameterSet() {
-			{
-				this.setFirstName(request.getFirstName());
-				this.setLastName(request.getLastName());
-				this.setUserTypes(userTypeRepository.getByIds(request.getUserTypeIds()));
-				this.setStageName(request.getStageName());
-			}
-		};
-		
-		return parameterSet;
-	}
+    @Autowired
+    private UserTypeRepository userTypeRepository;
+    
+    public EditParameterSet map(EditCurrentRequest request) throws NoSuchAlgorithmException {
+        EditParameterSet parameterSet = new EditParameterSet() {
+            {
+                this.setFirstName(request.getFirstName());
+                this.setLastName(request.getLastName());
+                this.setUserTypes(userTypeRepository.getByIds(request.getUserTypeIds()));
+                this.setStageName(request.getStageName());
+            }
+        };
+        
+        return parameterSet;
+    }
 }

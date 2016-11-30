@@ -25,17 +25,17 @@ import uk.co.luciditysoftware.actsintown.api.utilities.ResponseLoggingWrapper;
 @Component("loggingFilter")
 public class LoggingFilter extends AbstractRequestLoggingFilter {
 
-	private static final Logger log = LogManager.getLogger(LoggingFilter.class);
+    private static final Logger log = LogManager.getLogger(LoggingFilter.class);
 
-	@Override
-	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
-			throws ServletException, IOException {
-		long id = System.currentTimeMillis();
-		RequestLoggingWrapper requestLoggingWrapper = new RequestLoggingWrapper(id, request);
-		ResponseLoggingWrapper responseLoggingWrapper = new ResponseLoggingWrapper(id, response);
-		Map<String, String> requestMap = this.getTypesafeRequestMap(request);
-		
-		final StringBuilder requestMessage = new StringBuilder("REST Request (" + id + ") - ")
+    @Override
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+            throws ServletException, IOException {
+        long id = System.currentTimeMillis();
+        RequestLoggingWrapper requestLoggingWrapper = new RequestLoggingWrapper(id, request);
+        ResponseLoggingWrapper responseLoggingWrapper = new ResponseLoggingWrapper(id, response);
+        Map<String, String> requestMap = this.getTypesafeRequestMap(request);
+        
+        final StringBuilder requestMessage = new StringBuilder("REST Request (" + id + ") - ")
                 .append("[URL:")
                 .append(request.getRequestURL())
                 .append("] [URI:")
@@ -51,38 +51,38 @@ public class LoggingFilter extends AbstractRequestLoggingFilter {
                 .append("] [REMOTE ADDRESS:")
                 .append(request.getRemoteAddr())
                 .append("]");
-		
-		log.debug(requestMessage);
-		super.doFilterInternal(requestLoggingWrapper, responseLoggingWrapper, filterChain);
-		
-		final StringBuilder responseMessage = new StringBuilder("REST Response (" + id + ") - ")
-				.append("[STATUS:")
+        
+        log.debug(requestMessage);
+        super.doFilterInternal(requestLoggingWrapper, responseLoggingWrapper, filterChain);
+        
+        final StringBuilder responseMessage = new StringBuilder("REST Response (" + id + ") - ")
+                .append("[STATUS:")
                 .append(response.getStatus())
                 .append("] [TIME:")
                 .append(System.currentTimeMillis() - id)
                 .append("ms]");
-		
-		log.debug(responseMessage);
-	}
+        
+        log.debug(responseMessage);
+    }
 
-	private Map<String, String> getTypesafeRequestMap(HttpServletRequest request) {
-		Map<String, String> typesafeRequestMap = new HashMap<String, String>();
-		Enumeration<?> requestParamNames = request.getParameterNames();
-		while (requestParamNames.hasMoreElements()) {
-			String requestParamName = (String)requestParamNames.nextElement();
-			String requestParamValue = request.getParameter(requestParamName);
-			typesafeRequestMap.put(requestParamName, requestParamValue);
-		}
-		return typesafeRequestMap;
-	}
-	
-	@Override
-	protected void beforeRequest(HttpServletRequest request, String message) {
+    private Map<String, String> getTypesafeRequestMap(HttpServletRequest request) {
+        Map<String, String> typesafeRequestMap = new HashMap<String, String>();
+        Enumeration<?> requestParamNames = request.getParameterNames();
+        while (requestParamNames.hasMoreElements()) {
+            String requestParamName = (String)requestParamNames.nextElement();
+            String requestParamValue = request.getParameter(requestParamName);
+            typesafeRequestMap.put(requestParamName, requestParamValue);
+        }
+        return typesafeRequestMap;
+    }
+    
+    @Override
+    protected void beforeRequest(HttpServletRequest request, String message) {
 
-	}
+    }
 
-	@Override
-	protected void afterRequest(HttpServletRequest request, String message) {
+    @Override
+    protected void afterRequest(HttpServletRequest request, String message) {
 
-	}
+    }
 }

@@ -23,40 +23,40 @@ import uk.co.luciditysoftware.actsintown.domain.repositorycontracts.UserTypeRepo
 @RequestMapping("/usertype")
 public class UserTypeController {
 
-	@Autowired
-	private UserTypeRepository userTypeRepository;
+    @Autowired
+    private UserTypeRepository userTypeRepository;
 
-	@Autowired
-	private GenericDtoMapper genericDtoMapper;
-	
-	/**
-	 * Returns a list of all user types.
-	 * @return List of user types
-	 */
-	@RequestMapping(value = "", method = RequestMethod.GET)
-	@ResponseBody
-	@Transactional
-	public List<UserTypeDto> get() {
-		List<UserType> userTypes = userTypeRepository.getAll();
-		List<UserTypeDto> userTypeDtos = genericDtoMapper.map(userTypes, UserTypeDto.class);
-		return userTypeDtos;
-	}
-	
-	/**
-	 * Returns a list of user types that the current logged in user has registered as.
-	 * @return List of user types
-	 */
-	@RequestMapping(value = "/for-current-user", method = RequestMethod.GET)
-	@ResponseBody
-	@Transactional
-	public List<UserTypeDto> getForCurrentUser() {
-		String username = (String) SecurityContextHolder
-			.getContext()
-			.getAuthentication()
-			.getPrincipal();
+    @Autowired
+    private GenericDtoMapper genericDtoMapper;
+    
+    /**
+     * Returns a list of all user types.
+     * @return List of user types
+     */
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    @ResponseBody
+    @Transactional
+    public List<UserTypeDto> get() {
+        List<UserType> userTypes = userTypeRepository.getAll();
+        List<UserTypeDto> userTypeDtos = genericDtoMapper.map(userTypes, UserTypeDto.class);
+        return userTypeDtos;
+    }
+    
+    /**
+     * Returns a list of user types that the current logged in user has registered as.
+     * @return List of user types
+     */
+    @RequestMapping(value = "/for-current-user", method = RequestMethod.GET)
+    @ResponseBody
+    @Transactional
+    public List<UserTypeDto> getForCurrentUser() {
+        String username = (String) SecurityContextHolder
+            .getContext()
+            .getAuthentication()
+            .getPrincipal();
 
-		List<UserType> userTypes = userTypeRepository.getByUsername(username);
-		List<UserTypeDto> userTypeDtos = genericDtoMapper.map(userTypes, UserTypeDto.class);
-		return userTypeDtos;
-	}
+        List<UserType> userTypes = userTypeRepository.getByUsername(username);
+        List<UserTypeDto> userTypeDtos = genericDtoMapper.map(userTypes, UserTypeDto.class);
+        return userTypeDtos;
+    }
 }

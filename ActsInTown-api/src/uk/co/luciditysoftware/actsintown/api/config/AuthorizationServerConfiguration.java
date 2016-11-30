@@ -27,8 +27,8 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     @Autowired
     @Qualifier("authenticationManagerBean")
     private AuthenticationManager authenticationManager;
-
-	@Autowired
+    
+    @Autowired
     private UserDetailsService userDetailsService;
  
     @Override
@@ -45,9 +45,9 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints.tokenStore(tokenStore())
-                 .accessTokenConverter(accessTokenConverter())
-                 .authenticationManager(authenticationManager)	//For handling of access tokens.
-                 .userDetailsService(userDetailsService);		//For handling of refresh tokens.
+            .accessTokenConverter(accessTokenConverter())
+            .authenticationManager(authenticationManager)	//For handling of access tokens.
+            .userDetailsService(userDetailsService);		//For handling of refresh tokens.
     }
     
     @Bean
