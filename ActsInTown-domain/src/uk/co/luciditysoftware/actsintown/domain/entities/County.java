@@ -7,25 +7,25 @@ import uk.co.luciditysoftware.actsintown.domain.common.Entity;
  * @author Paul Davies
  */
 public class County extends Entity  {
-	
-	/**
-	 * The name of the county
-	 */
-	private String name;
-	
-	/**
-	 * Gets the name of the county.
-	 * @return The name of the county
-	 */
-	public String getName() {
-		return name;
-	}
-	
-	/**
-	 * Sets the name of the county.
-	 * @param name The name of the county
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
+    
+    /**
+     * The name of the county
+     */
+    private String name;
+    
+    /**
+     * Gets the name of the county.
+     * @return The name of the county
+     */
+    public String getName() {
+        return name;
+    }
+    
+    /**
+     * Sets the name of the county.
+     * @param name The name of the county
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
 }
