@@ -40,6 +40,6 @@ public class Bootstrap  implements WebApplicationInitializer{
         loggingFilter.addMappingForUrlPatterns(null, true, "/*");
 
         FilterRegistration.Dynamic corsFilter = container.addFilter("corsFilter", new DelegatingFilterProxy());
-        corsFilter.addMappingForUrlPatterns(null, true, "/*");
+        corsFilter.addMappingForUrlPatterns(null, true, "/oauth/token"); //Only for auth here, resources are added separately.
     }
 }
