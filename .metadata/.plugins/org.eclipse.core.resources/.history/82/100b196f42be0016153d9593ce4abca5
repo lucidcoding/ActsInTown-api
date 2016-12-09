@@ -38,7 +38,6 @@ public class ServletContextConfiguration extends WebMvcConfigurerAdapter
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-            .allowedOrigins("http://localhost:5555")
-            .allowedMethods("GET", "PUT", "POST", "DELETE");
+            .allowedOrigins("http://localhost:5555");
 	}
 }

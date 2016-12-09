@@ -1,0 +1,11 @@
+0:0:0:0:0:0:0:1 - - [08/Dec/2016:06:50:01 +0000] "OPTIONS /ActsInTown-api/town HTTP/1.1" 200 -
+0:0:0:0:0:0:0:1 - - [08/Dec/2016:06:50:01 +0000] "GET /ActsInTown-api/town HTTP/1.1" 401 423
+0:0:0:0:0:0:0:1 - - [08/Dec/2016:06:50:01 +0000] "OPTIONS /ActsInTown-api/oauth/token?grant_type=refresh_token&refresh_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJwYXVsX3RfZCszQGhvdG1haWwuY29tIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIiwidHJ1c3QiXSwiYXRpIjoiNWJiY2FiMDAtZjcxMy00YjljLTkzY2ItNDA0ZmQyYjBkNTJiIiwiZXhwIjoxNDgwODk1NzI5LCJhdXRob3JpdGllcyI6WyJNYWtlQm9va2luZyJdLCJqdGkiOiIwMmU4MTFmOS05NmMzLTRjOTQtODVlYy03NzIyMDlmZjIwOGUiLCJjbGllbnRfaWQiOiJteS10cnVzdGVkLWNsaWVudCJ9.qzU57O8ZGMweFmTD11AUmqa0h5Kur3n86cA5NdA09Gw HTTP/1.1" 200 -
+0:0:0:0:0:0:0:1 - - [08/Dec/2016:06:50:03 +0000] "POST /ActsInTown-api/oauth/token?grant_type=refresh_token&refresh_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJwYXVsX3RfZCszQGhvdG1haWwuY29tIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIiwidHJ1c3QiXSwiYXRpIjoiNWJiY2FiMDAtZjcxMy00YjljLTkzY2ItNDA0ZmQyYjBkNTJiIiwiZXhwIjoxNDgwODk1NzI5LCJhdXRob3JpdGllcyI6WyJNYWtlQm9va2luZyJdLCJqdGkiOiIwMmU4MTFmOS05NmMzLTRjOTQtODVlYy03NzIyMDlmZjIwOGUiLCJjbGllbnRfaWQiOiJteS10cnVzdGVkLWNsaWVudCJ9.qzU57O8ZGMweFmTD11AUmqa0h5Kur3n86cA5NdA09Gw HTTP/1.1" 401 494
+0:0:0:0:0:0:0:1 - - [08/Dec/2016:06:50:22 +0000] "OPTIONS /ActsInTown-api/oauth/token?grant_type=password&username=paul_t_d%2B3%40hotmail.com&password=Franklin456! HTTP/1.1" 200 -
+0:0:0:0:0:0:0:1 - - [08/Dec/2016:06:50:23 +0000] "POST /ActsInTown-api/oauth/token?grant_type=password&username=paul_t_d%2B3%40hotmail.com&password=Franklin456! HTTP/1.1" 200 907
+0:0:0:0:0:0:0:1 - - [08/Dec/2016:06:50:25 +0000] "OPTIONS /ActsInTown-api/spot/for-current-user HTTP/1.1" 200 -
+0:0:0:0:0:0:0:1 - - [08/Dec/2016:06:50:26 +0000] "GET /ActsInTown-api/spot/for-current-user HTTP/1.1" 200 4031
+0:0:0:0:0:0:0:1 - - [08/Dec/2016:06:50:31 +0000] "GET /ActsInTown-api/town HTTP/1.1" 200 2785
+0:0:0:0:0:0:0:1 - - [08/Dec/2016:20:06:16 +0000] "OPTIONS /ActsInTown-api/user/change-password/ HTTP/1.1" 403 20
+0:0:0:0:0:0:0:1 - - [08/Dec/2016:20:06:38 +0000] "OPTIONS /ActsInTown-api/user/change-password/ HTTP/1.1" 403 20
