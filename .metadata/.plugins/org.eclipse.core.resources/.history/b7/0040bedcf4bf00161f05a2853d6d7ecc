@@ -118,10 +118,10 @@ public class SpotController {
             @RequestParam("endDate") @DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") Date endDate,
             @RequestParam("townId") UUID townId,
             @RequestParam("bookedState") BookedState bookedState) {
-        GregorianCalendar calEndDate = new GregorianCalendar();
-        calEndDate.setTime(endDate);
-        calEndDate.add(Calendar.DAY_OF_MONTH, 1);  
-        List<Spot> spots = spotRepository.search(startDate, calEndDate.getTime(), townId, bookedState);
+        GregorianCalendar cal = new GregorianCalendar();
+        cal.setTime(endDate);
+        cal.add(Calendar.DAY_OF_MONTH, 1);  
+        List<Spot> spots = spotRepository.search(startDate, endDate, townId, bookedState);
         List<SpotDto> spotDtos = genericDtoMapper.map(spots, SpotDto.class);
         return spotDtos;
     }
