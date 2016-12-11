@@ -12,7 +12,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,11 +23,9 @@ import org.springframework.web.bind.annotation.RestController;
 import uk.co.luciditysoftware.actsintown.api.datatransferobjects.SpotDto;
 import uk.co.luciditysoftware.actsintown.api.mappers.dtomappers.GenericDtoMapper;
 import uk.co.luciditysoftware.actsintown.api.mappers.parametersetmappers.spot.AddParameterSetMapper;
-import uk.co.luciditysoftware.actsintown.api.mappers.responsemappers.ValidationMessageMapper;
 import uk.co.luciditysoftware.actsintown.api.requests.spot.AddRequest;
 import uk.co.luciditysoftware.actsintown.api.utilities.CurrentUserResolver;
 import uk.co.luciditysoftware.actsintown.api.utilities.RequestLogger;
-import uk.co.luciditysoftware.actsintown.domain.common.ValidationMessage;
 import uk.co.luciditysoftware.actsintown.domain.entities.Spot;
 import uk.co.luciditysoftware.actsintown.domain.enums.BookedState;
 import uk.co.luciditysoftware.actsintown.domain.parametersets.spot.AddParameterSet;
@@ -56,9 +53,6 @@ public class SpotController {
 
     @Autowired
     private GenericDtoMapper genericDtoMapper;
-
-    @Autowired
-    private ValidationMessageMapper validationMessageMapper;
     
     /**
      * Returns a list of all spots that have been added by the currently logged in user.
@@ -82,21 +76,9 @@ public class SpotController {
     @RequestMapping(value = "", method = RequestMethod.POST)
     @ResponseBody
     @Transactional
-    public ResponseEntity<?> Add(@RequestBody AddRequest request, BindingResult bindingResult) {
+    public ResponseEntity<Void> Add(@RequestBody AddRequest request) {
         requestLogger.log(request);
-        List<ValidationMessage> modelValidationMessages = validationMessageMapper.map(bindingResult);
-        
-        if(!modelValidationMessages.isEmpty()) {
-            return new ResponseEntity<List<ValidationMessage>>(modelValidationMessages, new HttpHeaders(), HttpStatus.BAD_REQUEST);
-        }
-        
         AddParameterSet parameterSet = addParameterSetMapper.map(request);
-        List<ValidationMessage> validationMessages = Spot.validateAdd(parameterSet);
-        
-        if(!validationMessages.isEmpty()) {
-            return new ResponseEntity<List<ValidationMessage>>(validationMessages, new HttpHeaders(), HttpStatus.BAD_REQUEST);
-        }
-        
         Spot spot = Spot.add(parameterSet);
         spotRepository.save(spot);
         return new ResponseEntity<Void>(new HttpHeaders(), HttpStatus.CREATED);
@@ -129,7 +111,7 @@ public class SpotController {
 
     /**
      * Deletes a spot
-     * @return Http Response
+     * @return List of spots for current user
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     @ResponseBody
