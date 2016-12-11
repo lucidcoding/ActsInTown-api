@@ -5,9 +5,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -40,8 +38,8 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
             .authorizedGrantTypes("password", "authorization_code", "refresh_token", "implicit")
             .authorities("ROLE_USER", "ROLE_CLIENT", "ROLE_TRUSTED_CLIENT")
             .scopes("read", "write", "trust")
-            .accessTokenValiditySeconds(30).//Access token is only valid for 2 minutes.
-            refreshTokenValiditySeconds(6000);//Refresh token is only valid for 10 minutes.
+            .accessTokenValiditySeconds(86400).//Access token is only valid for 1 day (in seconds).
+            refreshTokenValiditySeconds(2592000);//Refresh token is only valid for 30 days.
     }
     
     @Override
