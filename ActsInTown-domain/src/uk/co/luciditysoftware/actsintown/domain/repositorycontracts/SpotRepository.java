@@ -12,4 +12,5 @@ public interface SpotRepository {
     public List<Spot> getByUsername(String username);
     public void save(Spot spot);
     public List<Spot> search(Date startDate, Date endDate, UUID townId, BookedState bookedState);
+    public void delete(UUID id);
 }

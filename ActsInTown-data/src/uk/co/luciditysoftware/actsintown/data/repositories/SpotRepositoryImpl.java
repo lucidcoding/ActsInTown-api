@@ -59,4 +59,11 @@ public class SpotRepositoryImpl implements SpotRepository {
         
         return role;
     }
+    
+    public void delete(UUID id) {
+        Session session = sessionFactory.getCurrentSession();
+        Spot spot = (Spot)session.get(Spot.class, id);
+        session.delete(spot);
+        return;
+    }
 }

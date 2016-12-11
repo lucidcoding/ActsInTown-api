@@ -11,9 +11,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.AccessDeniedException;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -107,5 +106,25 @@ public class SpotController {
         List<Spot> spots = spotRepository.search(startDate, endDate, townId, bookedState);
         List<SpotDto> spotDtos = genericDtoMapper.map(spots, SpotDto.class);
         return spotDtos;
+    }
+    
+
+    /**
+     * Deletes a spot
+     * @return List of spots for current user
+     */
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    @ResponseBody
+    @Transactional
+    public ResponseEntity<Void> delete(@PathVariable UUID id) {
+        String username = currentUserResolver.getUsername();
+        Spot spot = spotRepository.getById(id);
+        
+        if(!spot.getUser().getUsername().equals(username)) {
+            return new ResponseEntity<Void>(new HttpHeaders(), HttpStatus.FORBIDDEN);
+        }
+        
+        spotRepository.delete(id);
+        return new ResponseEntity<Void>(new HttpHeaders(), HttpStatus.NO_CONTENT);
     }
 }
