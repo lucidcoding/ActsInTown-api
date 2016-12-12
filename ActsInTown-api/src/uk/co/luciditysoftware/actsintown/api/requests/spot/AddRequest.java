@@ -8,6 +8,8 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
+import uk.co.luciditysoftware.actsintown.domain.enums.BookedState;
+
 public class AddRequest {
     @NotNull(message = "This field is required")
     private Date scheduledFor;
@@ -25,6 +27,9 @@ public class AddRequest {
 
     @Length(max = 250)
     private String description;
+    
+    @NotNull(message = "This field is required")
+    private BookedState bookedState;
     
     public Date getScheduledFor() {
         return scheduledFor;
@@ -64,5 +69,13 @@ public class AddRequest {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public BookedState getBookedState() {
+        return bookedState;
+    }
+
+    public void setBookedState(BookedState bookedState) {
+        this.bookedState = bookedState;
     }    
 }

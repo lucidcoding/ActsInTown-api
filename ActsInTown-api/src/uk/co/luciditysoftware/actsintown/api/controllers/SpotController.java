@@ -82,7 +82,7 @@ public class SpotController {
     @RequestMapping(value = "", method = RequestMethod.POST)
     @ResponseBody
     @Transactional
-    public ResponseEntity<?> Add(@RequestBody AddRequest request, BindingResult bindingResult) {
+    public ResponseEntity<?> add(@RequestBody AddRequest request, BindingResult bindingResult) {
         requestLogger.log(request);
         List<ValidationMessage> modelValidationMessages = validationMessageMapper.map(bindingResult);
         

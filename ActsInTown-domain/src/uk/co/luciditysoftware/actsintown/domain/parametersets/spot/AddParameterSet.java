@@ -4,6 +4,7 @@ import java.util.Date;
 
 import uk.co.luciditysoftware.actsintown.domain.entities.Town;
 import uk.co.luciditysoftware.actsintown.domain.entities.User;
+import uk.co.luciditysoftware.actsintown.domain.enums.BookedState;
 
 public class AddParameterSet {
     private User user;
@@ -12,6 +13,7 @@ public class AddParameterSet {
     private Town town;
     private String venueName;
     private String description;
+    private BookedState bookedState;
     
     public User getUser() {
         return user;
@@ -59,5 +61,13 @@ public class AddParameterSet {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public BookedState getBookedState() {
+        return bookedState;
+    }
+
+    public void setBookedState(BookedState bookedState) {
+        this.bookedState = bookedState;
     }
 }

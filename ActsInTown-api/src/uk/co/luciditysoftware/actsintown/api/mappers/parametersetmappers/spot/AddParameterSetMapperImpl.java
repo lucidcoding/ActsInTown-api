@@ -32,6 +32,7 @@ public class AddParameterSetMapperImpl implements AddParameterSetMapper {
                 this.setTown(townRepository.getById(request.getTownId()));
                 this.setVenueName(request.getVenueName());
                 this.setDescription(request.getDescription());
+                this.setBookedState(request.getBookedState());
             }
         };
 

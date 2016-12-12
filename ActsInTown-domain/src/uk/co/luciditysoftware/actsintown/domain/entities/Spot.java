@@ -276,7 +276,7 @@ public class Spot extends Entity  {
 		spot.venueName = parameterSet.getVenueName();
 		spot.addedOn = new Date();
 		spot.cancelled = false;
-		spot.bookedState = BookedState.BOOKED;
+		spot.bookedState = parameterSet.getBookedState();
 		spot.description = parameterSet.getDescription();
 		return spot;
 	}
