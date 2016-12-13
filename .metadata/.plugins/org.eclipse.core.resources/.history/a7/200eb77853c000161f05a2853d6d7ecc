@@ -264,13 +264,11 @@ public class UserController {
         User user = userRepository.getByUsername(request.getUsername());
         user.initializePasswordReset();
         userRepository.save(user);
-        
         SimpleMailMessage email = new SimpleMailMessage();
         email.setTo(user.getEmail());
         email.setSubject("Acts in Town Password Reset");
         email.setText("http://localhost:5555/user/reset-password/" + user.getPasswordResetToken());
         mailSender.send(email);
-        
         return new ResponseEntity<Void>(new HttpHeaders(), HttpStatus.OK);
     }
 

@@ -1,0 +1,9 @@
+0:0:0:0:0:0:0:1 - - [13/Dec/2016:09:19:56 +0000] "OPTIONS /ActsInTown-api/oauth/token?grant_type=password&username=paul_t_d%2B3%40hotmail.com&password=Muppet123! HTTP/1.1" 200 -
+0:0:0:0:0:0:0:1 - - [13/Dec/2016:09:20:03 +0000] "POST /ActsInTown-api/oauth/token?grant_type=password&username=paul_t_d%2B3%40hotmail.com&password=Muppet123! HTTP/1.1" 200 910
+0:0:0:0:0:0:0:1 - - [13/Dec/2016:09:20:03 +0000] "POST /ActsInTown-api/oauth/token?grant_type=password&username=paul_t_d%2B3%40hotmail.com&password=Muppet123! HTTP/1.1" 200 910
+127.0.0.1 - - [13/Dec/2016:09:24:06 +0000] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [13/Dec/2016:09:29:25 +0000] "OPTIONS /ActsInTown-api/spot/for-current-user HTTP/1.1" 200 -
+0:0:0:0:0:0:0:1 - - [13/Dec/2016:09:29:27 +0000] "GET /ActsInTown-api/spot/for-current-user HTTP/1.1" 200 4194
+0:0:0:0:0:0:0:1 - - [13/Dec/2016:09:29:35 +0000] "GET /ActsInTown-api/town HTTP/1.1" 200 2785
+127.0.0.1 - - [13/Dec/2016:09:44:20 +0000] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [13/Dec/2016:09:44:20 +0000] "GET /ActsInTown-api/WEB-INF/classes/uk/co/luciditysoftware/actsintown/api/config/ServletContextConfiguration.java HTTP/1.1" 404 992

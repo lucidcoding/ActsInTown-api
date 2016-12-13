@@ -35,7 +35,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 excludeFilters = @ComponentScan.Filter(Controller.class) )
 @EnableTransactionManagement
 @Import({ SecurityConfiguration.class })
-@PropertySource("file:/serversettings/actsintown/config.properties")
+@PropertySource("file:/ServerSettings/ActsInTown/config.properties")
 public class RootContextConfiguration {
 	
 	@Autowired

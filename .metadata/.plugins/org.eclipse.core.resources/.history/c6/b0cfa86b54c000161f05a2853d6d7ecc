@@ -177,14 +177,6 @@ public class SpotController {
                 "Please contact them on this email address: " + user.getEmail() + "\r\n\r\n" +
                 "Regards,\r\n" +
                 "The Acts In Town Team");
-        } else {
-            email.setText("Hi " + spot.getUser().getFirstName() + ",\r\n\r\n" +
-                "User '" + user.getFirstName() + " " + user.getLastName() + "' would like to enquire about " +
-                "the the fact that you are in town whilst performing at " + spot.getVenueName() + " " +
-                "on " + dateFormat.format(spot.getScheduledFor()) + "\r\n\r\n" +
-                "Please contact them on this email address: " + user.getEmail() + "\r\n\r\n" +
-                "Regards,\r\n" +
-                "The Acts In Town Team");
         }
         
         mailSender.send(email);
