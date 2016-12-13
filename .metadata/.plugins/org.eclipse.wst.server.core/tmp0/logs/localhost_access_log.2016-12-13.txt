@@ -7,3 +7,8 @@
 0:0:0:0:0:0:0:1 - - [13/Dec/2016:09:29:35 +0000] "GET /ActsInTown-api/town HTTP/1.1" 200 2785
 127.0.0.1 - - [13/Dec/2016:09:44:20 +0000] "GET / HTTP/1.1" 404 994
 0:0:0:0:0:0:0:1 - - [13/Dec/2016:09:44:20 +0000] "GET /ActsInTown-api/WEB-INF/classes/uk/co/luciditysoftware/actsintown/api/config/ServletContextConfiguration.java HTTP/1.1" 404 992
+127.0.0.1 - - [13/Dec/2016:11:10:12 +0000] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [13/Dec/2016:11:10:12 +0000] "GET /ActsInTown-api/WEB-INF/classes/uk/co/luciditysoftware/actsintown/api/config/ServletContextConfiguration.java HTTP/1.1" 404 992
+0:0:0:0:0:0:0:1 - - [13/Dec/2016:11:11:56 +0000] "GET /ActsInTown-api/usertype HTTP/1.1" 200 606
+0:0:0:0:0:0:0:1 - - [13/Dec/2016:11:12:19 +0000] "OPTIONS /ActsInTown-api/user/register HTTP/1.1" 200 -
+0:0:0:0:0:0:0:1 - - [13/Dec/2016:11:12:22 +0000] "POST /ActsInTown-api/user/register HTTP/1.1" 201 -
