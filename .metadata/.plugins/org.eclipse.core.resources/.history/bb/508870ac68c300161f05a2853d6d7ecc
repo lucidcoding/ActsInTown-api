@@ -1,0 +1,39 @@
+package uk.co.luciditysoftware.actsintown.api.config;
+
+import java.util.Date;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.core.annotation.AnnotationUtils;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import uk.co.luciditysoftware.actsintown.api.filters.LoggingFilter;
+
+@ControllerAdvice
+public class GlobalControllerExceptionHandler {
+    public static final String DEFAULT_ERROR_VIEW = "error";
+    private static final Logger log = LogManager.getLogger(LoggingFilter.class);
+
+    @ExceptionHandler(value = {Exception.class, RuntimeException.class})
+    public ModelAndView defaultErrorHandler(HttpServletRequest request, Exception e) {
+        //try {
+            //ObjectMapper mapper = new ObjectMapper();
+            //String requestJson;
+            //requestJson = mapper.writeValueAsString(request);
+            log.debug(e);
+        //} catch (JsonProcessingException e2) {}
+        
+        ModelAndView mav = new ModelAndView(DEFAULT_ERROR_VIEW);
+        mav.addObject("datetime", new Date());
+        //mav.addObject("exception", e);
+        mav.addObject("url", request.getRequestURL());
+        return mav;
+    }
+}

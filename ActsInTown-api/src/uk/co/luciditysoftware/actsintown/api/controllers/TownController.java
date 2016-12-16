@@ -32,13 +32,15 @@ public class TownController {
     /**
      * Returns all towns currently marked as active.
      * @return List of towns
+     * @throws Exception 
      */
     @RequestMapping(value = "", method = RequestMethod.GET)
     @ResponseBody
     @Transactional
-    public List<TownDto> get() {
-        List<Town> towns = townRepository.getAll();
-        List<TownDto> townDtos = genericDtoMapper.map(towns, TownDto.class);    
-        return townDtos;
+    public List<TownDto> get() throws Exception {
+        throw new Exception("argh!");
+        //List<Town> towns = townRepository.getAll();
+        //List<TownDto> townDtos = genericDtoMapper.map(towns, TownDto.class);    
+        //return townDtos;
     }
 }
