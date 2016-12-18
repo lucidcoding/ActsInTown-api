@@ -126,9 +126,9 @@ public class UserController {
         SimpleMailMessage email = new SimpleMailMessage();
         email.setTo(user.getEmail());
         email.setSubject("Acts in Town Verification Confirmation");
-        email.setText(environment.getProperty("uiBaseUrl") + "/user/verify/" + user.getVerificationToken());
+        email.setText("http://localhost:5555/user/verify/" + user.getVerificationToken());
         
-        if(!environment.getProperty("emailFrom").equals("")) {
+        if(environment.getProperty("emailFrom") != "") {
             email.setFrom(environment.getProperty("emailFrom"));
         }
         
@@ -277,12 +277,7 @@ public class UserController {
         SimpleMailMessage email = new SimpleMailMessage();
         email.setTo(user.getEmail());
         email.setSubject("Acts in Town Password Reset");
-        email.setText(environment.getProperty("uiBaseUrl") + "/user/reset-password/" + user.getPasswordResetToken());
-
-        if(!environment.getProperty("emailFrom").equals("")) {
-            email.setFrom(environment.getProperty("emailFrom"));
-        }
-        
+        email.setText("http://localhost:5555/user/reset-password/" + user.getPasswordResetToken());
         mailSender.send(email);
         
         return new ResponseEntity<Void>(new HttpHeaders(), HttpStatus.OK);

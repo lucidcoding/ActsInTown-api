@@ -277,7 +277,7 @@ public class UserController {
         SimpleMailMessage email = new SimpleMailMessage();
         email.setTo(user.getEmail());
         email.setSubject("Acts in Town Password Reset");
-        email.setText(environment.getProperty("uiBaseUrl") + "/user/reset-password/" + user.getPasswordResetToken());
+        email.setText("http://localhost:5555/user/reset-password/" + user.getPasswordResetToken());
 
         if(!environment.getProperty("emailFrom").equals("")) {
             email.setFrom(environment.getProperty("emailFrom"));
