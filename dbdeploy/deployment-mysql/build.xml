@@ -3,7 +3,7 @@
 <project name="dbdeploy_example" default="default">
 
     <property name="db.driver" value="com.mysql.jdbc.Driver" />
-    <property name="db.url" value="jdbc:mysql://localhost:3306/actsintown" />
+    <property name="db.url" value="jdbc:mysql://217.194.223.10:3306/actsintown" />
 
     <path id="hsql.classpath">
         <fileset dir=".">
@@ -30,7 +30,7 @@
 
     <target name="create-changelog-table">
         <sql driver="${db.driver}" url="${db.url}"
-             userid="root" password="" classpathref="hsql.classpath" >
+             userid="remote" password="Franklin456" classpathref="hsql.classpath" >
             <fileset file="../scripts/createSchemaVersionTable.mysql.sql"/>
         </sql>
     </target>
@@ -43,8 +43,8 @@
          work the same as in the ant sql task, see http://ant.apache.org/manual/CoreTasks/sql.html
         -->
         <dbdeploy driver="${db.driver}" url="${db.url}"
-                  userid="root"
-                  password=""
+                  userid="remote"
+                  password="Franklin456"
                   dir="."
                 />
 
@@ -54,8 +54,8 @@
 
         <!-- use dbdeploy to generate the change script -->
         <dbdeploy driver="${db.driver}" url="${db.url}"
-                  userid="root"
-                  password=""
+                  userid="remote"
+                  password="Franklin456"
                   dir="."
                   outputfile="output.sql"
                   undoOutputfile="undo.sql"
@@ -72,7 +72,7 @@
 
     <target name="dump-tables">
         <sql driver="${db.driver}" url="${db.url}"
-             userid="root" password="" print="true" classpathref="hsql.classpath">
+             userid="remote" password="Franklin456" print="true" classpathref="hsql.classpath">
             select * from changelog;
             select * from test;
         </sql>
