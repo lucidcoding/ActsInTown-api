@@ -1,0 +1,9 @@
+package uk.co.luciditysoftware.actsintown.domain.repositorycontracts;
+
+import java.util.UUID;
+
+import uk.co.luciditysoftware.actsintown.domain.entities.County;
+
+public interface CountyRepository {
+    public County getById(UUID id);
+}

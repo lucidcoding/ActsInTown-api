@@ -32,7 +32,20 @@ public class TownRepositoryImpl implements TownRepository {
         
         List<Town> role = session
             .createCriteria(Town.class)
-            .add(Restrictions.eq("deleted", false))
+            //.add(Restrictions.eq("deleted", false))
+            .addOrder(Order.asc("name")).list();
+        
+        return role;
+    }
+    
+    public List<Town> getByCountyId(UUID countyId) {
+        Session session = sessionFactory.getCurrentSession();
+        @SuppressWarnings("unchecked")
+        
+        List<Town> role = session
+            .createCriteria(Town.class)
+            .createAlias("county", "county")
+            .add(Restrictions.eq("county.id", countyId))
             .addOrder(Order.asc("name")).list();
         
         return role;

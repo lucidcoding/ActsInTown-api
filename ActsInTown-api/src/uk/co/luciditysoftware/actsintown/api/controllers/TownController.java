@@ -1,9 +1,11 @@
 package uk.co.luciditysoftware.actsintown.api.controllers;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -30,7 +32,7 @@ public class TownController {
     private GenericDtoMapper genericDtoMapper;
     
     /**
-     * Returns all towns currently marked as active.
+     * Returns all towns.
      * @return List of towns
      * @throws Exception 
      */
@@ -39,6 +41,20 @@ public class TownController {
     @Transactional
     public List<TownDto> get() {
         List<Town> towns = townRepository.getAll();
+        List<TownDto> townDtos = genericDtoMapper.map(towns, TownDto.class);    
+        return townDtos;
+    }
+
+    /**
+     * Returns all towns for the specified county.
+     * @return List of towns
+     * @throws Exception 
+     */
+    @RequestMapping(value = "/for-county/{countyId}", method = RequestMethod.GET)
+    @ResponseBody
+    @Transactional
+    public List<TownDto> getForCounty(@PathVariable UUID countyId) {
+        List<Town> towns = townRepository.getByCountyId(countyId);
         List<TownDto> townDtos = genericDtoMapper.map(towns, TownDto.class);    
         return townDtos;
     }

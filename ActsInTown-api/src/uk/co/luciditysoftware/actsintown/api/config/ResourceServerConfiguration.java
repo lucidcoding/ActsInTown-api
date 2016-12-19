@@ -49,6 +49,7 @@ public class ResourceServerConfiguration  extends ResourceServerConfigurerAdapte
 
             //.exceptionHandling().authenticationEntryPoint(authenticationEntryPoint).and()
             .authorizeRequests()
+                .antMatchers(HttpMethod.GET, "/county").permitAll()
                 .antMatchers(HttpMethod.GET, "/test").permitAll()
                 .antMatchers(HttpMethod.GET, "/usertype").permitAll()
                 .antMatchers(HttpMethod.GET, "/user/verify").permitAll()
@@ -57,6 +58,7 @@ public class ResourceServerConfiguration  extends ResourceServerConfigurerAdapte
                 .antMatchers(HttpMethod.PUT, "/user/reset-password").permitAll()
                 .antMatchers(HttpMethod.GET, "/spot/search").permitAll()
                 .antMatchers(HttpMethod.GET, "/town").permitAll()
+                .antMatchers(HttpMethod.GET, "/town/for-county/{countyId}").permitAll()
                 .anyRequest().authenticated()
 
                 .and()
