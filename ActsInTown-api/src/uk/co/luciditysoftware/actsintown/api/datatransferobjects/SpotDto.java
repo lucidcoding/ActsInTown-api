@@ -9,7 +9,7 @@ public class SpotDto {
     public UUID id;
     public UserDto user;
     public Date scheduledFor;
-    public int durationMinutes;
+    public Integer durationMinutes;
     public TownDto town;
     public String venueName;
     public Date addedOn;

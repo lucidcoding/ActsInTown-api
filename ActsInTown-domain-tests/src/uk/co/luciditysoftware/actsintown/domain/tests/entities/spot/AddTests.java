@@ -47,7 +47,7 @@ public class AddTests {
         Spot spot = Spot.add(parameterSet);
         assertEquals("gary.green@green.com", spot.getUser().getUsername());
         assertEquals(dateFormat.parse("16-11-2015 00:00:00"), spot.getScheduledFor());
-        assertEquals(10, spot.getDurationMinutes());
+        assertEquals((Integer)10, spot.getDurationMinutes());
         assertEquals("Greenville", spot.getTown().getName());
         assertEquals("The Comedy Club", spot.getVenueName());
         assertNotNull(spot.getAddedOn());

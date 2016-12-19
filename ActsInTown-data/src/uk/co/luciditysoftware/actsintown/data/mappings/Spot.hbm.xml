@@ -21,7 +21,7 @@
 		</property>
 
 		<property name="durationMinutes">
-			<column name="durationMinutes" not-null="true" />
+			<column name="durationMinutes" not-null="false" />
 		</property>
 
 		<many-to-one name="town"
@@ -29,7 +29,7 @@
 			column="TownId" not-null="true" />
 
 		<property name="venueName">
-			<column name="venueName" not-null="true" />
+			<column name="venueName" not-null="false" />
 		</property>
 
 		<property name="addedOn">

@@ -14,14 +14,11 @@ public class AddRequest {
     @NotNull(message = "This field is required")
     private Date scheduledFor;
     
-    @NotNull(message = "This field is required")
-    @Min(0)
-    private int durationMinutes;
+    private Integer durationMinutes;
     
     @NotNull(message = "This field is required")
     private UUID townId;
     
-    @NotNull(message = "This field is required")
     @Length(max = 50)
     private String venueName;
 
@@ -39,11 +36,11 @@ public class AddRequest {
         this.scheduledFor = scheduledFor;
     }
     
-    public int getDurationMinutes() {
+    public Integer getDurationMinutes() {
         return durationMinutes;
     }
     
-    public void setDurationMinutes(int durationMinutes) {
+    public void setDurationMinutes(Integer durationMinutes) {
         this.durationMinutes = durationMinutes;
     }
     

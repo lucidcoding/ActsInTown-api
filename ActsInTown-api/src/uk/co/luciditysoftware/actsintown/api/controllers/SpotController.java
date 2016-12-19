@@ -98,6 +98,11 @@ public class SpotController {
             return new ResponseEntity<List<ValidationMessage>>(modelValidationMessages, new HttpHeaders(), HttpStatus.BAD_REQUEST);
         }
         
+        //Duration coming through as 0 if null.
+        /*if(request.getDurationMinutes() == 0) {
+            request.setDurationMinutes(null);
+        }*/
+        
         AddParameterSet parameterSet = addParameterSetMapper.map(request);
         List<ValidationMessage> validationMessages = Spot.validateAdd(parameterSet);
         

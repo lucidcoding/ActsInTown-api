@@ -1,0 +1,9 @@
+-- Alter Spot
+
+ALTER TABLE `Spot` MODIFY COLUMN `VenueName` CHAR(50) NULL;
+ALTER TABLE `Spot` MODIFY COLUMN `DurationMinutes` INT NULL;
+
+--//@UNDO
+
+ALTER TABLE `Spot` MODIFY COLUMN `DurationMinutes` INT NOT NULL;
+ALTER TABLE `Spot` MODIFY COLUMN `VenueName` CHAR(50) NOT NULL;

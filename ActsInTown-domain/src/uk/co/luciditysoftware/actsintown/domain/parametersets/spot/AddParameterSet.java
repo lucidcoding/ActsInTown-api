@@ -9,7 +9,7 @@ import uk.co.luciditysoftware.actsintown.domain.enums.BookedState;
 public class AddParameterSet {
     private User user;
     private Date scheduledFor;
-    private int durationMinutes;
+    private Integer durationMinutes;
     private Town town;
     private String venueName;
     private String description;
@@ -31,11 +31,11 @@ public class AddParameterSet {
         this.scheduledFor = scheduledFor;
     }
     
-    public int getDurationMinutes() {
+    public Integer getDurationMinutes() {
         return durationMinutes;
     }
     
-    public void setDurationMinutes(int durationMinutes) {
+    public void setDurationMinutes(Integer durationMinutes) {
         this.durationMinutes = durationMinutes;
     }
     

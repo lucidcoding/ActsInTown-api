@@ -33,7 +33,7 @@ public class Spot extends Entity  {
     /**
      * The scheduled duration for the spot in minutes
      */
-    private int durationMinutes;
+    private Integer durationMinutes;
     
     /**
      * The town in which the spot is located
@@ -101,7 +101,7 @@ public class Spot extends Entity  {
 	 * Gets the scheduled duration for the spot in minutes.
 	 * @return The scheduled duration for the spot in minutes
 	 */
-	public int getDurationMinutes() {
+	public Integer getDurationMinutes() {
 		return durationMinutes;
 	}
 	
@@ -109,7 +109,7 @@ public class Spot extends Entity  {
 	 * Sets the scheduled duration for the spot in minutes.
 	 * @param durationMinutes The scheduled duration for the spot in minutes.
 	 */
-	public void setDurationMinutes(int durationMinutes) {
+	public void setDurationMinutes(Integer durationMinutes) {
 		this.durationMinutes = durationMinutes;
 	}
 	
@@ -243,14 +243,14 @@ public class Spot extends Entity  {
 				"Scheduled for must not be in the past."));
 		}
 
-		if (parameterSet.getDurationMinutes() <= 0) {
+		if (parameterSet.getDurationMinutes() != null && parameterSet.getDurationMinutes() <= 0) {
 			validationMessages.add(new ValidationMessage(
 				ValidationMessageType.ERROR,
 				"DurationMinutes",
 				"Duration must be greater than zero."));
 		}
 	
-		if (parameterSet.getUser() != null && parameterSet.getScheduledFor() != null 
+		if (parameterSet.getUser() != null && parameterSet.getScheduledFor() != null && parameterSet.getDurationMinutes() != null
 				&& parameterSet.getUser().getConflictingSpots(parameterSet.getScheduledFor(), parameterSet.getDurationMinutes()).size() > 0) {
 			validationMessages.add(new ValidationMessage(
 				ValidationMessageType.ERROR,
