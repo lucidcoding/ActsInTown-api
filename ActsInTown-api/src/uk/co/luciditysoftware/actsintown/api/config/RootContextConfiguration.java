@@ -66,6 +66,9 @@ public class RootContextConfiguration {
 	    sessionBuilder.addResource("/uk/co/luciditysoftware/actsintown/data/mappings/Spot.hbm.xml");
 	    sessionBuilder.addResource("/uk/co/luciditysoftware/actsintown/data/mappings/UserType.hbm.xml");
 	    sessionBuilder.addResource("/uk/co/luciditysoftware/actsintown/data/mappings/UserUserType.hbm.xml");
+        sessionBuilder.addResource("/uk/co/luciditysoftware/actsintown/data/mappings/Conversation.hbm.xml");
+        sessionBuilder.addResource("/uk/co/luciditysoftware/actsintown/data/mappings/ConversationUser.hbm.xml");
+        sessionBuilder.addResource("/uk/co/luciditysoftware/actsintown/data/mappings/Message.hbm.xml");
 	    return sessionBuilder.buildSessionFactory();
 	}
 

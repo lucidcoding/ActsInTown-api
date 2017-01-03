@@ -1,0 +1,9 @@
+0:0:0:0:0:0:0:1 - - [31/Dec/2016:11:55:45 +0000] "OPTIONS /ActsInTown-api/oauth/token?grant_type=refresh_token&refresh_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJwYXVsX3RfZCszQGhvdG1haWwuY29tIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIiwidHJ1c3QiXSwiYXRpIjoiZGQzM2IxMGMtOGM2ZC00YzE0LThkMTEtNjQ0MTU2MzQ4YTk1IiwiZXhwIjoxNDg1Mzg4NDA3LCJhdXRob3JpdGllcyI6WyJNYWtlQm9va2luZyJdLCJqdGkiOiIzNTEyYmQ3YS01N2QxLTRhZDEtYWFlMC1lYmI2ZGE2MTQ1NjYiLCJjbGllbnRfaWQiOiJteS10cnVzdGVkLWNsaWVudCJ9.wyz2tUKs-0yTTeHPKuxTphBCKTllniUvJ1O1nQL8Tbg HTTP/1.1" 200 -
+0:0:0:0:0:0:0:1 - - [31/Dec/2016:11:55:48 +0000] "POST /ActsInTown-api/oauth/token?grant_type=refresh_token&refresh_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJwYXVsX3RfZCszQGhvdG1haWwuY29tIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIiwidHJ1c3QiXSwiYXRpIjoiZGQzM2IxMGMtOGM2ZC00YzE0LThkMTEtNjQ0MTU2MzQ4YTk1IiwiZXhwIjoxNDg1Mzg4NDA3LCJhdXRob3JpdGllcyI6WyJNYWtlQm9va2luZyJdLCJqdGkiOiIzNTEyYmQ3YS01N2QxLTRhZDEtYWFlMC1lYmI2ZGE2MTQ1NjYiLCJjbGllbnRfaWQiOiJteS10cnVzdGVkLWNsaWVudCJ9.wyz2tUKs-0yTTeHPKuxTphBCKTllniUvJ1O1nQL8Tbg HTTP/1.1" 200 910
+0:0:0:0:0:0:0:1 - - [31/Dec/2016:11:55:48 +0000] "OPTIONS /ActsInTown-api/town HTTP/1.1" 200 -
+0:0:0:0:0:0:0:1 - - [31/Dec/2016:11:55:53 +0000] "GET /ActsInTown-api/town HTTP/1.1" 200 112230
+0:0:0:0:0:0:0:1 - - [31/Dec/2016:11:55:53 +0000] "OPTIONS /ActsInTown-api/county HTTP/1.1" 200 -
+0:0:0:0:0:0:0:1 - - [31/Dec/2016:11:55:53 +0000] "GET /ActsInTown-api/county HTTP/1.1" 200 5792
+0:0:0:0:0:0:0:1 - - [31/Dec/2016:12:27:14 +0000] "OPTIONS /ActsInTown-api/spot/for-current-user HTTP/1.1" 200 -
+0:0:0:0:0:0:0:1 - - [31/Dec/2016:12:27:14 +0000] "GET /ActsInTown-api/spot/for-current-user HTTP/1.1" 200 5235
+0:0:0:0:0:0:0:1 - - [31/Dec/2016:12:27:36 +0000] "GET /ActsInTown-api/spot/for-current-user HTTP/1.1" 200 5235

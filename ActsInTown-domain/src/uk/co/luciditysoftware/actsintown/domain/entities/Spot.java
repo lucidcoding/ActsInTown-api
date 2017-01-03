@@ -216,7 +216,7 @@ public class Spot extends Entity  {
 	public Date getScheduledEnd() {
 		GregorianCalendar cal = new GregorianCalendar();
         cal.setTime(scheduledFor);
-        cal.add(Calendar.MINUTE, durationMinutes);        
+        cal.add(Calendar.MINUTE, (durationMinutes != null) ? durationMinutes : 0);        
         Date scheduledEnd = cal.getTime();
         return scheduledEnd;
 	}
