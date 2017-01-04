@@ -22,6 +22,11 @@ public class Conversation extends Entity {
     private boolean deleted;
     
     /**
+     * The date this conversation was last updated.
+     */
+    private Date updatedOn;
+    
+    /**
      * The users involved in this conversation
      */
     private Collection<ConversationUser> conversationUsers;
@@ -45,6 +50,14 @@ public class Conversation extends Entity {
 
     public void setDeleted(boolean deleted) {
         this.deleted = deleted;
+    }
+
+    public Date getUpdatedOn() {
+        return updatedOn;
+    }
+
+    public void setUpdatedOn(Date updatedOn) {
+        this.updatedOn = updatedOn;
     }
 
     public Collection<ConversationUser> getConversationUsers() {

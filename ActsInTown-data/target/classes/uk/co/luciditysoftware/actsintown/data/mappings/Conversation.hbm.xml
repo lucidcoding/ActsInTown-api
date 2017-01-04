@@ -18,6 +18,10 @@
 		<property name="deleted">
 			<column name="deleted" not-null="true" />
 		</property>
+        
+		<property name="updatedOn">
+			<column name="updatedOn" not-null="true" />
+		</property>
 		
         <bag name="conversationUsers" cascade="all">
 			<key column="conversationId" />

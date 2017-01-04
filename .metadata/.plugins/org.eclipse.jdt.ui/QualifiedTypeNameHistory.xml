@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="uk.co.luciditysoftware.actsintown.domain.parametersets.user.RegisterParameterSet"/>
-<fullyQualifiedTypeName name="uk.co.luciditysoftware.actsintown.api.parametersetmappers.user.RegisterParameterSetMapper"/>
-<fullyQualifiedTypeName name="org.modelmapper.ModelMapper"/>
-<fullyQualifiedTypeName name="uk.co.luciditysoftware.actsintown.api.datatransferobjects.TownDto"/>
-<fullyQualifiedTypeName name="uk.co.luciditysoftware.actsintown.api.services.RequestLogger"/>
-<fullyQualifiedTypeName name="uk.co.luciditysoftware.actsintown.domain.parametersets.spot.AddParameterSet"/>
 <fullyQualifiedTypeName name="uk.co.luciditysoftware.actsintown.api.requests.spot.AddRequest"/>
 <fullyQualifiedTypeName name="uk.co.luciditysoftware.actsintown.api.parametersetmappers.spot.AddParameterSetMapper"/>
 <fullyQualifiedTypeName name="uk.co.luciditysoftware.actsintown.api.mappers.dtomappers.GenericDtoMapper"/>
@@ -13,8 +7,6 @@
 <fullyQualifiedTypeName name="org.springframework.validation.FieldError"/>
 <fullyQualifiedTypeName name="org.springframework.validation.ObjectError"/>
 <fullyQualifiedTypeName name="uk.co.luciditysoftware.actsintown.domain.common.ValidationMessageType"/>
-<fullyQualifiedTypeName name="java.util.List"/>
-<fullyQualifiedTypeName name="java.util.Date"/>
 <fullyQualifiedTypeName name="java.util.Calendar"/>
 <fullyQualifiedTypeName name="uk.co.luciditysoftware.actsintown.domain.common.ValidationMessage"/>
 <fullyQualifiedTypeName name="org.springframework.mail.SimpleMailMessage"/>
@@ -60,4 +52,12 @@
 <fullyQualifiedTypeName name="org.springframework.security.config.annotation.web.builders.HttpSecurity"/>
 <fullyQualifiedTypeName name="org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerSecurityConfiguration"/>
 <fullyQualifiedTypeName name="org.springframework.core.annotation.Order"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="uk.co.luciditysoftware.actsintown.domain.repositorycontracts.CountyRepository"/>
+<fullyQualifiedTypeName name="uk.co.luciditysoftware.actsintown.domain.entities.County"/>
+<fullyQualifiedTypeName name="uk.co.luciditysoftware.actsintown.api.datatransferobjects.CountyDto"/>
+<fullyQualifiedTypeName name="uk.co.luciditysoftware.actsintown.domain.repositorycontracts.UserRepository"/>
+<fullyQualifiedTypeName name="java.util.Collection"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="uk.co.luciditysoftware.actsintown.domain.common.Entity"/>
 </qualifiedTypeNameHistroy>
