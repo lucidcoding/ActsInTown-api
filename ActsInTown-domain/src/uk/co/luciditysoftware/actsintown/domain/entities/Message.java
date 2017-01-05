@@ -1,8 +1,10 @@
 package uk.co.luciditysoftware.actsintown.domain.entities;
 
 import java.util.Date;
+import java.util.UUID;
 
 import uk.co.luciditysoftware.actsintown.domain.common.Entity;
+import uk.co.luciditysoftware.actsintown.domain.parametersets.message.CreateParameterSet;
 
 /**
  * Entity class representing a message in the Acts In Town system.
@@ -30,6 +32,21 @@ public class Message extends Entity {
      */
     private boolean deleted;
 
+    /**
+     * The body of the message.
+     */
+    private String body;
+    
+    public static Message create(CreateParameterSet parameterSet) {
+        Message message = new Message();
+        message.id = UUID.randomUUID();
+        message.conversation = parameterSet.getConversation();
+        message.user = parameterSet.getUser();
+        message.body = parameterSet.getBody();
+        message.addedOn = new Date();
+        return message;
+    }
+    
     public Conversation getConversation() {
         return conversation;
     }
@@ -60,5 +77,13 @@ public class Message extends Entity {
 
     public void setDeleted(boolean deleted) {
         this.deleted = deleted;
+    }
+
+    public String getBody() {
+        return body;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
     }
 }

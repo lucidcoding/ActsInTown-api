@@ -10,3 +10,7 @@
 1483481617656	Encapsulate field 'addedOn'
 1483481628286	Encapsulate field 'deleted'
 1483561206401	Encapsulate field 'updatedOn'
+1483651752944	Encapsulate field 'body'
+1483651801225	Encapsulate field 'conversation'
+1483651807669	Encapsulate field 'user'
+1483651813081	Encapsulate field 'body'
