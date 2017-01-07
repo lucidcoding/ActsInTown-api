@@ -22,5 +22,9 @@
 		<property name="deleted">
 			<column name="deleted" not-null="true" />
 		</property>
+		
+		<property name="body">
+			<column name="body" not-null="true" />
+		</property>
     </class>
 </hibernate-mapping>

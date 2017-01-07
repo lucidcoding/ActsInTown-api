@@ -1,5 +1,6 @@
 package uk.co.luciditysoftware.actsintown.data.repositories;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.hibernate.Session;
@@ -25,6 +26,17 @@ public class UserRepositoryImpl implements UserRepository {
         return user;
     }
 
+    public List<User> getByIds(List<UUID> ids) {
+        Session session = sessionFactory.getCurrentSession();
+        
+        @SuppressWarnings("unchecked")
+        List<User> users = session.createCriteria(User.class)
+            .add( Restrictions.in("id", ids) )
+            .list();
+        
+        return users;
+    }
+    
     public User getByVerificationToken(String verificationToken) {
         Session session = sessionFactory.getCurrentSession();
 

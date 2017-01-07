@@ -1,2 +1,5 @@
 1483652430304	Encapsulate field 'conversationId'
 1483652443814	Encapsulate field 'body'
+1483734317350	Encapsulate field 'usersToIds'
+1483734325023	Encapsulate field 'messageBody'
+1483734415774	Rename type 'CreateRequest'

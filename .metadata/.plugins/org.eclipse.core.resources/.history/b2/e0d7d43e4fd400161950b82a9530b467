@@ -1,0 +1,22 @@
+package uk.co.luciditysoftware.actsintown.api.mappers.parametersetmappers.conversation;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import uk.co.luciditysoftware.actsintown.api.requests.conversation.StartRequest;
+import uk.co.luciditysoftware.actsintown.domain.parametersets.conversation.StartParameterSet;
+import uk.co.luciditysoftware.actsintown.domain.repositorycontracts.UserRepository;
+
+@Service
+public class StartParameterSetMapperImpl implements StartParameterSetMapper {
+
+    @Autowired
+    private UserRepository userRepository;
+    
+    @Override
+    public StartParameterSet map(StartRequest request) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+}

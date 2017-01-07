@@ -1,9 +1,13 @@
 package uk.co.luciditysoftware.actsintown.domain.entities;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 import uk.co.luciditysoftware.actsintown.domain.common.Entity;
+import uk.co.luciditysoftware.actsintown.domain.parametersets.conversation.StartParameterSet;
 
 /**
  * Entity class representing a conversation in the Acts In Town system.
@@ -24,7 +28,7 @@ public class Conversation extends Entity {
     /**
      * The date this conversation was last updated.
      */
-    private Date updatedOn;
+    protected Date updatedOn;
     
     /**
      * The users involved in this conversation
@@ -36,6 +40,54 @@ public class Conversation extends Entity {
      */
     private Collection<Message> messages;
 
+    public static Conversation start(StartParameterSet parameterSet) {
+        Date now = new Date();
+        
+        Conversation conversation = new Conversation();
+        conversation.id = UUID.randomUUID();
+        conversation.startedOn = now;
+        conversation.deleted = false;
+        conversation.updatedOn = now;
+        
+        conversation.conversationUsers = (parameterSet
+            .getUsersTo()
+            .stream()
+            .map(user -> new ConversationUser(){{
+                this.id = UUID.randomUUID();
+                this.setJoinedOn(now);
+                this.setConversation(conversation);
+                this.setUser(user);
+            }}).collect(Collectors.toList()));
+        
+        conversation.conversationUsers.add(new ConversationUser(){{
+            this.id = UUID.randomUUID();
+            this.setJoinedOn(now);
+            this.setConversation(conversation);
+            this.setUser(parameterSet.getUserFrom());
+        }});
+        
+        conversation.messages = new ArrayList<Message>();
+        Message message = new Message();
+        message.setId(UUID.randomUUID());
+        message.setAddedOn(now);
+        message.setBody(parameterSet.getMessageBody());
+        message.setConversation(conversation);
+        message.setDeleted(false);
+        message.setUser(parameterSet.getUserFrom());
+        conversation.messages.add(message);
+        
+        /*conversation.messages.add(new Message() {{
+            this.id = UUID.randomUUID();
+            this.setAddedOn(now);
+            this.setBody(parameterSet.getMessageBody());
+            this.setConversation(conversation);
+            this.setDeleted(false);
+            this.setUser(parameterSet.getUserFrom());
+        }});*/
+        
+        return conversation;
+    }
+    
     public Date getStartedOn() {
         return startedOn;
     }
