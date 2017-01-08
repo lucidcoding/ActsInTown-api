@@ -20,7 +20,8 @@ public class StartParameterSetMapperImpl implements StartParameterSetMapper {
     @Override
     public StartParameterSet map(StartRequest request) {
         StartParameterSet parameterSet = new StartParameterSet() {{
-            this.setUserFrom(currentUserResolver.getUser());
+            this.setUserFrom(userRepository.getByUsername("paul_t_d+3@hotmail.com"));
+            //this.setUserFrom(currentUserResolver.getUser());
             this.setUsersTo(userRepository.getByIds(request.getUsersToIds()));
             this.setMessageBody(request.getMessageBody());
         }};

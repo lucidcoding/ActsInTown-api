@@ -1,6 +1,7 @@
 package uk.co.luciditysoftware.actsintown.api.controllers;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -20,11 +21,14 @@ import uk.co.luciditysoftware.actsintown.api.mappers.dtomappers.GenericDtoMapper
 import uk.co.luciditysoftware.actsintown.api.mappers.parametersetmappers.conversation.StartParameterSetMapper;
 import uk.co.luciditysoftware.actsintown.api.mappers.responsemappers.ValidationMessageMapper;
 import uk.co.luciditysoftware.actsintown.api.requests.conversation.StartRequest;
+import uk.co.luciditysoftware.actsintown.api.requests.message.CreateRequest;
 import uk.co.luciditysoftware.actsintown.api.utilities.CurrentUserResolver;
 import uk.co.luciditysoftware.actsintown.api.utilities.RequestLogger;
 import uk.co.luciditysoftware.actsintown.domain.common.ValidationMessage;
 import uk.co.luciditysoftware.actsintown.domain.entities.Conversation;
+import uk.co.luciditysoftware.actsintown.domain.entities.Message;
 import uk.co.luciditysoftware.actsintown.domain.parametersets.conversation.StartParameterSet;
+import uk.co.luciditysoftware.actsintown.domain.parametersets.message.CreateParameterSet;
 import uk.co.luciditysoftware.actsintown.domain.repositorycontracts.ConversationRepository;
 
 /**

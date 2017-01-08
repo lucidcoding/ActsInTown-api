@@ -7,6 +7,7 @@ import uk.co.luciditysoftware.actsintown.api.requests.message.CreateRequest;
 import uk.co.luciditysoftware.actsintown.api.utilities.CurrentUserResolver;
 import uk.co.luciditysoftware.actsintown.domain.parametersets.message.CreateParameterSet;
 import uk.co.luciditysoftware.actsintown.domain.repositorycontracts.ConversationRepository;
+import uk.co.luciditysoftware.actsintown.domain.repositorycontracts.UserRepository;
 
 @Service
 public class CreateParameterSetMapperImpl implements CreateParameterSetMapper {

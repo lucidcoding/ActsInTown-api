@@ -21,8 +21,6 @@ import uk.co.luciditysoftware.actsintown.api.mappers.dtomappers.GenericDtoMapper
 import uk.co.luciditysoftware.actsintown.api.mappers.parametersetmappers.message.CreateParameterSetMapper;
 import uk.co.luciditysoftware.actsintown.api.mappers.responsemappers.ValidationMessageMapper;
 import uk.co.luciditysoftware.actsintown.api.requests.message.CreateRequest;
-import uk.co.luciditysoftware.actsintown.api.requests.spot.AddRequest;
-import uk.co.luciditysoftware.actsintown.api.utilities.CurrentUserResolver;
 import uk.co.luciditysoftware.actsintown.api.utilities.RequestLogger;
 import uk.co.luciditysoftware.actsintown.domain.common.ValidationMessage;
 import uk.co.luciditysoftware.actsintown.domain.entities.Message;
@@ -41,9 +39,6 @@ public class MessageController {
     private MessageRepository messageRepository;
     
     @Autowired
-    private CurrentUserResolver currentUserResolver;
-    
-    @Autowired
     private GenericDtoMapper genericDtoMapper;
 
     @Autowired
@@ -59,8 +54,6 @@ public class MessageController {
     @ResponseBody
     @Transactional
     public List<MessageDto> getForCurrentUser(@PathVariable UUID conversationId, @PathVariable int page, @PathVariable int pageSize) {
-        String username = currentUserResolver.getUsername();
-        
         List<Message> messages = messageRepository.getByConversationId(conversationId, page, pageSize);
         List<MessageDto> messageDtos = genericDtoMapper.map(messages, MessageDto.class);
         return messageDtos;
