@@ -108,9 +108,6 @@ public class User extends Entity {
      */
     private Date passwordResetTokenExpiry;
     
-    public String getFullName() {
-        return this.firstName + " " + this.lastName;
-    }
     /**
      * Returns a list of spots that conflict with the supplied time for the user.
      * @param scheduledFor The start date and time for the period in which to find conflicting spots

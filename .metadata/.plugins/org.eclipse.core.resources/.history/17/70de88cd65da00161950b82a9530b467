@@ -53,7 +53,7 @@ public class MessageController {
     @RequestMapping(value = "/for-conversation/{conversationId}/{page}/{pageSize}", method = RequestMethod.GET)
     @ResponseBody
     @Transactional
-    public List<MessageDto> getForConversation(@PathVariable UUID conversationId, @PathVariable int page, @PathVariable int pageSize) {
+    public List<MessageDto> getForCurrentUser(@PathVariable UUID conversationId, @PathVariable int page, @PathVariable int pageSize) {
         List<Message> messages = messageRepository.getByConversationId(conversationId, page, pageSize);
         List<MessageDto> messageDtos = genericDtoMapper.map(messages, MessageDto.class);
         return messageDtos;

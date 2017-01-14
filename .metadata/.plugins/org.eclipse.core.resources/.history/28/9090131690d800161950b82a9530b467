@@ -9,5 +9,4 @@ public class MessageDto {
     public UserDto user;
     public Date addedOn;
     public boolean deleted;
-    public String body;
 }

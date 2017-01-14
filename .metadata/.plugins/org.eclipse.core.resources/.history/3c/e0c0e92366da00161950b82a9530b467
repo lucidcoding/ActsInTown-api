@@ -11,5 +11,5 @@ public class UserDto {
     public String stageName;
     public boolean profilePictureUploaded;
     public String imageUrl;
-    public String fullName;
+    public String displayName;
 }

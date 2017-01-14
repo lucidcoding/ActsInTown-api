@@ -108,7 +108,7 @@ public class User extends Entity {
      */
     private Date passwordResetTokenExpiry;
     
-    public String getFullName() {
+    public String getDisplayName() {
         return this.firstName + " " + this.lastName;
     }
     /**
