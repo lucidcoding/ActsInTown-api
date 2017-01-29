@@ -61,6 +61,8 @@ public class ResourceServerConfiguration  extends ResourceServerConfigurerAdapte
                 .antMatchers(HttpMethod.GET, "/town/for-county/{countyId}").permitAll()
                 .antMatchers(HttpMethod.GET, "/spot/for-test-user").permitAll()
                 .antMatchers(HttpMethod.POST, "/spot/for-test-user").permitAll()
+                .antMatchers(HttpMethod.GET, "/chat").permitAll()
+                .antMatchers(HttpMethod.GET, "/chat/info").permitAll()
                 .anyRequest().authenticated()
 
                 .and()

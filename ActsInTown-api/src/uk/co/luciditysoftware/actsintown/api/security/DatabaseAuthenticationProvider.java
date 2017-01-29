@@ -2,6 +2,7 @@ package uk.co.luciditysoftware.actsintown.api.security;
 
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 
@@ -69,6 +70,7 @@ public class DatabaseAuthenticationProvider implements AuthenticationProvider {
                 
                 //TODO: Refactor this into shared module along with equivalent in CustomUserDetailsServer
                 final String currentUsername = user.getUsername();
+                final UUID id = user.getId();
                 
                 List<CustomGrantedAuthority> authorities =  user.getRole().getRolePermissions().stream()
                         .map(rolePermission -> new CustomGrantedAuthority() {
@@ -83,6 +85,7 @@ public class DatabaseAuthenticationProvider implements AuthenticationProvider {
                     private static final long serialVersionUID = 1L;
     
                     {
+                        setId(id);
                         setUsername(currentUsername);
                         setAuthorities(authorities);
                     }

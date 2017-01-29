@@ -1,5 +1,0 @@
-package uk.co.luciditysoftware.actsintown.api.mappers.parametersetmappers.conversation;
-
-public class StartParameterSetMapperImpl {
-
-}
