@@ -11,4 +11,5 @@ public interface UserRepository {
     public User getByVerificationToken(String verificationToken);
     public User getByUsername(String username);
     public void save(User user);
+    public List<User> getByConversationId(UUID conversationId, UUID currentUserId);
 }

@@ -74,6 +74,7 @@ public class MessageController {
         CreateParameterSet parameterSet = createParameterSetMapper.map(request);
         Message message = Message.create(parameterSet);
         messageRepository.save(message);
-        return new ResponseEntity<Void>(new HttpHeaders(), HttpStatus.CREATED);
+        MessageDto messageDto = genericDtoMapper.map(message, MessageDto.class);
+        return new ResponseEntity<MessageDto>(messageDto, new HttpHeaders(), HttpStatus.CREATED);
     }
 }

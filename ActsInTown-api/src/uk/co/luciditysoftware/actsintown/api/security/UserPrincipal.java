@@ -1,12 +1,14 @@
 package uk.co.luciditysoftware.actsintown.api.security;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.security.core.userdetails.UserDetails;
 
 public class UserPrincipal implements UserDetails {
 
     private static final long serialVersionUID = 1L;
+    private UUID id;
     private String username;
     private String password;
     private String email;
@@ -19,7 +21,15 @@ public class UserPrincipal implements UserDetails {
     private boolean accountNonLocked = true;
     private boolean credentialsNonExpired = true;
     private boolean enabled = true;
-    
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+ 
     public String getUsername() {
         return username;
     }
@@ -99,5 +109,4 @@ public class UserPrincipal implements UserDetails {
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
- 
 }

@@ -1,5 +1,0 @@
-package uk.co.luciditysoftware.actsintown.domain.parametersets.message;
-
-public class CreateParameterSet {
-
-}
