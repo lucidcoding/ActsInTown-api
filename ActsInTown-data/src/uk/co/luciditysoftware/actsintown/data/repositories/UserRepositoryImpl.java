@@ -5,13 +5,11 @@ import java.util.UUID;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 
-import uk.co.luciditysoftware.actsintown.domain.entities.ConversationUser;
 import uk.co.luciditysoftware.actsintown.domain.entities.User;
 import uk.co.luciditysoftware.actsintown.domain.repositorycontracts.UserRepository;
 
@@ -62,20 +60,5 @@ public class UserRepositoryImpl implements UserRepository {
     public void save(User user) {
         Session session = sessionFactory.getCurrentSession();
         session.save(user);
-    }
-    
-    public List<User> getByConversationId(UUID conversationId, UUID currentUserId) {
-        Session session = sessionFactory.getCurrentSession();
-        
-        @SuppressWarnings("unchecked")
-        List<User> users = session.createCriteria(ConversationUser.class)
-            .createAlias("conversation", "conversation")
-            .createAlias("user", "user")
-            .add(Restrictions.eq("conversation.id", conversationId))
-            .add(Restrictions.ne("user.id", currentUserId))
-            .setProjection(Projections.property("user"))
-            .list();
-        
-        return users;
     }
 }

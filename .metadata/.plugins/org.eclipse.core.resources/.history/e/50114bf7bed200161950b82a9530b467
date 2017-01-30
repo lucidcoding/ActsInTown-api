@@ -1,0 +1,19 @@
+package uk.co.luciditysoftware.actsintown.data.repositories;
+
+import java.util.List;
+import java.util.UUID;
+
+import uk.co.luciditysoftware.actsintown.domain.entities.Message;
+import uk.co.luciditysoftware.actsintown.domain.repositorycontracts.MessageRepository;
+
+public class MessageRepositoryImpl implements MessageRepository{
+
+    public List<Message> getByConversationId(UUID conversationId) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    public void save(Message message) {
+        // TODO Auto-generated method stub    
+    }
+}

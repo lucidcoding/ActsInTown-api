@@ -4,7 +4,6 @@ import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import javax.validation.Valid;
 
@@ -19,7 +18,6 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -322,19 +320,5 @@ public class UserController {
         user.resetPassword(parameterSet);
         userRepository.save(user);
         return new ResponseEntity<Void>(new HttpHeaders(), HttpStatus.OK);
-    }
-    
-    /**
-     * Returns the users relevant to the specified conversation.
-     * @return List of users
-     */
-    @RequestMapping(value = "/for-conversation/{conversationId}", method = RequestMethod.GET)
-    @ResponseBody
-    @Transactional
-    public List<UserDto> getForConversation(@PathVariable UUID conversationId) {
-        User user = currentUserResolver.getUser();
-        List<User> users = userRepository.getByConversationId(conversationId, user.getId());
-        List<UserDto> userDtos = genericDtoMapper.map(users, UserDto.class);
-        return userDtos;
     }
 }

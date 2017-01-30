@@ -1,0 +1,25 @@
+package uk.co.luciditysoftware.actsintown.api.requests.conversation;
+
+import java.util.List;
+import java.util.UUID;
+
+public class StartRequest {
+    private List<UUID> usersToIds;
+    private String messageBody;
+    
+    public List<UUID> getUsersToIds() {
+        return usersToIds;
+    }
+    
+    public void setUsersToIds(List<UUID> usersToIds) {
+        this.usersToIds = usersToIds;
+    }
+    
+    public String getMessageBody() {
+        return messageBody;
+    }
+    
+    public void setMessageBody(String messageBody) {
+        this.messageBody = messageBody;
+    }
+}
