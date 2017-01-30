@@ -1,6 +1,7 @@
 package uk.co.luciditysoftware.actsintown.api.security;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         
         //TODO: Refactor this into shared module along with equivalent in DatabaseAuthenticationProvider
         User user = userRepository.getByUsername(username);
+        final UUID id = user.getId();
         
         List<CustomGrantedAuthority> authorities =  user.getRole().getRolePermissions().stream()
                 .map(rolePermission -> new CustomGrantedAuthority() {
@@ -42,6 +44,7 @@ public class CustomUserDetailsService implements UserDetailsService {
             private static final long serialVersionUID = 1L;
 
             {
+                setId(id);
                 setUsername(username);
                 setAuthorities(authorities);
             }
