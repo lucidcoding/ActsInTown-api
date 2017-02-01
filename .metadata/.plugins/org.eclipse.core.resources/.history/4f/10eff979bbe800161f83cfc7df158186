@@ -337,17 +337,4 @@ public class UserController {
         List<UserDto> userDtos = genericDtoMapper.map(users, UserDto.class);
         return userDtos;
     }
-    
-    /**
-     * Returns a list of users specified by IDs.
-     * @return List of users
-     */
-    @RequestMapping(value = "/by-ids", method = RequestMethod.POST)
-    @ResponseBody
-    @Transactional
-    public List<UserDto> getByIds(@RequestBody List<UUID> ids) {
-        List<User> users = userRepository.getByIds(ids);
-        List<UserDto> userDtos = genericDtoMapper.map(users, UserDto.class);
-        return userDtos;
-    }
 }

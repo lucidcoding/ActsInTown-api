@@ -28,3 +28,11 @@
 0:0:0:0:0:0:0:1 - - [30/Jan/2017:22:16:46 +0000] "GET /ActsInTown-api/WEB-INF/classes/uk/co/luciditysoftware/actsintown/api/config/AuthorizationServerConfiguration.java HTTP/1.1" 404 992
 0:0:0:0:0:0:0:1 - - [30/Jan/2017:22:17:50 +0000] "POST /ActsInTown-api/oauth/token?grant_type=password&username=paul_t_d%2B3%40hotmail.com&password=Muppet123! HTTP/1.1" 200 1078
 0:0:0:0:0:0:0:1 - - [30/Jan/2017:22:17:52 +0000] "GET /ActsInTown-api/spot/for-current-user HTTP/1.1" 200 5505
+0:0:0:0:0:0:0:1 - - [30/Jan/2017:22:51:58 +0000] "OPTIONS /ActsInTown-api/user/for-conversation/404BE831-C37C-4354-A9B1-06A2DCE767F4 HTTP/1.1" 200 -
+0:0:0:0:0:0:0:1 - - [30/Jan/2017:22:51:59 +0000] "GET /ActsInTown-api/user/for-conversation/404BE831-C37C-4354-A9B1-06A2DCE767F4 HTTP/1.1" 200 12
+0:0:0:0:0:0:0:1 - - [30/Jan/2017:22:55:47 +0000] "GET /ActsInTown-api/user/for-conversation/404BE831-C37C-4354-A9B1-06A2DCE767F4 HTTP/1.1" 200 12
+0:0:0:0:0:0:0:1 - - [30/Jan/2017:22:58:09 +0000] "GET /ActsInTown-api/user/for-conversation/404BE831-C37C-4354-A9B1-06A2DCE767F4 HTTP/1.1" 200 12
+0:0:0:0:0:0:0:1 - - [30/Jan/2017:23:07:23 +0000] "OPTIONS /ActsInTown-api/user/for-conversation/404BE831-C37C-4354-A9B1-06A2DCE767F4 HTTP/1.1" 200 -
+0:0:0:0:0:0:0:1 - - [30/Jan/2017:23:07:23 +0000] "GET /ActsInTown-api/user/for-conversation/404BE831-C37C-4354-A9B1-06A2DCE767F4 HTTP/1.1" 200 12
+0:0:0:0:0:0:0:1 - - [30/Jan/2017:23:08:31 +0000] "GET /ActsInTown-api/user/for-conversation/404BE831-C37C-4354-A9B1-06A2DCE767F4 HTTP/1.1" 200 12
+0:0:0:0:0:0:0:1 - - [30/Jan/2017:23:10:25 +0000] "GET /ActsInTown-api/user/for-conversation/404BE831-C37C-4354-A9B1-06A2DCE767F4 HTTP/1.1" 200 12
