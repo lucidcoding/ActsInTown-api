@@ -1,5 +1,6 @@
 package uk.co.luciditysoftware.actsintown.data.repositories;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -29,6 +30,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     public List<User> getByIds(List<UUID> ids) {
+        if (ids.size() == 0) return new ArrayList<User>();
         Session session = sessionFactory.getCurrentSession();
         
         @SuppressWarnings("unchecked")

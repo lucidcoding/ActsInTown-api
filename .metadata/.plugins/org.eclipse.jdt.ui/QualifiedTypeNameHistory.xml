@@ -26,7 +26,6 @@
 <fullyQualifiedTypeName name="org.hibernate.criterion.Order"/>
 <fullyQualifiedTypeName name="org.springframework.context.annotation.PropertySource"/>
 <fullyQualifiedTypeName name="org.springframework.core.env.Environment"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="uk.co.luciditysoftware.actsintown.api.utilities.CurrentUserResolver"/>
 <fullyQualifiedTypeName name="org.springframework.security.core.userdetails.UserDetailsService"/>
 <fullyQualifiedTypeName name="uk.co.luciditysoftware.actsintown.domain.entities.User"/>
@@ -60,4 +59,5 @@
 <fullyQualifiedTypeName name="java.util.Collection"/>
 <fullyQualifiedTypeName name="java.util.Date"/>
 <fullyQualifiedTypeName name="uk.co.luciditysoftware.actsintown.domain.common.Entity"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
 </qualifiedTypeNameHistroy>
