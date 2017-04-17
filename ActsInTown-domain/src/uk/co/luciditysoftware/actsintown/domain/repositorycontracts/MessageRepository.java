@@ -6,6 +6,8 @@ import java.util.UUID;
 import uk.co.luciditysoftware.actsintown.domain.entities.Message;
 
 public interface MessageRepository {
-    public List<Message> getByConversationId(UUID conversationId, int page, int pageSize);
+    public Message getById(UUID id);
+    public List<Message> getByRecipientId(UUID recipientId, int page, int pageSize);
+    public List<Message> getBySenderId(UUID senderId, int page, int pageSize);
     public void save(Message message);
 }

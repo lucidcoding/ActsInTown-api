@@ -1,0 +1,31 @@
+package uk.co.luciditysoftware.actsintown.api.mappers.parametersetmappers.message;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import uk.co.luciditysoftware.actsintown.api.requests.message.StartRequest;
+import uk.co.luciditysoftware.actsintown.api.utilities.CurrentUserResolver;
+import uk.co.luciditysoftware.actsintown.domain.parametersets.message.SendParameterSet;
+import uk.co.luciditysoftware.actsintown.domain.repositorycontracts.ConversationRepository;
+
+@Service
+public class CreateParameterSetMapperImpl implements CreateParameterSetMapper {
+ 
+    @Autowired
+    private ConversationRepository conversationRepository;
+
+    @Autowired
+    private CurrentUserResolver currentUserResolver;
+    
+    public SendParameterSet map(StartRequest request) {
+        SendParameterSet parameterSet = new SendParameterSet() {
+            {
+                this.setUser(currentUserResolver.getUser());
+                this.setConversation(conversationRepository.getById(request.getConversationId()));
+                this.setBody(request.getBody());
+            }
+        };
+        
+        return parameterSet;
+    }
+}

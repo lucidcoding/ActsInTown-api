@@ -1,0 +1,8 @@
+package uk.co.luciditysoftware.actsintown.api.mappers.parametersetmappers.message;
+
+import uk.co.luciditysoftware.actsintown.api.requests.message.CreateRequest;
+import uk.co.luciditysoftware.actsintown.domain.parametersets.message.SendParameterSet;
+
+public interface CreateParameterSetMapper {
+    public SendParameterSet map(CreateRequest request);
+}

@@ -21,15 +21,37 @@ public class MessageRepositoryImpl implements MessageRepository{
     @Autowired
     private SessionFactory sessionFactory;
     
-    public List<Message> getByConversationId(UUID conversationId, int page, int pageSize) {
+    public Message getById(UUID id) {
+        Session session = sessionFactory.getCurrentSession();
+        Message message = (Message)session.get(Message.class, id);
+        return message;
+    }
+    
+    public List<Message> getByRecipientId(UUID recipientId, int page, int pageSize) {
         Session session = sessionFactory.getCurrentSession();
 
         @SuppressWarnings("unchecked")
         List<Message> messages = session
             .createCriteria(Message.class)
-            .createAlias("conversation", "conversation")
-            .add(Restrictions.eq("conversation.id", conversationId))
-            .addOrder(Order.desc("addedOn"))
+            .createAlias("recipient", "recipient")
+            .add(Restrictions.eq("recipient.id", recipientId))
+            .addOrder(Order.desc("sentOn"))
+            .setFirstResult((page - 1) * pageSize)
+            .setMaxResults(pageSize)
+            .list();
+        
+        return messages;
+    }
+    
+    public List<Message> getBySenderId(UUID senderId, int page, int pageSize) {
+        Session session = sessionFactory.getCurrentSession();
+
+        @SuppressWarnings("unchecked")
+        List<Message> messages = session
+            .createCriteria(Message.class)
+            .createAlias("sender", "sender")
+            .add(Restrictions.eq("sender.id", senderId))
+            .addOrder(Order.desc("sentOn"))
             .setFirstResult((page - 1) * pageSize)
             .setMaxResults(pageSize)
             .list();

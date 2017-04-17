@@ -1,0 +1,44 @@
+package uk.co.luciditysoftware.actsintown.api.requests.message;
+
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+
+import uk.co.luciditysoftware.actsintown.domain.entities.User;
+
+public class StartRequest {
+    @NotNull(message = "This field is required")
+    private User recipient;
+
+    @NotNull(message = "This field is required")
+    @Length(max = 255)
+    private String body;
+
+    @NotNull(message = "This field is required")
+    @Length(max = 25)
+    private String title;
+
+    public User getRecipient() {
+        return recipient;
+    }
+
+    public void setRecipient(User recipient) {
+        this.recipient = recipient;
+    }
+
+    public String getBody() {
+        return body;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+}
