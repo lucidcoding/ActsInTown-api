@@ -35,3 +35,7 @@
 0:0:0:0:0:0:0:1 - - [17/Apr/2017:17:24:02 +0100] "OPTIONS /ActsInTown-api/user/current HTTP/1.1" 200 -
 127.0.0.1 - - [17/Apr/2017:17:25:57 +0100] "GET / HTTP/1.1" 404 994
 0:0:0:0:0:0:0:1 - - [17/Apr/2017:17:25:58 +0100] "GET /ActsInTown-api/WEB-INF/classes/uk/co/luciditysoftware/actsintown/api/security/DatabaseAuthenticationProvider.java HTTP/1.1" 404 1220
+127.0.0.1 - - [17/Apr/2017:18:23:59 +0100] "GET / HTTP/1.1" 404 994
+127.0.0.1 - - [17/Apr/2017:18:25:38 +0100] "GET / HTTP/1.1" 404 994
+127.0.0.1 - - [17/Apr/2017:18:27:30 +0100] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [17/Apr/2017:18:27:31 +0100] "GET /ActsInTown-api/WEB-INF/classes/uk/co/luciditysoftware/actsintown/api/config/RootContextConfiguration.java HTTP/1.1" 404 992

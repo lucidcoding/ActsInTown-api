@@ -5,7 +5,7 @@
  
 <hibernate-mapping>
  
-    <class name="uk.co.luciditysoftware.actsintown.domain.entities.ConversationUser" table="`ConversationUser`">
+    <class name="uk.co.luciditysoftware.actsintown.domain.entities.Message" table="`Message`">
 
         <id name="id" column="`Id`" type="uuid-char">
             <generator class="assigned" />
@@ -15,8 +15,16 @@
         
         <many-to-one name="user" class="uk.co.luciditysoftware.actsintown.domain.entities.User" column="UserId" not-null="true"/>
 
-		<property name="joinedOn">
-			<column name="joinedOn" not-null="true" />
+		<property name="addedOn">
+			<column name="addedOn" not-null="true" />
+		</property>
+        
+		<property name="deleted">
+			<column name="deleted" not-null="true" />
+		</property>
+		
+		<property name="body">
+			<column name="body" not-null="true" />
 		</property>
     </class>
 </hibernate-mapping>

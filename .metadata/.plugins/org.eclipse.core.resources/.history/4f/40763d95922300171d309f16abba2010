@@ -15,6 +15,19 @@
 			<column name="startedOn" not-null="true" />
 		</property>
 		
+		<property name="deleted">
+			<column name="deleted" not-null="true" />
+		</property>
+        
+		<property name="updatedOn">
+			<column name="updatedOn" not-null="true" />
+		</property>
+		
+        <bag name="conversationUsers" cascade="all">
+			<key column="conversationId" />
+			<one-to-many class="uk.co.luciditysoftware.actsintown.domain.entities.ConversationUser" />
+		</bag>
+		
         <bag name="messages" cascade="all">
 			<key column="conversationId" />
 			<one-to-many class="uk.co.luciditysoftware.actsintown.domain.entities.Message" />

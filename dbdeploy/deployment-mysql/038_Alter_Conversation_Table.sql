@@ -1,0 +1,13 @@
+-- Alter Conversation
+
+START TRANSACTION;
+ALTER TABLE `Conversation` DROP COLUMN `Deleted`;
+ALTER TABLE `Conversation` DROP COLUMN `UpdatedOn`;
+COMMIT;
+
+--//@UNDO
+
+START TRANSACTION;
+ALTER TABLE `Conversation` ADD COLUMN `Deleted` BIT NOT NULL DEFAULT 0;
+ALTER TABLE `Conversation` ADD COLUMN `UpdatedOn` DATETIME NOT NULL;
+COMMIT;
