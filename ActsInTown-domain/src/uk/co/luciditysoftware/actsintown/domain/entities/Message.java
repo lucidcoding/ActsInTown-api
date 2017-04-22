@@ -55,6 +55,7 @@ public class Message extends Entity {
     public static Message send(SendParameterSet parameterSet) {
         Date now = new Date();
         Conversation conversation = new Conversation();
+        conversation.setId(UUID.randomUUID());
         conversation.setStartedOn(now);
         Message message = new Message();
         message.id = UUID.randomUUID();

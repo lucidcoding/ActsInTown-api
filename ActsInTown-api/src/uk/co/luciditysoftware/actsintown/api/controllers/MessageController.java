@@ -54,6 +54,15 @@ public class MessageController {
     @Autowired
     private CurrentUserResolver currentUserResolver;
     
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    @Transactional
+    public MessageDto get(@PathVariable UUID id) {
+        Message message = messageRepository.getById(id);
+        MessageDto messageDto = genericDtoMapper.map(message, MessageDto.class);
+        return messageDto;
+    }
+    
     @RequestMapping(value = "/inbox/{page}/{pageSize}", method = RequestMethod.GET)
     @ResponseBody
     @Transactional
@@ -67,9 +76,9 @@ public class MessageController {
     @RequestMapping(value = "/sent-items/{page}/{pageSize}", method = RequestMethod.GET)
     @ResponseBody
     @Transactional
-    public List<MessageDto> getSentItems(@PathVariable UUID senderId, @PathVariable int page, @PathVariable int pageSize) {
-        UUID recipientId = currentUserResolver.getUser().getId();
-        List<Message> messages = messageRepository.getByRecipientId(recipientId, page, pageSize);
+    public List<MessageDto> getSentItems(@PathVariable int page, @PathVariable int pageSize) {
+        UUID senderId = currentUserResolver.getUser().getId();
+        List<Message> messages = messageRepository.getBySenderId(senderId, page, pageSize);
         List<MessageDto> messageDtos = genericDtoMapper.map(messages, MessageDto.class);
         return messageDtos;
     }

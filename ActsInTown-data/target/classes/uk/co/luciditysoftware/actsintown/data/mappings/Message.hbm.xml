@@ -11,30 +11,31 @@
             <generator class="assigned" />
         </id>
         
-        <many-to-one name="conversation" class="uk.co.luciditysoftware.actsintown.domain.entities.Conversation" column="ConversationId" not-null="true"/>
+        <many-to-one name="conversation" class="uk.co.luciditysoftware.actsintown.domain.entities.Conversation" 
+        	column="`ConversationId`" not-null="true" cascade="all"/>
         
-        <many-to-one name="sender" class="uk.co.luciditysoftware.actsintown.domain.entities.User" column="SenderId" not-null="true"/>
+        <many-to-one name="sender" class="uk.co.luciditysoftware.actsintown.domain.entities.User" column="`SenderId`" not-null="true"/>
         
-        <many-to-one name="recipient" class="uk.co.luciditysoftware.actsintown.domain.entities.User" column="RecipientId" not-null="false"/>
+        <many-to-one name="recipient" class="uk.co.luciditysoftware.actsintown.domain.entities.User" column="`RecipientId`" not-null="false"/>
 
 		<property name="sentOn">
-			<column name="sentOn" not-null="true" />
+			<column name="`SentOn`" not-null="true" />
 		</property>
         
 		<property name="deleted">
-			<column name="deleted" not-null="true" />
+			<column name="`Deleted`" not-null="true" />
 		</property>
         
 		<property name="read">
-			<column name="read" not-null="true" />
+			<column name="`Read`" not-null="true" />
 		</property>
 		
 		<property name="title">
-			<column name="title" not-null="true" />
+			<column name="`Title`" not-null="true" />
 		</property>
 		
 		<property name="body">
-			<column name="body" not-null="true" />
+			<column name="`Body`" not-null="true" />
 		</property>
     </class>
 </hibernate-mapping>

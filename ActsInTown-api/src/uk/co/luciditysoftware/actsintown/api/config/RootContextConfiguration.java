@@ -57,6 +57,7 @@ public class RootContextConfiguration {
 	    LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
 	    sessionBuilder.setProperty("connection.release_mode", "on_close");
 	    sessionBuilder.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLInnoDBDialect");
+        sessionBuilder.setProperty("hibernate.show_sql", "false");
 	    sessionBuilder.addResource("/uk/co/luciditysoftware/actsintown/data/mappings/Role.hbm.xml");
 	    sessionBuilder.addResource("/uk/co/luciditysoftware/actsintown/data/mappings/Permission.hbm.xml");
 	    sessionBuilder.addResource("/uk/co/luciditysoftware/actsintown/data/mappings/RolePermission.hbm.xml");
