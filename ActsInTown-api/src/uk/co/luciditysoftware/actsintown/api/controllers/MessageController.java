@@ -63,6 +63,15 @@ public class MessageController {
         return messageDto;
     }
     
+    @RequestMapping(value = "/inbox/count", method = RequestMethod.GET)
+    @ResponseBody
+    @Transactional
+    public int getInboxCount() {
+        UUID recipientId = currentUserResolver.getUser().getId();
+        int count = messageRepository.getByRecipientIdCount(recipientId);
+        return count;
+    }
+    
     @RequestMapping(value = "/inbox/{page}/{pageSize}", method = RequestMethod.GET)
     @ResponseBody
     @Transactional
@@ -71,6 +80,15 @@ public class MessageController {
         List<Message> messages = messageRepository.getByRecipientId(recipientId, page, pageSize);
         List<MessageDto> messageDtos = genericDtoMapper.map(messages, MessageDto.class);
         return messageDtos;
+    }
+    
+    @RequestMapping(value = "/sent-items/count", method = RequestMethod.GET)
+    @ResponseBody
+    @Transactional
+    public int getSentItemsCount() {
+        UUID recipientId = currentUserResolver.getUser().getId();
+        int count = messageRepository.getBySenderIdCount(recipientId);
+        return count;
     }
     
     @RequestMapping(value = "/sent-items/{page}/{pageSize}", method = RequestMethod.GET)

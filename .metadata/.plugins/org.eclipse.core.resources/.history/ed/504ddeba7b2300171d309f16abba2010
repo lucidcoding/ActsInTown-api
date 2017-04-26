@@ -1,5 +1,0 @@
-package uk.co.luciditysoftware.actsintown.api.mappers.parametersetmappers.message;
-
-public interface ReplyParameterSetMapper {
-
-}

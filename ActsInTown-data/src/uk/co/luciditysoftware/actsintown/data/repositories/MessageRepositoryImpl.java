@@ -6,6 +6,7 @@ import java.util.UUID;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -43,6 +44,21 @@ public class MessageRepositoryImpl implements MessageRepository{
         return messages;
     }
     
+    public int getByRecipientIdCount(UUID recipientId) {
+        Session session = sessionFactory.getCurrentSession();
+
+        @SuppressWarnings("unchecked")
+        int count = ((Long)session
+            .createCriteria(Message.class)
+            .createAlias("recipient", "recipient")
+            .add(Restrictions.eq("recipient.id", recipientId))
+            .setProjection(Projections.rowCount())
+            .uniqueResult())
+            .intValue();
+        
+        return count;   
+    }
+    
     public List<Message> getBySenderId(UUID senderId, int page, int pageSize) {
         Session session = sessionFactory.getCurrentSession();
 
@@ -57,6 +73,21 @@ public class MessageRepositoryImpl implements MessageRepository{
             .list();
         
         return messages;
+    }
+    
+    public int getBySenderIdCount(UUID senderId) {
+        Session session = sessionFactory.getCurrentSession();
+
+        @SuppressWarnings("unchecked")
+        int count = ((Long)session
+            .createCriteria(Message.class)
+            .createAlias("sender", "sender")
+            .add(Restrictions.eq("sender.id", senderId))
+            .setProjection(Projections.rowCount())
+            .uniqueResult())
+            .intValue();
+        
+        return count;   
     }
 
     public void save(Message message) {
