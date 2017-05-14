@@ -1,9 +1,11 @@
 package uk.co.luciditysoftware.actsintown.api.controllers;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -97,6 +99,28 @@ public class MessageController {
     public List<MessageDto> getSentItems(@PathVariable int page, @PathVariable int pageSize) {
         UUID senderId = currentUserResolver.getUser().getId();
         List<Message> messages = messageRepository.getBySenderId(senderId, page, pageSize);
+        List<MessageDto> messageDtos = genericDtoMapper.map(messages, MessageDto.class);
+        return messageDtos;
+    }
+    
+    
+    @RequestMapping(value = "/for-conversation/{conversationId}/{before}/count", method = RequestMethod.GET)
+    @ResponseBody
+    @Transactional
+    public int getForConversationCount(@PathVariable UUID conversationId, @PathVariable Date before) {
+        int count = messageRepository.getByConversationIdCount(conversationId, before);
+        return count;
+    }
+    
+    @RequestMapping(value = "/for-conversation/{conversationId}/{before}/{page}/{pageSize}", method = RequestMethod.GET)
+    @ResponseBody
+    @Transactional
+    public List<MessageDto> getForConversation(
+            @PathVariable UUID conversationId,
+            @PathVariable @DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") Date before,
+            @PathVariable int page,
+            @PathVariable int pageSize) {
+        List<Message> messages = messageRepository.getByConversationId(conversationId, before, page, pageSize);
         List<MessageDto> messageDtos = genericDtoMapper.map(messages, MessageDto.class);
         return messageDtos;
     }

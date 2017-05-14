@@ -1,5 +1,6 @@
 package uk.co.luciditysoftware.actsintown.data.repositories;
 
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -47,7 +48,6 @@ public class MessageRepositoryImpl implements MessageRepository{
     public int getByRecipientIdCount(UUID recipientId) {
         Session session = sessionFactory.getCurrentSession();
 
-        @SuppressWarnings("unchecked")
         int count = ((Long)session
             .createCriteria(Message.class)
             .createAlias("recipient", "recipient")
@@ -78,7 +78,6 @@ public class MessageRepositoryImpl implements MessageRepository{
     public int getBySenderIdCount(UUID senderId) {
         Session session = sessionFactory.getCurrentSession();
 
-        @SuppressWarnings("unchecked")
         int count = ((Long)session
             .createCriteria(Message.class)
             .createAlias("sender", "sender")
@@ -90,6 +89,38 @@ public class MessageRepositoryImpl implements MessageRepository{
         return count;   
     }
 
+    public List<Message> getByConversationId(UUID conversationId, Date before, int page, int pageSize) {
+        Session session = sessionFactory.getCurrentSession();
+
+        @SuppressWarnings("unchecked")
+        List<Message> messages = session
+            .createCriteria(Message.class)
+            .createAlias("sender", "sender")
+            .add(Restrictions.eq("conversation.id", conversationId))
+            .add(Restrictions.lt("sentOn", before))
+            .addOrder(Order.desc("sentOn"))
+            .setFirstResult((page - 1) * pageSize)
+            .setMaxResults(pageSize)
+            .list();
+        
+        return messages; 
+    }
+    
+    public int getByConversationIdCount(UUID conversationId, Date before) {
+        Session session = sessionFactory.getCurrentSession();
+
+        int count = ((Long)session
+            .createCriteria(Message.class)
+            .createAlias("sender", "sender")
+            .add(Restrictions.eq("conversation.id", conversationId))
+            .add(Restrictions.lt("sentOn", before))
+            .setProjection(Projections.rowCount())
+            .uniqueResult())
+            .intValue();
+        
+        return count;   
+    }
+    
     public void save(Message message) {
         Session session = sessionFactory.getCurrentSession();
         session.save(message);

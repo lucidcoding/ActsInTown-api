@@ -15,7 +15,6 @@
 <fullyQualifiedTypeName name="java.util.Properties"/>
 <fullyQualifiedTypeName name="org.hibernate.FetchMode"/>
 <fullyQualifiedTypeName name="uk.co.luciditysoftware.actsintown.domain.entities.UserUserType"/>
-<fullyQualifiedTypeName name="org.hibernate.criterion.Projections"/>
 <fullyQualifiedTypeName name="uk.co.luciditysoftware.actsintown.api.requests.user.ChangePasswordRequest"/>
 <fullyQualifiedTypeName name="uk.co.luciditysoftware.actsintown.api.mappers.parametersetmappers.user.ChangePasswordParameterSetMapper"/>
 <fullyQualifiedTypeName name="uk.co.luciditysoftware.actsintown.domain.parametersets.user.ChangePasswordParameterSet"/>
@@ -60,4 +59,5 @@
 <fullyQualifiedTypeName name="java.util.Date"/>
 <fullyQualifiedTypeName name="uk.co.luciditysoftware.actsintown.domain.common.Entity"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="org.hibernate.criterion.Projections"/>
 </qualifiedTypeNameHistroy>

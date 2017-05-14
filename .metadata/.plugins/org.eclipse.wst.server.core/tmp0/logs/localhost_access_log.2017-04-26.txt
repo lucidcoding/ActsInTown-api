@@ -56,3 +56,13 @@
 0:0:0:0:0:0:0:1 - - [26/Apr/2017:22:27:03 +0100] "GET /ActsInTown-api/message/sent-items/1/10 HTTP/1.1" 200 12
 0:0:0:0:0:0:0:1 - - [26/Apr/2017:22:27:05 +0100] "GET /ActsInTown-api/message/inbox/count HTTP/1.1" 200 11
 0:0:0:0:0:0:0:1 - - [26/Apr/2017:22:27:05 +0100] "GET /ActsInTown-api/message/inbox/1/10 HTTP/1.1" 200 1616
+0:0:0:0:0:0:0:1 - - [26/Apr/2017:22:40:45 +0100] "OPTIONS /ActsInTown-api/message/84562070-aa89-4c9c-a7a2-7f88b95e5e4e HTTP/1.1" 200 -
+0:0:0:0:0:0:0:1 - - [26/Apr/2017:22:40:45 +0100] "GET /ActsInTown-api/message/84562070-aa89-4c9c-a7a2-7f88b95e5e4e HTTP/1.1" 200 802
+0:0:0:0:0:0:0:1 - - [26/Apr/2017:22:40:50 +0100] "OPTIONS /ActsInTown-api/message/inbox/1/10 HTTP/1.1" 200 -
+0:0:0:0:0:0:0:1 - - [26/Apr/2017:22:40:50 +0100] "OPTIONS /ActsInTown-api/message/inbox/count HTTP/1.1" 200 -
+0:0:0:0:0:0:0:1 - - [26/Apr/2017:22:40:50 +0100] "GET /ActsInTown-api/message/inbox/count HTTP/1.1" 200 11
+0:0:0:0:0:0:0:1 - - [26/Apr/2017:22:40:50 +0100] "GET /ActsInTown-api/message/inbox/1/10 HTTP/1.1" 200 1616
+0:0:0:0:0:0:0:1 - - [26/Apr/2017:22:54:56 +0100] "OPTIONS /ActsInTown-api/message/inbox/count HTTP/1.1" 200 -
+0:0:0:0:0:0:0:1 - - [26/Apr/2017:22:54:56 +0100] "OPTIONS /ActsInTown-api/message/inbox/1/10 HTTP/1.1" 200 -
+0:0:0:0:0:0:0:1 - - [26/Apr/2017:22:54:56 +0100] "GET /ActsInTown-api/message/inbox/count HTTP/1.1" 200 11
+0:0:0:0:0:0:0:1 - - [26/Apr/2017:22:54:56 +0100] "GET /ActsInTown-api/message/inbox/1/10 HTTP/1.1" 200 1616
