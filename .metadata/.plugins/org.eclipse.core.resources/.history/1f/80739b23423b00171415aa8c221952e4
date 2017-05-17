@@ -1,0 +1,8 @@
+package uk.co.luciditysoftware.actsintown.api.mappers.parametersetmappers.message;
+
+import uk.co.luciditysoftware.actsintown.api.requests.message.ReplyRequest;
+import uk.co.luciditysoftware.actsintown.domain.parametersets.message.ReplyParameterSet;
+
+public interface ReplyToParameterSetMapper {
+    public ReplyParameterSet map(ReplyRequest request);
+}

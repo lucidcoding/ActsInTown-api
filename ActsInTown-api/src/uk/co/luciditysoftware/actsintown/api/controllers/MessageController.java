@@ -20,13 +20,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import uk.co.luciditysoftware.actsintown.api.datatransferobjects.MessageDto;
 import uk.co.luciditysoftware.actsintown.api.mappers.dtomappers.GenericDtoMapper;
+import uk.co.luciditysoftware.actsintown.api.mappers.parametersetmappers.message.ReplyToParameterSetMapper;
 import uk.co.luciditysoftware.actsintown.api.mappers.parametersetmappers.message.SendParameterSetMapper;
 import uk.co.luciditysoftware.actsintown.api.mappers.responsemappers.ValidationMessageMapper;
+import uk.co.luciditysoftware.actsintown.api.requests.message.ReplyToRequest;
 import uk.co.luciditysoftware.actsintown.api.requests.message.SendRequest;
 import uk.co.luciditysoftware.actsintown.api.utilities.CurrentUserResolver;
 import uk.co.luciditysoftware.actsintown.api.utilities.RequestLogger;
 import uk.co.luciditysoftware.actsintown.domain.common.ValidationMessage;
 import uk.co.luciditysoftware.actsintown.domain.entities.Message;
+import uk.co.luciditysoftware.actsintown.domain.parametersets.message.ReplyToParameterSet;
 import uk.co.luciditysoftware.actsintown.domain.parametersets.message.SendParameterSet;
 import uk.co.luciditysoftware.actsintown.domain.repositorycontracts.MessageRepository;
 
@@ -52,6 +55,9 @@ public class MessageController {
     
     @Autowired
     private SendParameterSetMapper createParameterSetMapper;
+    
+    @Autowired
+    private ReplyToParameterSetMapper replyParameterSetMapper;
     
     @Autowired
     private CurrentUserResolver currentUserResolver;
@@ -142,5 +148,25 @@ public class MessageController {
         messageRepository.save(message);
         MessageDto messageDto = genericDtoMapper.map(message, MessageDto.class);
         return new ResponseEntity<MessageDto>(messageDto, new HttpHeaders(), HttpStatus.CREATED);
+    }
+    
+    //TODO: ensure this is protected, that the user is allowed access to the conversation.
+    @RequestMapping(value = "/reply-to", method = RequestMethod.PUT)
+    @ResponseBody
+    @Transactional
+    public ResponseEntity<?> replyTo(@RequestBody ReplyToRequest request, BindingResult bindingResult) {
+        requestLogger.log(request);
+        List<ValidationMessage> modelValidationMessages = validationMessageMapper.map(bindingResult);
+        
+        if(!modelValidationMessages.isEmpty()) {
+            return new ResponseEntity<List<ValidationMessage>>(modelValidationMessages, new HttpHeaders(), HttpStatus.BAD_REQUEST);
+        }
+
+        Message originalMessage = messageRepository.getById(request.getOriginalMessageId());
+        ReplyToParameterSet parameterSet = replyParameterSetMapper.map(request);
+        Message newMessage = originalMessage.replyTo(parameterSet);
+        messageRepository.save(newMessage);
+        MessageDto newMessageDto = genericDtoMapper.map(newMessage, MessageDto.class);
+        return new ResponseEntity<MessageDto>(newMessageDto, new HttpHeaders(), HttpStatus.CREATED);
     }
 }

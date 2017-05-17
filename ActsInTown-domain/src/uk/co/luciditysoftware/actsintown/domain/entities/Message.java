@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.UUID;
 
 import uk.co.luciditysoftware.actsintown.domain.common.Entity;
-import uk.co.luciditysoftware.actsintown.domain.parametersets.message.ReplyParameterSet;
+import uk.co.luciditysoftware.actsintown.domain.parametersets.message.ReplyToParameterSet;
 import uk.co.luciditysoftware.actsintown.domain.parametersets.message.SendParameterSet;
 
 /**
@@ -68,18 +68,18 @@ public class Message extends Entity {
         return message;
     }
     
-    public Message reply(ReplyParameterSet parameterSet) {
+    public Message replyTo(ReplyToParameterSet parameterSet) {
         Message message = new Message();
         message.id = UUID.randomUUID();
-        message.conversation = parameterSet.getOriginalMessage().getConversation();
+        message.conversation = conversation;
         message.sender = parameterSet.getSender();
         message.body = parameterSet.getBody();
         message.sentOn = new Date();
         
-        if(parameterSet.getOriginalMessage().getTitle().startsWith("Re: ")){
-            message.title = parameterSet.getOriginalMessage().getTitle();
+        if(title.startsWith("Re: ")){
+            message.title = title;
         } else {
-            message.title = "Re: " + parameterSet.getOriginalMessage().getTitle();
+            message.title = "Re: " + title;
         }
  
         return message;
