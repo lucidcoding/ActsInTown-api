@@ -73,8 +73,8 @@ public class Message extends Entity {
         message.id = UUID.randomUUID();
         message.conversation = conversation;
         message.recipient = sender;
-        //message.sender = recipient;
-        message.sender = parameterSet.getSender();
+        message.sender = recipient;
+        //message.sender = parameterSet.getSender();
         message.body = parameterSet.getBody();
         message.sentOn = new Date();
         
@@ -85,10 +85,6 @@ public class Message extends Entity {
         }
  
         return message;
-    }
-
-    public void markAsRead() {
-        read = true;
     }
 
     public Conversation getConversation() {

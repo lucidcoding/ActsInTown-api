@@ -143,3 +143,5 @@
 0:0:0:0:0:0:0:1 - - [17/May/2017:22:10:06 +0100] "GET /ActsInTown-api/message/inbox/count HTTP/1.1" 200 11
 0:0:0:0:0:0:0:1 - - [17/May/2017:22:10:11 +0100] "OPTIONS /ActsInTown-api/message/sent-items/1/10 HTTP/1.1" 200 -
 0:0:0:0:0:0:0:1 - - [17/May/2017:22:10:11 +0100] "GET /ActsInTown-api/message/sent-items/1/10 HTTP/1.1" 200 3329
+0:0:0:0:0:0:0:1 - - [17/May/2017:22:11:57 +0100] "GET /ActsInTown-api/message/inbox/count HTTP/1.1" 200 11
+0:0:0:0:0:0:0:1 - - [17/May/2017:22:11:57 +0100] "GET /ActsInTown-api/message/inbox/1/10 HTTP/1.1" 200 2443

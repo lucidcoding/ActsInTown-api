@@ -67,8 +67,6 @@ public class MessageController {
     @Transactional
     public MessageDto get(@PathVariable UUID id) {
         Message message = messageRepository.getById(id);
-        message.markAsRead();
-        messageRepository.save(message);
         MessageDto messageDto = genericDtoMapper.map(message, MessageDto.class);
         return messageDto;
     }

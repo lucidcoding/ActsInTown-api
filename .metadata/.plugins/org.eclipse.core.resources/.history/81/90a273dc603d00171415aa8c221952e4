@@ -87,10 +87,6 @@ public class Message extends Entity {
         return message;
     }
 
-    public void markAsRead() {
-        read = true;
-    }
-
     public Conversation getConversation() {
         return conversation;
     }
