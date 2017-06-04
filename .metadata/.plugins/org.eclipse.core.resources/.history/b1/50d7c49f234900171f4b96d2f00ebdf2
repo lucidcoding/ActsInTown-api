@@ -8,6 +8,6 @@ import org.springframework.security.core.Authentication;
 
 public class AccessChecker {
     public boolean check(Authentication authentication, HttpServletRequest request, UUID id, String thing) {
-        return true;
+        return false;
     }
 }

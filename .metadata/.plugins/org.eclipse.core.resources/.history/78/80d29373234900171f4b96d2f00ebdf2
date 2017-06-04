@@ -88,7 +88,7 @@ public class ResourceServerConfiguration  extends ResourceServerConfigurerAdapte
                 .antMatchers(HttpMethod.POST, "/spot/for-test-user").permitAll()
                 .antMatchers(HttpMethod.GET, "/chat").permitAll()
                 .antMatchers(HttpMethod.GET, "/chat/info").permitAll()
-                .antMatchers(HttpMethod.GET, "/message/{id}/{thing}").access("@accessChecker.check(authentication,request,#id,#thing)")//.access("#thing != 'OK'")//.access("hasAuthority('MakeBookingy')")//.hasAuthority("MakeBooking")
+                .antMatchers(HttpMethod.GET, "/message/{id}/{thing}").access("@accessChecker.check(authentication,request,#thing)")//.access("#thing != 'OK'")//.access("hasAuthority('MakeBookingy')")//.hasAuthority("MakeBooking")
                 
                 .anyRequest().authenticated()
 
