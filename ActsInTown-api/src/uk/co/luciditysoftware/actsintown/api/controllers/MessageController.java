@@ -62,7 +62,7 @@ public class MessageController {
     @Autowired
     private CurrentUserResolver currentUserResolver;
     
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}/{thing}", method = RequestMethod.GET)
     @ResponseBody
     @Transactional
     public MessageDto get(@PathVariable UUID id) {
