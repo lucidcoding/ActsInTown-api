@@ -10,8 +10,4 @@ public class AccessChecker {
     public boolean check(Authentication authentication, HttpServletRequest request, UUID id, String thing) {
         return true;
     }
-    
-    public boolean checkMessageAccess(Authentication authentication, UUID messageId) {
-        return true;
-    }
 }

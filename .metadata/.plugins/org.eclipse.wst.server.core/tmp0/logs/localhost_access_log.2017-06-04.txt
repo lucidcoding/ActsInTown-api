@@ -40,3 +40,9 @@
 0:0:0:0:0:0:0:1 - - [04/Jun/2017:13:45:58 +0100] "GET /ActsInTown-api/message/035eac5c-846e-4253-90df-d94a7b81d0d5/OK HTTP/1.1" 200 817
 0:0:0:0:0:0:0:1 - - [04/Jun/2017:13:45:58 +0100] "OPTIONS /ActsInTown-api/message/for-conversation/3cb87a42-fde7-420c-880f-72f8c1c04247/2017-05-20T13%3A50%3A55.000Z/1/10 HTTP/1.1" 200 -
 0:0:0:0:0:0:0:1 - - [04/Jun/2017:13:45:58 +0100] "GET /ActsInTown-api/message/for-conversation/3cb87a42-fde7-420c-880f-72f8c1c04247/2017-05-20T13%3A50%3A55.000Z/1/10 HTTP/1.1" 200 824
+127.0.0.1 - - [04/Jun/2017:15:10:25 +0100] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [04/Jun/2017:15:10:27 +0100] "GET /ActsInTown-api/WEB-INF/classes/uk/co/luciditysoftware/actsintown/api/controllers/MessageController.java HTTP/1.1" 404 992
+0:0:0:0:0:0:0:1 - - [04/Jun/2017:15:17:37 +0100] "OPTIONS /ActsInTown-api/message/035eac5c-846e-4253-90df-d94a7b81d0d5/OK HTTP/1.1" 200 -
+0:0:0:0:0:0:0:1 - - [04/Jun/2017:15:17:51 +0100] "GET /ActsInTown-api/message/035eac5c-846e-4253-90df-d94a7b81d0d5/OK HTTP/1.1" 200 817
+0:0:0:0:0:0:0:1 - - [04/Jun/2017:15:17:51 +0100] "OPTIONS /ActsInTown-api/message/for-conversation/3cb87a42-fde7-420c-880f-72f8c1c04247/2017-05-20T13%3A50%3A55.000Z/1/10 HTTP/1.1" 200 -
+0:0:0:0:0:0:0:1 - - [04/Jun/2017:15:17:51 +0100] "GET /ActsInTown-api/message/for-conversation/3cb87a42-fde7-420c-880f-72f8c1c04247/2017-05-20T13%3A50%3A55.000Z/1/10 HTTP/1.1" 200 824

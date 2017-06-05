@@ -1,0 +1,13 @@
+0:0:0:0:0:0:0:1 - - [05/Jun/2017:18:38:11 +0100] "OPTIONS /ActsInTown-api/oauth/token?grant_type=refresh_token&refresh_token=null HTTP/1.1" 200 -
+0:0:0:0:0:0:0:1 - - [05/Jun/2017:18:38:16 +0100] "POST /ActsInTown-api/oauth/token?grant_type=refresh_token&refresh_token=null HTTP/1.1" 401 94
+127.0.0.1 - - [05/Jun/2017:18:39:54 +0100] "GET / HTTP/1.1" 404 994
+0:0:0:0:0:0:0:1 - - [05/Jun/2017:18:39:56 +0100] "OPTIONS /ActsInTown-api/oauth/token?grant_type=password&username=paul_t_d%40hotmail.com&password=Muppet123! HTTP/1.1" 200 -
+0:0:0:0:0:0:0:1 - - [05/Jun/2017:18:39:56 +0100] "OPTIONS /ActsInTown-api/oauth/token?grant_type=password&username=paul_t_d%40hotmail.com&password=Muppet123! HTTP/1.1" 200 -
+0:0:0:0:0:0:0:1 - - [05/Jun/2017:18:39:59 +0100] "POST /ActsInTown-api/oauth/token?grant_type=password&username=paul_t_d%40hotmail.com&password=Muppet123! HTTP/1.1" 200 1072
+0:0:0:0:0:0:0:1 - - [05/Jun/2017:18:39:59 +0100] "POST /ActsInTown-api/oauth/token?grant_type=password&username=paul_t_d%40hotmail.com&password=Muppet123! HTTP/1.1" 200 1072
+0:0:0:0:0:0:0:1 - - [05/Jun/2017:18:39:59 +0100] "OPTIONS /ActsInTown-api/spot/for-current-user HTTP/1.1" 200 -
+0:0:0:0:0:0:0:1 - - [05/Jun/2017:18:40:02 +0100] "GET /ActsInTown-api/spot/for-current-user HTTP/1.1" 200 552
+0:0:0:0:0:0:0:1 - - [05/Jun/2017:18:40:19 +0100] "OPTIONS /ActsInTown-api/message/035eac5c-846e-4253-90df-d94a7b81d0d5 HTTP/1.1" 200 -
+0:0:0:0:0:0:0:1 - - [05/Jun/2017:18:40:39 +0100] "GET /ActsInTown-api/message/035eac5c-846e-4253-90df-d94a7b81d0d5 HTTP/1.1" 200 817
+0:0:0:0:0:0:0:1 - - [05/Jun/2017:18:40:39 +0100] "OPTIONS /ActsInTown-api/message/for-conversation/3cb87a42-fde7-420c-880f-72f8c1c04247/2017-05-20T13%3A50%3A55.000Z/1/10 HTTP/1.1" 200 -
+0:0:0:0:0:0:0:1 - - [05/Jun/2017:18:40:40 +0100] "GET /ActsInTown-api/message/for-conversation/3cb87a42-fde7-420c-880f-72f8c1c04247/2017-05-20T13%3A50%3A55.000Z/1/10 HTTP/1.1" 200 824
