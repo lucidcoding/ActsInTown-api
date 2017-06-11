@@ -133,7 +133,6 @@ public class MessageController {
         return messageDtos;
     }
     
-    //TODO: ensure this is protected, that the user is allowed access to the conversation.
     @RequestMapping(value = "", method = RequestMethod.POST)
     @ResponseBody
     @Transactional

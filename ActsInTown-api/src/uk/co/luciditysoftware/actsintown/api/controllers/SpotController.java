@@ -38,7 +38,6 @@ import uk.co.luciditysoftware.actsintown.domain.entities.User;
 import uk.co.luciditysoftware.actsintown.domain.enums.BookedState;
 import uk.co.luciditysoftware.actsintown.domain.parametersets.spot.AddParameterSet;
 import uk.co.luciditysoftware.actsintown.domain.repositorycontracts.SpotRepository;
-import uk.co.luciditysoftware.actsintown.domain.repositorycontracts.UserRepository;
 
 /**
  * Controller class that handles all use cases performing actions on the spot entity.
@@ -69,9 +68,6 @@ public class SpotController {
     @Autowired
     private JavaMailSender mailSender;
     
-    @Autowired
-    private UserRepository userRepository;
-    
     /**
      * Returns a list of all spots that have been added by the currently logged in user.
      * @return List of spots for current user
@@ -86,51 +82,6 @@ public class SpotController {
         return spotDtos;
     }
 
-    /**
-     * Returns a list of all spots that have been added by the currently logged in user.
-     * @return List of spots for current user
-     */
-    @RequestMapping(value = "/for-test-user", method = RequestMethod.GET)
-    @ResponseBody
-    @Transactional
-    public List<SpotDto> getForTestUser() {
-        List<Spot> spots = spotRepository.getByUsername("paul_t_d+2@hotmail.com");
-        List<SpotDto> spotDtos = genericDtoMapper.map(spots, SpotDto.class);
-        return spotDtos;
-    }
-    
-    @SuppressWarnings("deprecation")
-    @RequestMapping(value = "/for-test-user", method = RequestMethod.POST)
-    @ResponseBody
-    @Transactional
-    public ResponseEntity<?> addForTestUser(@RequestBody AddRequest request, BindingResult bindingResult) {
-        requestLogger.log(request);
-        List<ValidationMessage> modelValidationMessages = validationMessageMapper.map(bindingResult);
-        
-        if(!modelValidationMessages.isEmpty()) {
-            return new ResponseEntity<List<ValidationMessage>>(modelValidationMessages, new HttpHeaders(), HttpStatus.BAD_REQUEST);
-        }
-        
-        //Duration coming through as 0 if null.
-        /*if(request.getDurationMinutes() == 0) {
-            request.setDurationMinutes(null);
-        }*/
-        
-        AddParameterSet parameterSet = addParameterSetMapper.map(request);
-        parameterSet.setUser(userRepository.getByUsername("paul_t_d+2@hotmail.com"));
-        parameterSet.setScheduledFor(new Date(2017, 02, 10, 9, 30, 00));
-        parameterSet.setBookedState(BookedState.AVAILABLE);
-        List<ValidationMessage> validationMessages = Spot.validateAdd(parameterSet);
-        
-        if(!validationMessages.isEmpty()) {
-            return new ResponseEntity<List<ValidationMessage>>(validationMessages, new HttpHeaders(), HttpStatus.BAD_REQUEST);
-        }
-        
-        Spot spot = Spot.add(parameterSet);
-        spotRepository.save(spot);
-        return new ResponseEntity<Void>(new HttpHeaders(), HttpStatus.CREATED);
-    }
-    
     /**
      * Adds a spot for the current user with the supplied parameters.
      * @param request Request object containing values for the spot to be added.

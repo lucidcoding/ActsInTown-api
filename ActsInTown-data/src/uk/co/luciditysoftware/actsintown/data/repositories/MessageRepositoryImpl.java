@@ -95,7 +95,7 @@ public class MessageRepositoryImpl implements MessageRepository{
         @SuppressWarnings("unchecked")
         List<Message> messages = session
             .createCriteria(Message.class)
-            .createAlias("sender", "sender")
+            //.createAlias("sender", "sender")
             .add(Restrictions.eq("conversation.id", conversationId))
             .add(Restrictions.lt("sentOn", before))
             .addOrder(Order.desc("sentOn"))
@@ -111,7 +111,7 @@ public class MessageRepositoryImpl implements MessageRepository{
 
         int count = ((Long)session
             .createCriteria(Message.class)
-            .createAlias("sender", "sender")
+            //.createAlias("sender", "sender")
             .add(Restrictions.eq("conversation.id", conversationId))
             .add(Restrictions.lt("sentOn", before))
             .setProjection(Projections.rowCount())
@@ -119,6 +119,19 @@ public class MessageRepositoryImpl implements MessageRepository{
             .intValue();
         
         return count;   
+    }
+ 
+    public Message getLastByConversationId(UUID conversationId) {
+        Session session = sessionFactory.getCurrentSession();
+
+        Message message = (Message)session
+            .createCriteria(Message.class)
+            .add(Restrictions.eq("conversation.id", conversationId))
+            .addOrder(Order.desc("sentOn"))
+            .setMaxResults(1)
+            .uniqueResult();
+        
+        return message; 
     }
     
     public void save(Message message) {

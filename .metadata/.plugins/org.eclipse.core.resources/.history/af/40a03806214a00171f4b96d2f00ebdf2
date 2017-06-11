@@ -1,0 +1,24 @@
+package uk.co.luciditysoftware.actsintown.api.security;
+
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.transaction.annotation.Transactional;
+
+import uk.co.luciditysoftware.actsintown.domain.entities.Message;
+import uk.co.luciditysoftware.actsintown.domain.repositorycontracts.MessageRepository;
+
+public class AccessChecker {
+
+    @Autowired
+    private MessageRepository messageRepository;
+
+    @Transactional
+    public boolean checkMessageAccess(Authentication authentication, UUID messageId) {
+        Message message = messageRepository.getById(messageId);
+        return true;
+    }
+}

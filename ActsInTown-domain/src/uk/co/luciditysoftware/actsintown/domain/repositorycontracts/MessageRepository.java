@@ -14,5 +14,6 @@ public interface MessageRepository {
     public int getBySenderIdCount(UUID senderId);
     public List<Message> getByConversationId(UUID conversationId, Date before, int page, int pageSize);
     public int getByConversationIdCount(UUID conversationId, Date before);
+    public Message getLastByConversationId(UUID conversationId);
     public void save(Message message);
 }
