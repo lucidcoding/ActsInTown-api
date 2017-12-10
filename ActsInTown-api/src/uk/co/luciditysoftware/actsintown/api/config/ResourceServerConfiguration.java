@@ -23,8 +23,6 @@ import uk.co.luciditysoftware.actsintown.api.security.AccessChecker;
 @EnableResourceServer
 public class ResourceServerConfiguration  extends ResourceServerConfigurerAdapter {
 
-    //@Autowired
-    //private AuthenticationEntryPoint authenticationEntryPoint;
     @Autowired
     private OAuth2WebSecurityExpressionHandler expressionHandler;
     
@@ -123,15 +121,10 @@ public class ResourceServerConfiguration  extends ResourceServerConfigurerAdapte
                     .permitAll()
                 .antMatchers(HttpMethod.GET, "/user/by-ids")
                     .hasAuthority("ViewUser")
-                .antMatchers(HttpMethod.GET, "/test")
-                    .permitAll()
                 .antMatchers(HttpMethod.GET, "/usertype")
                     .permitAll()
                 .anyRequest().authenticated()
                 .and()
             .addFilterBefore(new CorsFilter(), ChannelProcessingFilter.class); //Doesn't handle /oauth/token - this is handled in Bootstrap.
-                //.and()
-    	    //.exceptionHandling().authenticationEntryPoint(Http401AuthenticationEntryPoint("headerValue"));
-            //.exceptionHandling().accessDeniedHandler(new CustomAccessDeniedHandler());
     }
 }
