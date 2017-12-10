@@ -1,8 +1,0 @@
-127.0.0.1 - - [04/Nov/2016:14:59:06 +0000] "GET / HTTP/1.1" 404 994
-0:0:0:0:0:0:0:1 - - [04/Nov/2016:14:59:08 +0000] "GET /ActsInTown-api/WEB-INF/classes/uk/co/luciditysoftware/actsintown/api/controllers/SpotController.java HTTP/1.1" 404 992
-0:0:0:0:0:0:0:1 - - [04/Nov/2016:14:59:09 +0000] "OPTIONS /ActsInTown-api/town HTTP/1.1" 200 -
-0:0:0:0:0:0:0:1 - - [04/Nov/2016:14:59:11 +0000] "GET /ActsInTown-api/town HTTP/1.1" 200 2785
-0:0:0:0:0:0:0:1 - - [04/Nov/2016:14:59:22 +0000] "OPTIONS /ActsInTown-api/spot/search?startDate=2016-11-12T00%3A00%3A00.000Z&endDate=2016-11-14T00%3A00%3A00.000Z&townId=54533c40-d822-4fae-b066-f2e0cdf04c52&bookedState=AVAILABLE HTTP/1.1" 200 -
-0:0:0:0:0:0:0:1 - - [04/Nov/2016:14:59:27 +0000] "GET /ActsInTown-api/spot/search?startDate=2016-11-12T00%3A00%3A00.000Z&endDate=2016-11-14T00%3A00%3A00.000Z&townId=54533c40-d822-4fae-b066-f2e0cdf04c52&bookedState=AVAILABLE HTTP/1.1" 200 12
-0:0:0:0:0:0:0:1 - - [04/Nov/2016:15:01:06 +0000] "GET /ActsInTown-api/spot/search?startDate=2016-11-12T00%3A00%3A00.000Z&endDate=2016-11-14T00%3A00%3A00.000Z&townId=54533c40-d822-4fae-b066-f2e0cdf04c52&bookedState=AVAILABLE HTTP/1.1" 200 12
-0:0:0:0:0:0:0:1 - - [04/Nov/2016:15:03:58 +0000] "GET /ActsInTown-api/spot/search?startDate=2016-11-12T00%3A00%3A00.000Z&endDate=2016-11-14T00%3A00%3A00.000Z&townId=54533c40-d822-4fae-b066-f2e0cdf04c52&bookedState=AVAILABLE HTTP/1.1" 200 12

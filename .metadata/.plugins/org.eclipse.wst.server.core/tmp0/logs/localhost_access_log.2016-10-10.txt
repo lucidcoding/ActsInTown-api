@@ -1,7 +1,0 @@
-0:0:0:0:0:0:0:1 - - [10/Oct/2016:22:15:08 +0100] "GET /ActsInTown-api/usertype HTTP/1.1" 200 606
-0:0:0:0:0:0:0:1 - - [10/Oct/2016:22:15:48 +0100] "GET /ActsInTown-api/usertype HTTP/1.1" 200 606
-0:0:0:0:0:0:0:1 - - [10/Oct/2016:22:16:16 +0100] "GET /ActsInTown-api/usertype HTTP/1.1" 200 606
-0:0:0:0:0:0:0:1 - - [10/Oct/2016:22:17:20 +0100] "GET /ActsInTown-api/usertype HTTP/1.1" 200 606
-0:0:0:0:0:0:0:1 - - [10/Oct/2016:22:25:59 +0100] "GET /ActsInTown-api/usertype HTTP/1.1" 200 606
-0:0:0:0:0:0:0:1 - - [10/Oct/2016:22:30:42 +0100] "GET /ActsInTown-api/usertype HTTP/1.1" 200 606
-0:0:0:0:0:0:0:1 - - [10/Oct/2016:22:31:57 +0100] "GET /ActsInTown-api/usertype HTTP/1.1" 200 606

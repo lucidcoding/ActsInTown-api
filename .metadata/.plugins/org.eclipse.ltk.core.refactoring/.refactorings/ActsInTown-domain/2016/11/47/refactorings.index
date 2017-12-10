@@ -1,6 +1,0 @@
-1479757967092	Encapsulate field 'passwordResetToken'
-1479757971887	Encapsulate field 'passwordResetTokenExpiry'
-1479850525095	Encapsulate field 'passwordResetToken'
-1479850533079	Encapsulate field 'password'
-1479850538279	Encapsulate field 'confirmPassword'
-1479852667029	Encapsulate field 'passwordSalt'

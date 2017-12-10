@@ -34,6 +34,7 @@ public class UserPrincipalFactoryImpl implements UserPrincipalFactory {
             }
         };
         
+        
         return userPrincipal;
     }
 }

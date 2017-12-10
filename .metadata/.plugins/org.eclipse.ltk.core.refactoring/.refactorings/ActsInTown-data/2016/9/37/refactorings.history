@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename resource &apos;ActsInTown-data/src/uk/co/luciditysoftware/actsintown/data/mappings/UserUserType.xml&apos; to &apos;UserUserType.hbm.xml&apos;" description="Rename resource &apos;UserUserType.xml&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/uk/co/luciditysoftware/actsintown/data/mappings/UserUserType.xml" name="UserUserType.hbm.xml" stamp="1474100916455" updateReferences="true"/>
-</session>

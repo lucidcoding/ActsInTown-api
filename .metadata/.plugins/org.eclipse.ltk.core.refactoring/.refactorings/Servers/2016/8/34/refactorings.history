@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename resource &apos;Servers/Tomcat v8.0 Server at localhost-config/Keygen.txt&apos; to &apos;Keygen Notes.txt&apos;" description="Rename resource &apos;Keygen.txt&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Tomcat v8.0 Server at localhost-config/Keygen.txt" name="Keygen Notes.txt" stamp="1471984901460" updateReferences="true"/>
-</session>

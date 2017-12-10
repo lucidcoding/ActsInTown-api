@@ -1,9 +1,0 @@
-127.0.0.1 - - [10/Jan/2017:19:52:13 +0000] "GET / HTTP/1.1" 404 994
-0:0:0:0:0:0:0:1 - - [10/Jan/2017:19:52:13 +0000] "GET /ActsInTown-api/WEB-INF/classes/uk/co/luciditysoftware/actsintown/api/mappers/parametersetmappers/message/CreateParameterSetMapperImpl.java HTTP/1.1" 404 992
-0:0:0:0:0:0:0:1 - - [10/Jan/2017:19:52:21 +0000] "GET /ActsInTown-api/county HTTP/1.1" 200 5792
-0:0:0:0:0:0:0:1 - - [10/Jan/2017:19:52:24 +0000] "GET /ActsInTown-api/town HTTP/1.1" 200 112230
-0:0:0:0:0:0:0:1 - - [10/Jan/2017:19:52:28 +0000] "OPTIONS /ActsInTown-api/spot/for-test-user HTTP/1.1" 200 -
-0:0:0:0:0:0:0:1 - - [10/Jan/2017:19:52:28 +0000] "POST /ActsInTown-api/spot/for-test-user HTTP/1.1" 201 -
-0:0:0:0:0:0:0:1 - - [10/Jan/2017:19:52:29 +0000] "GET /ActsInTown-api/spot/for-test-user HTTP/1.1" 200 3667
-0:0:0:0:0:0:0:1 - - [10/Jan/2017:19:53:41 +0000] "GET /ActsInTown-api/county HTTP/1.1" 200 5792
-0:0:0:0:0:0:0:1 - - [10/Jan/2017:19:53:44 +0000] "GET /ActsInTown-api/town HTTP/1.1" 200 112230

@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring accessors="true" comment="Delete element from project &apos;ActsInTown-api&apos;&#x0D;&#x0A;- Original project: &apos;ActsInTown-api&apos;&#x0D;&#x0A;- Original element: &apos;uk.co.luciditysoftware.actsintown.api.config.SecurityBootstrap.java&apos;" description="Delete element" element1="/src&lt;uk.co.luciditysoftware.actsintown.api.config{SecurityBootstrap.java" elements="1" flags="589830" id="org.eclipse.jdt.ui.delete" resources="0" stamp="1469647195681" subPackages="false" version="1.0"/>
-</session>
