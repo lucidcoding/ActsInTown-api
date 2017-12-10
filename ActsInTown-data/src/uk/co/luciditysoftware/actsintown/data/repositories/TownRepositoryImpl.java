@@ -30,12 +30,11 @@ public class TownRepositoryImpl implements TownRepository {
         Session session = sessionFactory.getCurrentSession();
         @SuppressWarnings("unchecked")
         
-        List<Town> role = session
+        List<Town> towns = session
             .createCriteria(Town.class)
-            //.add(Restrictions.eq("deleted", false))
             .addOrder(Order.asc("name")).list();
         
-        return role;
+        return towns;
     }
     
     public List<Town> getByCountyId(UUID countyId) {
