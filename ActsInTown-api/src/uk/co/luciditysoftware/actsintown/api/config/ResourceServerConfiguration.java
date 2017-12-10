@@ -69,8 +69,6 @@ public class ResourceServerConfiguration  extends ResourceServerConfigurerAdapte
     	http
             .csrf().disable()
             .anonymous().and()
-
-            //.exceptionHandling().authenticationEntryPoint(authenticationEntryPoint).and()
             .authorizeRequests()
                 .antMatchers(HttpMethod.GET, "/county")
                     .permitAll()
