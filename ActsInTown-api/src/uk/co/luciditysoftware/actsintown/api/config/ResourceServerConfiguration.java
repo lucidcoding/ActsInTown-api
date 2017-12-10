@@ -84,7 +84,6 @@ public class ResourceServerConfiguration  extends ResourceServerConfigurerAdapte
                     .hasAuthority("ViewMessage")
                 .antMatchers(HttpMethod.GET, "/message/for-conversation/{conversationId}/{before}/{page}/{pageSize}")
                     .access("hasAuthority('ViewMessage') and @accessChecker.checkConversationAccess(authentication,#conversationId)")
-                    //.hasAuthority("ViewMessage")
                 .antMatchers(HttpMethod.POST, "/message")
                     .hasAuthority("AddMessage")
                 .antMatchers(HttpMethod.PUT, "/message/reply-to")
