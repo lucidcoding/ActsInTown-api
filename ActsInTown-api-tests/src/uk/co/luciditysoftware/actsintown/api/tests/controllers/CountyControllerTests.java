@@ -2,7 +2,6 @@ package uk.co.luciditysoftware.actsintown.api.tests.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -10,7 +9,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
 import uk.co.luciditysoftware.actsintown.api.controllers.CountyController;
@@ -51,7 +49,7 @@ public class CountyControllerTests {
         List<County> counties = new ArrayList<County>();
         when(countyRepository.getAll()).thenReturn(counties);
         when(genericDtoMapper.map(counties, CountyDto.class)).thenReturn(new ArrayList<CountyDto>());
-        List<CountyDto> countyDtos = countyController.get(); 
+        countyController.get(); 
         // assertEquals(2, countyDtos.size());
         verify(countyRepository, times(1)).getAll();
         verify(genericDtoMapper, times(1)).map(counties, CountyDto.class);
