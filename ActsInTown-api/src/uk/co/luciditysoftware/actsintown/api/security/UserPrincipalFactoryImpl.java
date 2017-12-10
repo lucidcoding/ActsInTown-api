@@ -33,7 +33,7 @@ public class UserPrincipalFactoryImpl implements UserPrincipalFactory {
                 setAuthorities(authorities);
             }
         };
-        
+
         return userPrincipal;
     }
 }
