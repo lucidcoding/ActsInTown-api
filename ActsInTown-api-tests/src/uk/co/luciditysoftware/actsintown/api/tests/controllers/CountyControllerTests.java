@@ -34,23 +34,11 @@ public class CountyControllerTests {
     }
     
     @Test
-    public void canGet() {
-        /* @SuppressWarnings("serial")
-        List<County> counties = new ArrayList<County>() {{
-            new County() {{
-                setId(UUID.randomUUID());
-                setName("Test County 01");
-            }};
-            new County() {{
-                setId(UUID.randomUUID());
-                setName("Test County 02");
-            }};;
-        }};*/
+    public void getCallsCorrectMethods() {
         List<County> counties = new ArrayList<County>();
         when(countyRepository.getAll()).thenReturn(counties);
         when(genericDtoMapper.map(counties, CountyDto.class)).thenReturn(new ArrayList<CountyDto>());
-        countyController.get(); 
-        // assertEquals(2, countyDtos.size());
+        countyController.get();
         verify(countyRepository, times(1)).getAll();
         verify(genericDtoMapper, times(1)).map(counties, CountyDto.class);
     }

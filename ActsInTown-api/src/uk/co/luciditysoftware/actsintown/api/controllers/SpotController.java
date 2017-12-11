@@ -97,13 +97,13 @@ public class SpotController {
         if(!modelValidationMessages.isEmpty()) {
             return new ResponseEntity<List<ValidationMessage>>(modelValidationMessages, new HttpHeaders(), HttpStatus.BAD_REQUEST);
         }
-        
+
         AddParameterSet parameterSet = addParameterSetMapper.map(request);
         List<ValidationMessage> validationMessages = Spot.validateAdd(parameterSet);
-        
+
         if(!validationMessages.isEmpty()) {
             return new ResponseEntity<List<ValidationMessage>>(validationMessages, new HttpHeaders(), HttpStatus.BAD_REQUEST);
-        }
+        } 
         
         Spot spot = Spot.add(parameterSet);
         spotRepository.save(spot);
